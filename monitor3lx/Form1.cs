@@ -45,8 +45,6 @@ namespace monitor3lx
             int     fwdPort = 15432;
             
 
-
-
             ConnectionInfo ConnNfo = new ConnectionInfo(host, 22, username,
                 new AuthenticationMethod[]{
                         // Key Based Authentication (using keys in OpenSSH Format)
