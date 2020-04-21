@@ -30,7 +30,6 @@
         {
             this.tbLog = new System.Windows.Forms.TextBox();
             this.bConn = new System.Windows.Forms.Button();
-            this.bGetTP = new System.Windows.Forms.Button();
             this.dgvTP = new System.Windows.Forms.DataGridView();
             this.bUpdateTP = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
@@ -54,16 +53,6 @@
             this.bConn.Text = "Connect";
             this.bConn.UseVisualStyleBackColor = true;
             this.bConn.Click += new System.EventHandler(this.ConnClick);
-            // 
-            // bGetTP
-            // 
-            this.bGetTP.Location = new System.Drawing.Point(391, 12);
-            this.bGetTP.Name = "bGetTP";
-            this.bGetTP.Size = new System.Drawing.Size(75, 23);
-            this.bGetTP.TabIndex = 2;
-            this.bGetTP.Text = "getTP";
-            this.bGetTP.UseVisualStyleBackColor = true;
-            this.bGetTP.Click += new System.EventHandler(this.getTP);
             // 
             // dgvTP
             // 
@@ -94,7 +83,6 @@
             this.ClientSize = new System.Drawing.Size(1486, 714);
             this.Controls.Add(this.bUpdateTP);
             this.Controls.Add(this.dgvTP);
-            this.Controls.Add(this.bGetTP);
             this.Controls.Add(this.bConn);
             this.Controls.Add(this.tbLog);
             this.Name = "Form1";
@@ -109,7 +97,6 @@
 
         private System.Windows.Forms.TextBox tbLog;
         private System.Windows.Forms.Button bConn;
-        private System.Windows.Forms.Button bGetTP;
         private System.Windows.Forms.DataGridView dgvTP;
         private System.Windows.Forms.Button bUpdateTP;
     }

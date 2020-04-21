@@ -22,7 +22,6 @@ namespace monitor3lx
         NpgsqlConnection gConn;
         NpgsqlDataAdapter gTP_DA;
 
-
         public Form1()
         {
             InitializeComponent();
@@ -49,7 +48,6 @@ namespace monitor3lx
             int     pgPort = monitor3lx.Properties.Settings.Default.PGport;
             int     fwdPort = monitor3lx.Properties.Settings.Default.PGlocalport;
             
-
             ConnectionInfo ConnNfo = new ConnectionInfo(host, 22, SSHusername,
                 new AuthenticationMethod[]{
                         // Key Based Authentication (using keys in OpenSSH Format)
@@ -76,42 +74,53 @@ namespace monitor3lx
             gConn.Open();
             TextLog("Postgres state for DB {0} = {1}", database, gConn.State);
 
+            getTPtable();
+
         }
 
-        private void getTP(object sender, EventArgs e)
+
+
+        private void getTPtable()
         {
-            //
             if (gConn.State == ConnectionState.Open)
             {
-                TextLog("Connection ok");
                 DataTable DT = new DataTable();
                 DataSet DS = new DataSet();
-                gTP_DA = new NpgsqlDataAdapter("SELECT * FROM public.tp", gConn);
+                gTP_DA = new NpgsqlDataAdapter("SELECT * FROM public.tp WHERE isactive = B'1' ORDER BY tpid", gConn);
                 DS.Reset();
                 gTP_DA.Fill(DS);
                 DT = DS.Tables[0];
                 dgvTP.DataSource = DT;
                 dgvTP.Columns[1].MinimumWidth = 100;
-
-
-                /*  using (var cmd = new NpgsqlCommand("SELECT * FROM public.securities", gConn))
-                 using (var dr = cmd.ExecuteReader()) {
-                    DataTable vSchema = dr.GetSchemaTable();
-                     foreach (DataRow myField in vSchema.Rows)
-                     {
-                         foreach (DataColumn myProperty in vSchema.Columns)
-                             TextLog("{0} = {1}", myProperty.ColumnName, myField[myProperty]);
-                     }
-
-
-                 } */
-
             }
+            else TextLog("No connection");
         }
 
         private void updateTPclick(object sender, EventArgs e)
-        {
-            //
+        {        
+            for (int i = 0; i < dgvTP.RowCount; i++)
+            {
+                string vUpdates = "";
+                string vId = "";
+                for (int j = 0; j < dgvTP.ColumnCount; j++)
+                {
+                    if (j == 0) vId = dgvTP.Rows[i].Cells[j].Value.ToString();
+                    if (j > 2) 
+                    vUpdates = vUpdates + dgvTP.Columns[j].HeaderText + " = " + 
+                            (dgvTP.Columns[j].HeaderText == "hedgemode" ? "'" + dgvTP.Rows[i].Cells[j].Value.ToString() + "'" : dgvTP.Rows[i].Cells[j].Value.ToString());
+                    if ((j > 2)  && (j < dgvTP.ColumnCount - 1)) vUpdates = vUpdates + ", ";
+                }
+                vUpdates = vUpdates.Replace("False", "B'0'").Replace("True", "B'1'");
+                string vUpdQuery = string.Format("UPDATE tp SET {0} WHERE tpid = {1}", vUpdates, vId);
+                if (gConn.State == ConnectionState.Open)
+                {
+                    NpgsqlCommand vComm = new NpgsqlCommand(vUpdQuery, gConn);
+                    vComm.ExecuteNonQuery();
+                }
+                else TextLog("No connection");
+            }
+            getTPtable();
+
         }
     }
 
