@@ -20,11 +20,14 @@ namespace monitor3lx
 
         SshClient gCl;
         NpgsqlConnection gConn;
+        NpgsqlDataAdapter gTP_DA;
 
 
         public Form1()
         {
             InitializeComponent();
+
+            dgvTP.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void TextLog(string aLogStr, params object[] aParams)
@@ -35,20 +38,22 @@ namespace monitor3lx
         private void ConnClick(object sender, EventArgs e)
         {
 
-            string  host = "195.138.210.152";
-            string  username = "aquila";
-            string  password = "SQL16384";
-            string  keyFile = @"D:\Poliektov\tmp\sld\vv_dev\SshHostKeys\aquila_sec_ssh.ppk";
-            string  passPharse = "moonspell";
-            string  database = "MTS3pg";
-            int     pgPort = 5432;
-            int     fwdPort = 15432;
+            string  host =  monitor3lx.Properties.Settings.Default.SSHHost;
+            string  localhost = "127.0.0.1";
+            string  SSHusername = monitor3lx.Properties.Settings.Default.SSHusername;          
+            string  keyFile = monitor3lx.Properties.Settings.Default.SSHKeyFile;
+            string  passPharse = monitor3lx.Properties.Settings.Default.SSHPassPharse;
+            string  database = monitor3lx.Properties.Settings.Default.PGDatabese;
+            string  PGusername = monitor3lx.Properties.Settings.Default.PGusername;
+            string  password = monitor3lx.Properties.Settings.Default.PGpass;
+            int     pgPort = monitor3lx.Properties.Settings.Default.PGport;
+            int     fwdPort = monitor3lx.Properties.Settings.Default.PGlocalport;
             
 
-            ConnectionInfo ConnNfo = new ConnectionInfo(host, 22, username,
+            ConnectionInfo ConnNfo = new ConnectionInfo(host, 22, SSHusername,
                 new AuthenticationMethod[]{
                         // Key Based Authentication (using keys in OpenSSH Format)
-                        new PrivateKeyAuthenticationMethod(username, new PrivateKeyFile[]  {
+                        new PrivateKeyAuthenticationMethod(SSHusername, new PrivateKeyFile[]  {
                                         new PrivateKeyFile(keyFile, passPharse)
                                     }),
                  }
@@ -56,31 +61,20 @@ namespace monitor3lx
             
             gCl = new SshClient(ConnNfo);
             gCl.Connect();
-            TextLog("SSH connected = {0}",  gCl.IsConnected);
+            TextLog("SSH connection to {0}. State = {1}", host, gCl.IsConnected);
 
-            var port = new ForwardedPortLocal("127.0.0.1", (uint)fwdPort, "127.0.0.1", (uint)pgPort);
+            var port = new ForwardedPortLocal(localhost, (uint)fwdPort, localhost, (uint)pgPort);
             gCl.AddForwardedPort(port);
             port.Start();
 
-            TextLog("Port Forwarding = {0}", port.IsStarted);
+            TextLog("Port Forwarding {0} -> {1}. State = {2}", pgPort, fwdPort, port.IsStarted);
 
-           
-            string vConnStr = string.Format("Host=127.0.0.1; Port={0}; Database={1}; Username={2}; Password={3};",
-                                                fwdPort, database, username, password);
+            string vConnStr = string.Format("Host={0}; Port={1}; Database={2}; Username={3}; Password={4};",
+                                                localhost, fwdPort, database, PGusername, password);
+
             gConn = new NpgsqlConnection(vConnStr);
             gConn.Open();
-            TextLog("Postgres state = {0}", gConn.State);
-
-
-
-
-            /*
-            string vConnStr = "Host=195.138.210.152; Port=22; Username=aquila; Integrated Security=true; Database=MTS3Pg" +
-                "Client Certificate=D:/distr/putty.org.ru/PuTTY PORTABLE/SshHostKeys/aquila_pub";
-            NpgsqlConnection gConn = new NpgsqlConnection(vConnStr);
-            gConn.Open();
-            tbLog.AppendText(gConn.State.ToString());
-            */
+            TextLog("Postgres state for DB {0} = {1}", database, gConn.State);
 
         }
 
@@ -90,22 +84,34 @@ namespace monitor3lx
             if (gConn.State == ConnectionState.Open)
             {
                 TextLog("Connection ok");
-                using (var cmd = new NpgsqlCommand("SELECT * FROM public.securities", gConn))
-                using (var dr = cmd.ExecuteReader()) {
+                DataTable DT = new DataTable();
+                DataSet DS = new DataSet();
+                gTP_DA = new NpgsqlDataAdapter("SELECT * FROM public.tp", gConn);
+                DS.Reset();
+                gTP_DA.Fill(DS);
+                DT = DS.Tables[0];
+                dgvTP.DataSource = DT;
+                dgvTP.Columns[1].MinimumWidth = 100;
+
+
+                /*  using (var cmd = new NpgsqlCommand("SELECT * FROM public.securities", gConn))
+                 using (var dr = cmd.ExecuteReader()) {
                     DataTable vSchema = dr.GetSchemaTable();
-                    foreach (DataRow myField in vSchema.Rows)
-                    {
-                        foreach (DataColumn myProperty in vSchema.Columns)
-                            TextLog("{0} = {1}", myProperty.ColumnName, myField[myProperty]);
-                    }
-/*
-                    while (dr.Read()) {
-                        TextLog("---{0} {1} {2}", dr.FieldCount, dr[0], dr[1]);
-                    }
-                    */
-                }
+                     foreach (DataRow myField in vSchema.Rows)
+                     {
+                         foreach (DataColumn myProperty in vSchema.Columns)
+                             TextLog("{0} = {1}", myProperty.ColumnName, myField[myProperty]);
+                     }
+
+
+                 } */
 
             }
+        }
+
+        private void updateTPclick(object sender, EventArgs e)
+        {
+            //
         }
     }
 

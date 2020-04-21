@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace monitor3_lx.Properties {
+namespace monitor3lx.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -20,6 +20,114 @@ namespace monitor3_lx.Properties {
         public static Settings Default {
             get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("195.138.210.152")]
+        public string SSHHost {
+            get {
+                return ((string)(this["SSHHost"]));
+            }
+            set {
+                this["SSHHost"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("aquila")]
+        public string SSHusername {
+            get {
+                return ((string)(this["SSHusername"]));
+            }
+            set {
+                this["SSHusername"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("moonspell")]
+        public string SSHPassPharse {
+            get {
+                return ((string)(this["SSHPassPharse"]));
+            }
+            set {
+                this["SSHPassPharse"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Poliektov\\tmp\\sld\\vv_dev\\SshHostKeys\\aquila_sec_ssh.ppk")]
+        public string SSHKeyFile {
+            get {
+                return ((string)(this["SSHKeyFile"]));
+            }
+            set {
+                this["SSHKeyFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MTS3pg")]
+        public string PGDatabese {
+            get {
+                return ((string)(this["PGDatabese"]));
+            }
+            set {
+                this["PGDatabese"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("aquila")]
+        public string PGusername {
+            get {
+                return ((string)(this["PGusername"]));
+            }
+            set {
+                this["PGusername"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SQL16384")]
+        public string PGpass {
+            get {
+                return ((string)(this["PGpass"]));
+            }
+            set {
+                this["PGpass"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5432")]
+        public int PGport {
+            get {
+                return ((int)(this["PGport"]));
+            }
+            set {
+                this["PGport"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15432")]
+        public int PGlocalport {
+            get {
+                return ((int)(this["PGlocalport"]));
+            }
+            set {
+                this["PGlocalport"] = value;
             }
         }
     }

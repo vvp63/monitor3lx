@@ -1,7 +1,33 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="monitor3lx.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SSHHost" Type="System.String" Scope="User">
+      <Value Profile="(Default)">195.138.210.152</Value>
+    </Setting>
+    <Setting Name="SSHusername" Type="System.String" Scope="User">
+      <Value Profile="(Default)">aquila</Value>
+    </Setting>
+    <Setting Name="SSHPassPharse" Type="System.String" Scope="User">
+      <Value Profile="(Default)">moonspell</Value>
+    </Setting>
+    <Setting Name="SSHKeyFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\Poliektov\tmp\sld\vv_dev\SshHostKeys\aquila_sec_ssh.ppk</Value>
+    </Setting>
+    <Setting Name="PGDatabese" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MTS3pg</Value>
+    </Setting>
+    <Setting Name="PGusername" Type="System.String" Scope="User">
+      <Value Profile="(Default)">aquila</Value>
+    </Setting>
+    <Setting Name="PGpass" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SQL16384</Value>
+    </Setting>
+    <Setting Name="PGport" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5432</Value>
+    </Setting>
+    <Setting Name="PGlocalport" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">15432</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
