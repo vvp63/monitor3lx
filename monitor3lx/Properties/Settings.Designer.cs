@@ -130,5 +130,17 @@ namespace monitor3lx.Properties {
                 this["PGlocalport"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SELECT public.addmessage(\'monitor\', \'mts3\', \'i\')")]
+        public string ApplyCommand {
+            get {
+                return ((string)(this["ApplyCommand"]));
+            }
+            set {
+                this["ApplyCommand"] = value;
+            }
+        }
     }
 }

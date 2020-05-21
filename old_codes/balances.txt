@@ -1,0 +1,54 @@
+        private void bReload_balance_Click(object sender, EventArgs e)
+        {
+            this.tP_Balances_2TableAdapter.Fill(this.mTS3DataSet1.TP_Balances_2);
+            this.delays_onStockTableAdapter.Fill(this.mTS3DataSet.Delays_onStock);
+            Load_Full_Balance();
+        }
+
+
+        private void CellClick_TP_Balance(object sender, DataGridViewCellEventArgs e)
+        {
+            TextLog("{0} {1}", e.ColumnIndex, e.RowIndex);
+            if (e.RowIndex >= 0)
+            {
+                int.TryParse(dgv_TP_Bal.Rows[e.RowIndex].Cells[0].Value.ToString(), out gCurrTP_Balance);
+                lTPId_name.Text = String.Format("{0} (Id {1})", dgv_TP_Bal.Rows[e.RowIndex].Cells[1].Value.ToString(), gCurrTP_Balance);
+                Load_Full_Balance();
+            }
+        }
+
+
+
+        private void Load_Full_Balance(bool aLoadSumm   =   false)
+        {
+            if (aLoadSumm) gCurrTP_Balance = 0;
+            if (gCurrTP_Balance > 0)
+            {
+                dgv_Full_Bal.Visible = true; dgv_Bal_Summ.Visible = false;
+                this.full_BalancesTableAdapter.FillBy_TP_Balance(this.mTS3DataSet.Full_Balances, gCurrTP_Balance);
+                ColorDGV(dgv_Full_Bal, 8);
+            }
+            else
+            {
+                dgv_Full_Bal.Visible = false; dgv_Bal_Summ.Visible = true;
+                this.summ_BalancesTableAdapter.Fill(this.mTS3DataSet.Summ_Balances);
+                ColorDGV(dgv_Bal_Summ, 8);
+            }
+         }
+
+
+        private void ColorDGV(DataGridView aDGV, int aFN)
+        {
+            for (int i = 0; i < aDGV.Rows.Count; i++)
+            {
+                if (aDGV.Rows[i].Cells[aFN].Value.ToString() != aDGV.Rows[i].Cells[aFN + 2].Value.ToString())
+                        aDGV.Rows[i].Cells[aFN + 2].Style.BackColor = Color.FromArgb(0xFF, 0xC0, 0xC0);
+                if (aDGV.Rows[i].Cells[aFN].Value.ToString() != aDGV.Rows[i].Cells[aFN + 3].Value.ToString())
+                    aDGV.Rows[i].Cells[aFN + 3].Style.BackColor = Color.FromArgb(0xC0, 0xC0, 0xFF);
+            }
+        }
+
+
+
+TP_Balances_2
+Full_Balances

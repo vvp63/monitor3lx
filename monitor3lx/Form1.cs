@@ -21,6 +21,7 @@ namespace monitor3lx
         SshClient gCl;
         NpgsqlConnection gConn;
         NpgsqlDataAdapter gTP_DA;
+        int gCurrTP_Balance = 0;
 
         public Form1()
         {
@@ -73,8 +74,26 @@ namespace monitor3lx
             gConn = new NpgsqlConnection(vConnStr);
             gConn.Open();
             TextLog("Postgres state for DB {0} = {1}", database, gConn.State);
-
             getTPtable();
+            getBalancesTable();
+            FillFullBalance();
+        }
+
+
+        private void FillDGVByQuery(DataGridView aDGV, string aQuery)
+        {
+            if (gConn.State == ConnectionState.Open)
+            {
+                DataTable DT = new DataTable();
+                DataSet DS = new DataSet();
+                gTP_DA = new NpgsqlDataAdapter(aQuery, gConn);
+                DS.Reset();
+                gTP_DA.Fill(DS);
+                DT = DS.Tables[0];
+                aDGV.DataSource = DT;
+                aDGV.Columns[1].MinimumWidth = 100;
+            }
+            else TextLog("No connection");
 
         }
 
@@ -82,47 +101,98 @@ namespace monitor3lx
 
         private void getTPtable()
         {
-            if (gConn.State == ConnectionState.Open)
-            {
-                DataTable DT = new DataTable();
-                DataSet DS = new DataSet();
-                gTP_DA = new NpgsqlDataAdapter("SELECT * FROM public.tp WHERE isactive = B'1' ORDER BY tpid", gConn);
-                DS.Reset();
-                gTP_DA.Fill(DS);
-                DT = DS.Tables[0];
-                dgvTP.DataSource = DT;
-                dgvTP.Columns[1].MinimumWidth = 100;
-            }
-            else TextLog("No connection");
+            FillDGVByQuery(dgvTP, "SELECT * FROM public.tp WHERE isactive = B'1' ORDER BY tpid");
         }
 
         private void updateTPclick(object sender, EventArgs e)
         {        
-            for (int i = 0; i < dgvTP.RowCount; i++)
-            {
-                string vUpdates = "";
-                string vId = "";
-                for (int j = 0; j < dgvTP.ColumnCount; j++)
-                {
-                    if (j == 0) vId = dgvTP.Rows[i].Cells[j].Value.ToString();
-                    if (j > 2) 
-                    vUpdates = vUpdates + dgvTP.Columns[j].HeaderText + " = " + 
-                            (dgvTP.Columns[j].HeaderText == "hedgemode" ? "'" + dgvTP.Rows[i].Cells[j].Value.ToString() + "'" : dgvTP.Rows[i].Cells[j].Value.ToString());
-                    if ((j > 2)  && (j < dgvTP.ColumnCount - 1)) vUpdates = vUpdates + ", ";
-                }
-                vUpdates = vUpdates.Replace("False", "B'0'").Replace("True", "B'1'");
-                string vUpdQuery = string.Format("UPDATE tp SET {0} WHERE tpid = {1}", vUpdates, vId);
-                if (gConn.State == ConnectionState.Open)
-                {
-                    NpgsqlCommand vComm = new NpgsqlCommand(vUpdQuery, gConn);
-                    vComm.ExecuteNonQuery();
-                }
-                else TextLog("No connection");
-            }
             getTPtable();
+        }
+
+        private void EditFinished(object sender, DataGridViewCellEventArgs e)
+        {
+            string vUpdates = "";
+            string vId = "";
+            for (int j = 0; j < dgvTP.ColumnCount; j++)
+            {
+                if (j == 0) vId = dgvTP.Rows[e.RowIndex].Cells[j].Value.ToString();
+                if (j > 2)
+                    vUpdates = vUpdates + dgvTP.Columns[j].HeaderText + " = " +
+                            (dgvTP.Columns[j].HeaderText == "hedgemode" ? "'" + dgvTP.Rows[e.RowIndex].Cells[j].Value.ToString() + "'" : dgvTP.Rows[e.RowIndex].Cells[j].Value.ToString());
+                if ((j > 2) && (j < dgvTP.ColumnCount - 1)) vUpdates = vUpdates + ", ";
+            }
+            vUpdates = vUpdates.Replace("False", "B'0'").Replace("True", "B'1'");
+            string vUpdQuery = string.Format("UPDATE tp SET {0} WHERE tpid = {1}", vUpdates, vId);
+            if (gConn.State == ConnectionState.Open)
+            {
+                NpgsqlCommand vComm = new NpgsqlCommand(vUpdQuery, gConn);
+                vComm.ExecuteNonQuery();
+            }
+            else TextLog("No connection");
 
         }
+
+        private void b_Apply_Click(object sender, EventArgs e)
+        {
+            if (gConn.State == ConnectionState.Open)
+            {
+                TextLog("Sending ini message");
+                NpgsqlCommand vComm = new NpgsqlCommand(monitor3lx.Properties.Settings.Default.ApplyCommand, gConn);
+                vComm.ExecuteNonQuery();
+            }
+            else TextLog("No connection");
+        }
+
+
+
+        private void getBalancesTable()
+        {
+            FillDGVByQuery(dgvTPBalances, "SELECT * FROM public.\"TP_Balances_2\"");
+        }
+
+        private void b_CurrPos_Click(object sender, EventArgs e)
+        {
+            getBalancesTable();
+        }
+
+        private void Click_TP_Balance(object sender, DataGridViewCellEventArgs e)
+        {
+            TextLog("{0} {1}", e.ColumnIndex, e.RowIndex);
+            if (e.RowIndex >= 0)
+            {
+                int.TryParse(dgvTPBalances.Rows[e.RowIndex].Cells[0].Value.ToString(), out gCurrTP_Balance);
+                l_TP_Balance.Text = String.Format("{0} (Id {1})", dgvTPBalances.Rows[e.RowIndex].Cells[1].Value.ToString(), gCurrTP_Balance);        
+            }
+            if (gCurrTP_Balance > 0)
+            {
+                FillDGVByQuery(dgvFullBalance, string.Format(
+                    "SELECT sec_id, code, sec_type, hedge_kf, qty, qtyneed, qtybytrades, \"Value\"::DECIMAL(16), qtyoff, offresult::DECIMAL(16) " + 
+                    "FROM public.\"Full_Balances_2\" WHERE tp_id = {0} ORDER BY code", gCurrTP_Balance)
+                 );
+
+            }
+        }
+
+        private void ClickFullBalance(object sender, EventArgs e)
+        {
+            FillFullBalance();
+        }
+
+
+        private void FillFullBalance()
+        {
+            gCurrTP_Balance = 0;
+            l_TP_Balance.Text = "Full Balance";
+            FillDGVByQuery(dgvFullBalance, "SELECT sec_id, code, SUM(qty) AS qty, SUM(qtyneed) AS qtyneed, SUM(qtybytrades) AS qtybytrades, " +
+                    "SUM(\"Value\")::DECIMAL(16) AS \"Value\", SUM(offresult)::DECIMAL(16) AS offresult " +
+                    "FROM public.\"Full_Balances_2\" GROUP BY sec_id, code ORDER BY code"
+             );
+
+        }
+
+
     }
+
 
 
     
