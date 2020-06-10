@@ -74,9 +74,15 @@ namespace monitor3lx
             gConn = new NpgsqlConnection(vConnStr);
             gConn.Open();
             TextLog("Postgres state for DB {0} = {1}", database, gConn.State);
-            getTPtable();
-            getBalancesTable();
-            FillFullBalance();
+            if (gConn.State == ConnectionState.Open)
+            {
+                b_Apply.Enabled = true;
+                bUpdateTP.Enabled = true;
+                tabControl_Main.Enabled = true;
+                getTPtable();
+                getBalancesTable();
+                FillFullBalance();
+            }
         }
 
 
@@ -148,6 +154,7 @@ namespace monitor3lx
         private void getBalancesTable()
         {
             FillDGVByQuery(dgvTPBalances, "SELECT * FROM public.\"TP_Balances_2\"");
+            FillDGVByQuery(dgvDelays, "SELECT * FROM public.\"Delays_ByStock\"");
         }
 
         private void b_CurrPos_Click(object sender, EventArgs e)
