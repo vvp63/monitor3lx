@@ -123,8 +123,13 @@ namespace monitor3lx
             {
                 if (j == 0) vId = dgvTP.Rows[e.RowIndex].Cells[j].Value.ToString();
                 if (j > 2)
+                {
+                    string vVal = dgvTP.Rows[e.RowIndex].Cells[j].Value.ToString();
+                    vVal = vVal.Replace(",", ".").Replace(" ", "");
                     vUpdates = vUpdates + dgvTP.Columns[j].HeaderText + " = " +
-                            (dgvTP.Columns[j].HeaderText == "hedgemode" ? "'" + dgvTP.Rows[e.RowIndex].Cells[j].Value.ToString() + "'" : dgvTP.Rows[e.RowIndex].Cells[j].Value.ToString());
+                            (dgvTP.Columns[j].HeaderText == "hedgemode" ? "'" + vVal + "'" : vVal);
+                }
+                    
                 if ((j > 2) && (j < dgvTP.ColumnCount - 1)) vUpdates = vUpdates + ", ";
             }
             vUpdates = vUpdates.Replace("False", "B'0'").Replace("True", "B'1'");
@@ -197,7 +202,11 @@ namespace monitor3lx
 
         }
 
-
+        private void WrongData(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            //
+            MessageBox.Show("Возможно использован неверный разделитель десятичной части (. или ,)", "Неверный формат значения!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 
 

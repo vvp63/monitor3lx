@@ -36,21 +36,21 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl_Main = new System.Windows.Forms.TabControl();
             this.t_CurrPos = new System.Windows.Forms.TabPage();
+            this.l_OrdersDelays = new System.Windows.Forms.Label();
+            this.dgvDelays = new System.Windows.Forms.DataGridView();
             this.b_FullBall = new System.Windows.Forms.Button();
             this.dgvFullBalance = new System.Windows.Forms.DataGridView();
             this.l_TP_Balance = new System.Windows.Forms.Label();
             this.dgvTPBalances = new System.Windows.Forms.DataGridView();
             this.b_CurrPos = new System.Windows.Forms.Button();
             this.t_Finres = new System.Windows.Forms.TabPage();
-            this.dgvDelays = new System.Windows.Forms.DataGridView();
-            this.l_OrdersDelays = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl_Main.SuspendLayout();
             this.t_CurrPos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDelays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFullBalance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTPBalances)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDelays)).BeginInit();
             this.SuspendLayout();
             // 
             // tbLog
@@ -85,6 +85,7 @@
             this.dgvTP.Size = new System.Drawing.Size(1739, 217);
             this.dgvTP.TabIndex = 3;
             this.dgvTP.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.EditFinished);
+            this.dgvTP.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.WrongData);
             // 
             // bUpdateTP
             // 
@@ -154,6 +155,28 @@
             this.t_CurrPos.TabIndex = 0;
             this.t_CurrPos.Text = "Current Positions";
             // 
+            // l_OrdersDelays
+            // 
+            this.l_OrdersDelays.AutoSize = true;
+            this.l_OrdersDelays.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_OrdersDelays.Location = new System.Drawing.Point(8, 340);
+            this.l_OrdersDelays.Name = "l_OrdersDelays";
+            this.l_OrdersDelays.Size = new System.Drawing.Size(118, 20);
+            this.l_OrdersDelays.TabIndex = 7;
+            this.l_OrdersDelays.Text = "Orders Delays";
+            // 
+            // dgvDelays
+            // 
+            this.dgvDelays.AllowUserToAddRows = false;
+            this.dgvDelays.AllowUserToDeleteRows = false;
+            this.dgvDelays.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDelays.Location = new System.Drawing.Point(8, 369);
+            this.dgvDelays.Name = "dgvDelays";
+            this.dgvDelays.RowHeadersWidth = 5;
+            this.dgvDelays.RowTemplate.Height = 24;
+            this.dgvDelays.Size = new System.Drawing.Size(629, 150);
+            this.dgvDelays.TabIndex = 6;
+            // 
             // b_FullBall
             // 
             this.b_FullBall.BackColor = System.Drawing.Color.White;
@@ -218,31 +241,9 @@
             this.t_Finres.Location = new System.Drawing.Point(4, 31);
             this.t_Finres.Name = "t_Finres";
             this.t_Finres.Padding = new System.Windows.Forms.Padding(3);
-            this.t_Finres.Size = new System.Drawing.Size(1640, 459);
+            this.t_Finres.Size = new System.Drawing.Size(1755, 525);
             this.t_Finres.TabIndex = 1;
             this.t_Finres.Text = "Finres";
-            // 
-            // dgvDelays
-            // 
-            this.dgvDelays.AllowUserToAddRows = false;
-            this.dgvDelays.AllowUserToDeleteRows = false;
-            this.dgvDelays.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDelays.Location = new System.Drawing.Point(8, 369);
-            this.dgvDelays.Name = "dgvDelays";
-            this.dgvDelays.RowHeadersWidth = 5;
-            this.dgvDelays.RowTemplate.Height = 24;
-            this.dgvDelays.Size = new System.Drawing.Size(629, 150);
-            this.dgvDelays.TabIndex = 6;
-            // 
-            // l_OrdersDelays
-            // 
-            this.l_OrdersDelays.AutoSize = true;
-            this.l_OrdersDelays.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.l_OrdersDelays.Location = new System.Drawing.Point(8, 340);
-            this.l_OrdersDelays.Name = "l_OrdersDelays";
-            this.l_OrdersDelays.Size = new System.Drawing.Size(118, 20);
-            this.l_OrdersDelays.TabIndex = 7;
-            this.l_OrdersDelays.Text = "Orders Delays";
             // 
             // Form1
             // 
@@ -259,9 +260,9 @@
             this.tabControl_Main.ResumeLayout(false);
             this.t_CurrPos.ResumeLayout(false);
             this.t_CurrPos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDelays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFullBalance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTPBalances)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDelays)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
