@@ -26,7 +26,6 @@ namespace monitor3lx
         public Form1()
         {
             InitializeComponent();
-
             dgvTP.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -100,9 +99,7 @@ namespace monitor3lx
                 aDGV.Columns[1].MinimumWidth = 100;
             }
             else TextLog("No connection");
-
         }
-
 
 
         private void getTPtable()
@@ -155,7 +152,6 @@ namespace monitor3lx
         }
 
 
-
         private void getBalancesTable()
         {
             FillDGVByQuery(dgvTPBalances, "SELECT * FROM public.\"TP_Balances_2\"");
@@ -181,9 +177,9 @@ namespace monitor3lx
                     "SELECT sec_id, code, sec_type, hedge_kf, qty, qtyneed, qtybytrades, \"Value\"::DECIMAL(16), qtyoff, offresult::DECIMAL(16) " + 
                     "FROM public.\"Full_Balances_2\" WHERE tp_id = {0} ORDER BY code", gCurrTP_Balance)
                  );
-
             }
         }
+
 
         private void ClickFullBalance(object sender, EventArgs e)
         {
