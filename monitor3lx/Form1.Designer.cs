@@ -44,6 +44,14 @@
             this.dgvTPBalances = new System.Windows.Forms.DataGridView();
             this.b_CurrPos = new System.Windows.Forms.Button();
             this.t_Finres = new System.Windows.Forms.TabPage();
+            this.dgvFR_Reval = new System.Windows.Forms.DataGridView();
+            this.lFR_TP = new System.Windows.Forms.Label();
+            this.cbFR_TP = new System.Windows.Forms.ComboBox();
+            this.bFR_Count = new System.Windows.Forms.Button();
+            this.lFR_Date = new System.Windows.Forms.Label();
+            this.dtpFR_date = new System.Windows.Forms.DateTimePicker();
+            this.lFR_FullResult = new System.Windows.Forms.Label();
+            this.lFR_Result = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl_Main.SuspendLayout();
@@ -51,6 +59,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDelays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFullBalance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTPBalances)).BeginInit();
+            this.t_Finres.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFR_Reval)).BeginInit();
             this.SuspendLayout();
             // 
             // tbLog
@@ -238,12 +248,101 @@
             // t_Finres
             // 
             this.t_Finres.BackColor = System.Drawing.Color.Gainsboro;
+            this.t_Finres.Controls.Add(this.lFR_Result);
+            this.t_Finres.Controls.Add(this.lFR_FullResult);
+            this.t_Finres.Controls.Add(this.dgvFR_Reval);
+            this.t_Finres.Controls.Add(this.lFR_TP);
+            this.t_Finres.Controls.Add(this.cbFR_TP);
+            this.t_Finres.Controls.Add(this.bFR_Count);
+            this.t_Finres.Controls.Add(this.lFR_Date);
+            this.t_Finres.Controls.Add(this.dtpFR_date);
             this.t_Finres.Location = new System.Drawing.Point(4, 31);
             this.t_Finres.Name = "t_Finres";
             this.t_Finres.Padding = new System.Windows.Forms.Padding(3);
             this.t_Finres.Size = new System.Drawing.Size(1755, 525);
             this.t_Finres.TabIndex = 1;
             this.t_Finres.Text = "Finres";
+            // 
+            // dgvFR_Reval
+            // 
+            this.dgvFR_Reval.AllowUserToAddRows = false;
+            this.dgvFR_Reval.AllowUserToDeleteRows = false;
+            this.dgvFR_Reval.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvFR_Reval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFR_Reval.Location = new System.Drawing.Point(377, 14);
+            this.dgvFR_Reval.Name = "dgvFR_Reval";
+            this.dgvFR_Reval.RowHeadersWidth = 5;
+            this.dgvFR_Reval.RowTemplate.Height = 24;
+            this.dgvFR_Reval.Size = new System.Drawing.Size(1360, 490);
+            this.dgvFR_Reval.TabIndex = 5;
+            // 
+            // lFR_TP
+            // 
+            this.lFR_TP.AutoSize = true;
+            this.lFR_TP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFR_TP.Location = new System.Drawing.Point(8, 26);
+            this.lFR_TP.Name = "lFR_TP";
+            this.lFR_TP.Size = new System.Drawing.Size(80, 20);
+            this.lFR_TP.TabIndex = 4;
+            this.lFR_TP.Text = "Tradepair";
+            // 
+            // cbFR_TP
+            // 
+            this.cbFR_TP.FormattingEnabled = true;
+            this.cbFR_TP.Location = new System.Drawing.Point(103, 22);
+            this.cbFR_TP.Name = "cbFR_TP";
+            this.cbFR_TP.Size = new System.Drawing.Size(252, 24);
+            this.cbFR_TP.TabIndex = 3;
+            // 
+            // bFR_Count
+            // 
+            this.bFR_Count.BackColor = System.Drawing.Color.White;
+            this.bFR_Count.Location = new System.Drawing.Point(103, 110);
+            this.bFR_Count.Name = "bFR_Count";
+            this.bFR_Count.Size = new System.Drawing.Size(252, 40);
+            this.bFR_Count.TabIndex = 2;
+            this.bFR_Count.Text = "Count";
+            this.bFR_Count.UseVisualStyleBackColor = false;
+            this.bFR_Count.Click += new System.EventHandler(this.bFR_CountClick);
+            // 
+            // lFR_Date
+            // 
+            this.lFR_Date.AutoSize = true;
+            this.lFR_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFR_Date.Location = new System.Drawing.Point(9, 67);
+            this.lFR_Date.Name = "lFR_Date";
+            this.lFR_Date.Size = new System.Drawing.Size(45, 20);
+            this.lFR_Date.TabIndex = 1;
+            this.lFR_Date.Text = "Date";
+            // 
+            // dtpFR_date
+            // 
+            this.dtpFR_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dtpFR_date.Location = new System.Drawing.Point(103, 63);
+            this.dtpFR_date.Name = "dtpFR_date";
+            this.dtpFR_date.Size = new System.Drawing.Size(252, 24);
+            this.dtpFR_date.TabIndex = 0;
+            // 
+            // lFR_FullResult
+            // 
+            this.lFR_FullResult.AutoSize = true;
+            this.lFR_FullResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFR_FullResult.ForeColor = System.Drawing.Color.Navy;
+            this.lFR_FullResult.Location = new System.Drawing.Point(98, 171);
+            this.lFR_FullResult.Name = "lFR_FullResult";
+            this.lFR_FullResult.Size = new System.Drawing.Size(24, 25);
+            this.lFR_FullResult.TabIndex = 6;
+            this.lFR_FullResult.Text = "0";
+            // 
+            // lFR_Result
+            // 
+            this.lFR_Result.AutoSize = true;
+            this.lFR_Result.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFR_Result.Location = new System.Drawing.Point(9, 171);
+            this.lFR_Result.Name = "lFR_Result";
+            this.lFR_Result.Size = new System.Drawing.Size(83, 25);
+            this.lFR_Result.TabIndex = 7;
+            this.lFR_Result.Text = "Result =";
             // 
             // Form1
             // 
@@ -263,6 +362,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDelays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFullBalance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTPBalances)).EndInit();
+            this.t_Finres.ResumeLayout(false);
+            this.t_Finres.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFR_Reval)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -286,6 +388,14 @@
         private System.Windows.Forms.Button b_FullBall;
         private System.Windows.Forms.Label l_OrdersDelays;
         private System.Windows.Forms.DataGridView dgvDelays;
+        private System.Windows.Forms.DateTimePicker dtpFR_date;
+        private System.Windows.Forms.Label lFR_Date;
+        private System.Windows.Forms.Button bFR_Count;
+        private System.Windows.Forms.Label lFR_TP;
+        private System.Windows.Forms.ComboBox cbFR_TP;
+        private System.Windows.Forms.DataGridView dgvFR_Reval;
+        private System.Windows.Forms.Label lFR_FullResult;
+        private System.Windows.Forms.Label lFR_Result;
     }
 }
 

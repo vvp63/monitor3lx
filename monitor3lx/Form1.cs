@@ -27,6 +27,7 @@ namespace monitor3lx
         {
             InitializeComponent();
             dgvTP.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtpFR_date.Value = DateTime.Now.Date;
         }
 
         private void TextLog(string aLogStr, params object[] aParams)
@@ -81,6 +82,7 @@ namespace monitor3lx
                 getTPtable();
                 getBalancesTable();
                 FillFullBalance();
+                getTPComboBox();
             }
         }
 
@@ -101,10 +103,33 @@ namespace monitor3lx
             else TextLog("No connection");
         }
 
+        private void FillCBByQuery(ComboBox aCB, string aQuery, string aVal, string aData)
+        {
+            if (gConn.State == ConnectionState.Open)
+            {
+                DataTable DT = new DataTable();
+                DataSet DS = new DataSet();
+                gTP_DA = new NpgsqlDataAdapter(aQuery, gConn);
+                DS.Reset();
+                gTP_DA.Fill(DS);
+                DT = DS.Tables[0];
+                aCB.DataSource = DT;
+                aCB.ValueMember = aVal;
+                aCB.DisplayMember = aData;
+                aCB.SelectedIndex = 0;
+            }
+            else TextLog("No connection");
+        }
+
 
         private void getTPtable()
         {
             FillDGVByQuery(dgvTP, "SELECT * FROM public.tp WHERE isactive = B'1' ORDER BY tpid");
+        }
+
+        private void getTPComboBox()
+        {
+            FillCBByQuery(cbFR_TP, "select tpid, fullname FROM public.\"TPList\"", "tpid", "fullname");
         }
 
         private void updateTPclick(object sender, EventArgs e)
@@ -202,6 +227,37 @@ namespace monitor3lx
         {
             //
             MessageBox.Show("Возможно использован неверный разделитель десятичной части (. или ,)", "Неверный формат значения!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+
+
+
+        //      -----------------------------   Finres (FR) ----------------------------------------------------    //
+
+
+        private void bFR_CountClick(object sender, EventArgs e)
+        {
+
+            TextLog("{0} - {1}  IsToday = {2} TPID = {3}", dtpFR_date.Value, dtpFR_date.Value.AddDays(1), (dtpFR_date.Value == DateTime.Now.Date), cbFR_TP.SelectedValue);
+            string vQuery = "SELECT * FROM ";
+            if (dtpFR_date.Value == DateTime.Now.Date)
+            {
+                vQuery += String.Format("\"public\".\"FR_RevalAndTradesToNow\"({0}, '{1}')", 
+                    cbFR_TP.SelectedValue, dtpFR_date.Value.ToString("yyyyMMdd")); 
+            } else
+            {
+                vQuery += String.Format("\"public\".\"FR_RevalAndTradesToDate\"({0}, '{1}', '{2}')",
+                    cbFR_TP.SelectedValue, dtpFR_date.Value.ToString("yyyyMMdd"), dtpFR_date.Value.AddDays(1).ToString("yyyyMMdd"));
+            }
+            FillDGVByQuery(dgvFR_Reval, vQuery);
+            float vFr = 0;
+            for (int i = 0; i < dgvFR_Reval.RowCount; i++) {
+                float vTmp = 0;
+                float.TryParse(dgvFR_Reval.Rows[i].Cells[dgvFR_Reval.ColumnCount - 1].Value.ToString(), out vTmp);
+                vFr += vTmp;
+            }
+            lFR_FullResult.Text = String.Format("{0:C}", vFr); 
+
         }
     }
 
