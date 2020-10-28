@@ -220,7 +220,6 @@ namespace monitor3lx
                     "SUM(\"Value\")::DECIMAL(16) AS \"Value\", SUM(offresult)::DECIMAL(16) AS offresult " +
                     "FROM public.\"Full_Balances_2\" GROUP BY sec_id, code ORDER BY code"
              );
-
         }
 
         private void WrongData(object sender, DataGridViewDataErrorEventArgs e)
@@ -249,6 +248,7 @@ namespace monitor3lx
                 vQuery += String.Format("\"public\".\"FR_RevalAndTradesToDate\"({0}, '{1}', '{2}')",
                     cbFR_TP.SelectedValue, dtpFR_date.Value.ToString("yyyyMMdd"), dtpFR_date.Value.AddDays(1).ToString("yyyyMMdd"));
             }
+            TextLog(vQuery);
             FillDGVByQuery(dgvFR_Reval, vQuery);
             float vFr = 0;
             for (int i = 0; i < dgvFR_Reval.RowCount; i++) {
