@@ -162,8 +162,8 @@ namespace monitor3lx
                 vComm.ExecuteNonQuery();
             }
             else TextLog("No connection");
-
         }
+
 
         private void b_Apply_Click(object sender, EventArgs e)
         {
@@ -258,10 +258,22 @@ namespace monitor3lx
             lFR_FullResult.Text = String.Format("{0:C}", vFr); 
 
         }
+
+
+        //      --------------------------  Basis Count (BC)    ------------------------------------------  //
+
+
+        private void BC_Count_Click(object sender, EventArgs e)
+        {
+            FillDGVByQuery(dgv_BC_settings, "SELECT * FROM \"public\".\"TP_Basis_Count_Full\"");
+        }
     }
 
 
 
-    
+
+
+
+
 
 }
