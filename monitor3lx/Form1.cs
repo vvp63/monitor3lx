@@ -139,19 +139,25 @@ namespace monitor3lx
 
         private void EditFinished(object sender, DataGridViewCellEventArgs e)
         {
+            SaveTPLine(e.RowIndex);
+        }
+
+
+        private void SaveTPLine(int aIdx)
+        {
             string vUpdates = "";
             string vId = "";
             for (int j = 0; j < dgvTP.ColumnCount; j++)
             {
-                if (j == 0) vId = dgvTP.Rows[e.RowIndex].Cells[j].Value.ToString();
+                if (j == 0) vId = dgvTP.Rows[aIdx].Cells[j].Value.ToString();
                 if (j > 2)
                 {
-                    string vVal = dgvTP.Rows[e.RowIndex].Cells[j].Value.ToString();
+                    string vVal = dgvTP.Rows[aIdx].Cells[j].Value.ToString();
                     vVal = vVal.Replace(",", ".").Replace(" ", "");
                     vUpdates = vUpdates + dgvTP.Columns[j].HeaderText + " = " +
                             (dgvTP.Columns[j].HeaderText == "hedgemode" ? "'" + vVal + "'" : vVal);
                 }
-                    
+
                 if ((j > 2) && (j < dgvTP.ColumnCount - 1)) vUpdates = vUpdates + ", ";
             }
             vUpdates = vUpdates.Replace("False", "B'0'").Replace("True", "B'1'");
@@ -265,8 +271,60 @@ namespace monitor3lx
 
         private void BC_Count_Click(object sender, EventArgs e)
         {
+            BC_Count();
+        }
+
+
+        private void BC_Set_Click(object sender, EventArgs e)
+        {
+            BC_Count();
+            BC_Set();
+        }
+
+
+        private void BC_Count()
+        {
             FillDGVByQuery(dgv_BC_settings, "SELECT * FROM \"public\".\"TP_Basis_Count_Full\"");
         }
+
+        private void BC_Set()
+        {
+            for (int j = 0; j < dgv_BC_settings.Rows.Count; j++)
+            {
+                string vTpid    =   dgv_BC_settings.Rows[j].Cells[0].Value.ToString();
+                string vBdir = dgv_BC_settings.Rows[j].Cells[14].Value.ToString();
+                string vBinv = dgv_BC_settings.Rows[j].Cells[15].Value.ToString();
+                TextLog("{0}   dir={1} inv={2}", vTpid, vBdir, vBinv);
+                for (int i = 0; i < dgvTP.Rows.Count; i++)
+                {
+                    if (dgvTP.Rows[i].Cells[0].Value.ToString() == vTpid)
+                    {
+                        dgvTP.Rows[i].Cells[5].Value = vBdir;
+                        dgvTP.Rows[i].Cells[6].Value = vBinv;
+                    }
+                    SaveTPLine(i);
+                }
+            }
+        }
+
+        private void BC_Autoreload_check(object sender, EventArgs e)
+        {
+            //
+            tb_BC_Interval.Enabled = !cb_BC_Autoreload.Checked;
+            int vInterval = 60;
+            int.TryParse(tb_BC_Interval.Text, out vInterval);
+            timer_BC.Interval = vInterval * 1000;
+            timer_BC.Enabled = cb_BC_Autoreload.Checked;
+        }
+
+        private void BC_Timer_Work(object sender, EventArgs e)
+        {
+            BC_Count();
+            BC_Set();
+        }
+
+
+
     }
 
 

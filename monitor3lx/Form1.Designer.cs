@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tbLog = new System.Windows.Forms.TextBox();
             this.bConn = new System.Windows.Forms.Button();
             this.dgvTP = new System.Windows.Forms.DataGridView();
@@ -53,8 +54,12 @@
             this.lFR_Date = new System.Windows.Forms.Label();
             this.dtpFR_date = new System.Windows.Forms.DateTimePicker();
             this.t_BasisCount = new System.Windows.Forms.TabPage();
-            this.dgv_BC_settings = new System.Windows.Forms.DataGridView();
+            this.b_BC_Set = new System.Windows.Forms.Button();
             this.b_BC_Load = new System.Windows.Forms.Button();
+            this.dgv_BC_settings = new System.Windows.Forms.DataGridView();
+            this.tb_BC_Interval = new System.Windows.Forms.TextBox();
+            this.cb_BC_Autoreload = new System.Windows.Forms.CheckBox();
+            this.timer_BC = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl_Main.SuspendLayout();
@@ -377,6 +382,9 @@
             // t_BasisCount
             // 
             this.t_BasisCount.BackColor = System.Drawing.Color.Gainsboro;
+            this.t_BasisCount.Controls.Add(this.cb_BC_Autoreload);
+            this.t_BasisCount.Controls.Add(this.tb_BC_Interval);
+            this.t_BasisCount.Controls.Add(this.b_BC_Set);
             this.t_BasisCount.Controls.Add(this.b_BC_Load);
             this.t_BasisCount.Controls.Add(this.dgv_BC_settings);
             this.t_BasisCount.Location = new System.Drawing.Point(4, 31);
@@ -385,17 +393,16 @@
             this.t_BasisCount.TabIndex = 2;
             this.t_BasisCount.Text = "Basis Count";
             // 
-            // dgv_BC_settings
+            // b_BC_Set
             // 
-            this.dgv_BC_settings.AllowDrop = true;
-            this.dgv_BC_settings.AllowUserToAddRows = false;
-            this.dgv_BC_settings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgv_BC_settings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_BC_settings.Location = new System.Drawing.Point(8, 55);
-            this.dgv_BC_settings.Name = "dgv_BC_settings";
-            this.dgv_BC_settings.RowHeadersWidth = 5;
-            this.dgv_BC_settings.Size = new System.Drawing.Size(1298, 114);
-            this.dgv_BC_settings.TabIndex = 0;
+            this.b_BC_Set.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.b_BC_Set.Location = new System.Drawing.Point(159, 13);
+            this.b_BC_Set.Name = "b_BC_Set";
+            this.b_BC_Set.Size = new System.Drawing.Size(108, 23);
+            this.b_BC_Set.TabIndex = 2;
+            this.b_BC_Set.Text = "Count and Set";
+            this.b_BC_Set.UseVisualStyleBackColor = false;
+            this.b_BC_Set.Click += new System.EventHandler(this.BC_Set_Click);
             // 
             // b_BC_Load
             // 
@@ -407,6 +414,42 @@
             this.b_BC_Load.Text = "Count";
             this.b_BC_Load.UseVisualStyleBackColor = false;
             this.b_BC_Load.Click += new System.EventHandler(this.BC_Count_Click);
+            // 
+            // dgv_BC_settings
+            // 
+            this.dgv_BC_settings.AllowDrop = true;
+            this.dgv_BC_settings.AllowUserToAddRows = false;
+            this.dgv_BC_settings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgv_BC_settings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_BC_settings.Location = new System.Drawing.Point(8, 42);
+            this.dgv_BC_settings.Name = "dgv_BC_settings";
+            this.dgv_BC_settings.RowHeadersWidth = 5;
+            this.dgv_BC_settings.Size = new System.Drawing.Size(1298, 114);
+            this.dgv_BC_settings.TabIndex = 0;
+            // 
+            // tb_BC_Interval
+            // 
+            this.tb_BC_Interval.Location = new System.Drawing.Point(1215, 13);
+            this.tb_BC_Interval.Name = "tb_BC_Interval";
+            this.tb_BC_Interval.Size = new System.Drawing.Size(90, 20);
+            this.tb_BC_Interval.TabIndex = 3;
+            this.tb_BC_Interval.Text = "60";
+            // 
+            // cb_BC_Autoreload
+            // 
+            this.cb_BC_Autoreload.AutoSize = true;
+            this.cb_BC_Autoreload.Location = new System.Drawing.Point(1035, 15);
+            this.cb_BC_Autoreload.Name = "cb_BC_Autoreload";
+            this.cb_BC_Autoreload.Size = new System.Drawing.Size(173, 17);
+            this.cb_BC_Autoreload.TabIndex = 4;
+            this.cb_BC_Autoreload.Text = "Autoreload.   Interval (seconds)";
+            this.cb_BC_Autoreload.UseVisualStyleBackColor = true;
+            this.cb_BC_Autoreload.CheckStateChanged += new System.EventHandler(this.BC_Autoreload_check);
+            // 
+            // timer_BC
+            // 
+            this.timer_BC.Interval = 60000;
+            this.timer_BC.Tick += new System.EventHandler(this.BC_Timer_Work);
             // 
             // Form1
             // 
@@ -431,6 +474,7 @@
             this.t_Finres.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFR_Reval)).EndInit();
             this.t_BasisCount.ResumeLayout(false);
+            this.t_BasisCount.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -466,6 +510,10 @@
         private System.Windows.Forms.TabPage t_BasisCount;
         private System.Windows.Forms.DataGridView dgv_BC_settings;
         private System.Windows.Forms.Button b_BC_Load;
+        private System.Windows.Forms.Button b_BC_Set;
+        private System.Windows.Forms.CheckBox cb_BC_Autoreload;
+        private System.Windows.Forms.TextBox tb_BC_Interval;
+        private System.Windows.Forms.Timer timer_BC;
     }
 }
 
