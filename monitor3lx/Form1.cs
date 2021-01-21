@@ -205,9 +205,10 @@ namespace monitor3lx
             if (gCurrTP_Balance > 0)
             {
                 FillDGVByQuery(dgvFullBalance, string.Format(
-                    "SELECT sec_id, code, sec_type, hedge_kf, qty, qtyneed, qtybytrades, \"Value\"::DECIMAL(16), qtyoff, offresult::DECIMAL(16) " + 
+                    "SELECT sec_id, code, sec_type, hedge_kf, qty, qtyneed, \"Value\"::DECIMAL(16) " + 
                     "FROM public.\"Full_Balances_2\" WHERE tp_id = {0} ORDER BY code", gCurrTP_Balance)
                  );
+                ColorFullBalance(4, 5);
             }
         }
 
@@ -222,16 +223,26 @@ namespace monitor3lx
         {
             gCurrTP_Balance = 0;
             l_TP_Balance.Text = "Full Balance";
-            FillDGVByQuery(dgvFullBalance, "SELECT sec_id, code, SUM(qty) AS qty, SUM(qtyneed) AS qtyneed, SUM(qtybytrades) AS qtybytrades, " +
-                    "SUM(\"Value\")::DECIMAL(16) AS \"Value\", SUM(offresult)::DECIMAL(16) AS offresult " +
+            FillDGVByQuery(dgvFullBalance, "SELECT sec_id, code, SUM(qty) AS qty, SUM(qtyneed) AS qtyneed, SUM(\"Value\")::DECIMAL(16) AS \"Value\" " +
                     "FROM public.\"Full_Balances_2\" GROUP BY sec_id, code ORDER BY code"
              );
+            ColorFullBalance(2, 3);
         }
 
         private void WrongData(object sender, DataGridViewDataErrorEventArgs e)
         {
             //
             MessageBox.Show("Возможно использован неверный разделитель десятичной части (. или ,)", "Неверный формат значения!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void ColorFullBalance(int aidx1, int aidx2)
+        {
+            for (int i = 0; i < dgvFullBalance.RowCount; i++)
+                if (dgvFullBalance.Rows[i].Cells[aidx1].Value.ToString() != dgvFullBalance.Rows[i].Cells[aidx2].Value.ToString())
+                    dgvFullBalance.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                else
+                    dgvFullBalance.Rows[i].DefaultCellStyle.BackColor = Color.WhiteSmoke;
+
         }
 
 
