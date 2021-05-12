@@ -48,8 +48,9 @@ namespace monitor3lx
             string  password = monitor3lx.Properties.Settings.Default.PGpass;
             int     pgPort = monitor3lx.Properties.Settings.Default.PGport;
             int     fwdPort = monitor3lx.Properties.Settings.Default.PGlocalport;
-            
-            ConnectionInfo ConnNfo = new ConnectionInfo(host, 22, SSHusername,
+            int     SSHPort = monitor3lx.Properties.Settings.Default.SSHPort;
+
+            ConnectionInfo ConnNfo = new ConnectionInfo(host, SSHPort, SSHusername,
                 new AuthenticationMethod[]{
                         // Key Based Authentication (using keys in OpenSSH Format)
                         new PrivateKeyAuthenticationMethod(SSHusername, new PrivateKeyFile[]  {

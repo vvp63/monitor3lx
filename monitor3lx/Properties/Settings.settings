@@ -32,5 +32,8 @@
     <Setting Name="ApplyCommand" Type="System.String" Scope="User">
       <Value Profile="(Default)">SELECT public.addmessage('monitor', 'mts3', 'i')</Value>
     </Setting>
+    <Setting Name="SSHPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">22</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

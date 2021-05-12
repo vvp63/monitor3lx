@@ -142,5 +142,17 @@ namespace monitor3lx.Properties {
                 this["ApplyCommand"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("22")]
+        public int SSHPort {
+            get {
+                return ((int)(this["SSHPort"]));
+            }
+            set {
+                this["SSHPort"] = value;
+            }
+        }
     }
 }
