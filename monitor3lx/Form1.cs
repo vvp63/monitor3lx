@@ -174,6 +174,12 @@ namespace monitor3lx
 
         private void b_Apply_Click(object sender, EventArgs e)
         {
+            Apply_proc();
+        }
+
+
+        private void Apply_proc()
+        {
             if (gConn.State == ConnectionState.Open)
             {
                 TextLog("Sending ini message");
@@ -291,6 +297,7 @@ namespace monitor3lx
         {
             BC_Count();
             BC_Set();
+            Apply_proc();
         }
 
 
@@ -333,6 +340,7 @@ namespace monitor3lx
         {
             BC_Count();
             BC_Set();
+            Apply_proc();
         }
 
 
