@@ -344,6 +344,68 @@ namespace monitor3lx
         }
 
 
+        int gCurrTPIdx = 0;
+        float gBArrowMove = 0.00025F;
+        float gBSqArrowMove = 0.00000025F;
+
+        private void EnterTpTable(object sender, DataGridViewCellEventArgs e)
+        {
+            TextLog("Enter TP table {0} {1}", e.RowIndex, dgvTP.Rows[e.RowIndex].Cells[1].Value.ToString());
+            gCurrTPIdx = e.RowIndex;
+            l_Kfs_with_TP.Text = "Kfs for " + dgvTP.Rows[e.RowIndex].Cells[1].Value.ToString();
+        }
+
+        private void b_Up_Click(object sender, EventArgs e)
+        {
+            if (gCurrTPIdx >= 0)
+            {
+                float vVCdir = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[9].Value.ToString(), out vVCdir);
+                vVCdir += gBArrowMove;
+                if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[9].Value = Math.Round(vVCdir, 5).ToString();
+
+                float vVSq = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[11].Value.ToString(), out vVSq);
+                vVSq += gBSqArrowMove;
+                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[11].Value = Math.Round(vVSq, 8).ToString();
+            }
+        }
+
+        private void b_down_Click(object sender, EventArgs e)
+        {
+            float vVCdir = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[9].Value.ToString(), out vVCdir);
+            vVCdir -= gBArrowMove;
+            if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[9].Value = Math.Round(vVCdir, 5).ToString();
+            float vVSq = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[11].Value.ToString(), out vVSq);
+            vVSq -= gBSqArrowMove;
+            if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[11].Value = Math.Round(vVSq, 8).ToString();
+        }
+
+        private void b_up_Inv(object sender, EventArgs e)
+        {
+            if (gCurrTPIdx >= 0)
+            {
+                float vVCinv = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[10].Value.ToString(), out vVCinv);
+                vVCinv += gBArrowMove;
+                if (vVCinv >= 0) dgvTP.Rows[gCurrTPIdx].Cells[10].Value = Math.Round(vVCinv, 5).ToString(); ;
+                float vVSq = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vVSq);
+                vVSq += gBSqArrowMove;
+                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[12].Value = Math.Round(vVSq, 8).ToString();
+            }
+        }
+
+        private void b_down_Inv(object sender, EventArgs e)
+        {
+            if (gCurrTPIdx >= 0)
+            {
+                float vVCinv = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[10].Value.ToString(), out vVCinv);
+                vVCinv -= gBArrowMove;
+                if (vVCinv >= 0) dgvTP.Rows[gCurrTPIdx].Cells[10].Value = Math.Round(vVCinv, 5).ToString();
+                float vVSq = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vVSq);
+                vVSq -= gBSqArrowMove;
+                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[12].Value = Math.Round(vVSq, 8).ToString();
+            }
+        }
+
+
 
     }
 
