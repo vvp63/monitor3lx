@@ -275,9 +275,23 @@ namespace monitor3lx
             FillDGVByQuery(dgvFR_Reval, vQuery);
             float vFr = 0;
             for (int i = 0; i < dgvFR_Reval.RowCount; i++) {
+
+                float vpdkf = 1;
                 float vTmp = 0;
+                for (int j = 0; j < dgvFR_Reval.RowCount; j++)
+                {
+                    if (dgvFR_Reval.Rows[i].Cells[0].Value.ToString() == dgvFR_Reval.Rows[j].Cells[3].Value.ToString())
+                    {
+                        float vpdmult   =   1;
+                        float vpdquot   =   10;
+                        float.TryParse(dgvFR_Reval.Rows[j].Cells[4].Value.ToString(), out vpdmult);
+                        float.TryParse(dgvFR_Reval.Rows[j].Cells[8].Value.ToString(), out vpdquot);
+                        vpdkf = vpdmult * vpdquot / 10;
+                    }
+                }
+     
                 float.TryParse(dgvFR_Reval.Rows[i].Cells[dgvFR_Reval.ColumnCount - 1].Value.ToString(), out vTmp);
-                vFr += vTmp;
+                vFr += vTmp * vpdkf;
             }
             lFR_FullResult.Text = String.Format("{0:C}", vFr); 
 

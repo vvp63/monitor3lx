@@ -35,6 +35,11 @@
             this.bUpdateTP = new System.Windows.Forms.Button();
             this.b_Apply = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.b_down_inv = new System.Windows.Forms.Button();
+            this.b_up_inv = new System.Windows.Forms.Button();
+            this.b_down_ = new System.Windows.Forms.Button();
+            this.b_Up_ = new System.Windows.Forms.Button();
+            this.l_Kfs_with_TP = new System.Windows.Forms.Label();
             this.tabControl_Main = new System.Windows.Forms.TabControl();
             this.t_CurrPos = new System.Windows.Forms.TabPage();
             this.l_OrdersDelays = new System.Windows.Forms.Label();
@@ -60,11 +65,6 @@
             this.b_BC_Load = new System.Windows.Forms.Button();
             this.dgv_BC_settings = new System.Windows.Forms.DataGridView();
             this.timer_BC = new System.Windows.Forms.Timer(this.components);
-            this.l_Kfs_with_TP = new System.Windows.Forms.Label();
-            this.b_down_inv = new System.Windows.Forms.Button();
-            this.b_up_inv = new System.Windows.Forms.Button();
-            this.b_down_ = new System.Windows.Forms.Button();
-            this.b_Up_ = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl_Main.SuspendLayout();
@@ -160,6 +160,55 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1782, 322);
             this.panel1.TabIndex = 6;
+            // 
+            // b_down_inv
+            // 
+            this.b_down_inv.Image = global::monitor3lx.Properties.Resources.downInv;
+            this.b_down_inv.Location = new System.Drawing.Point(709, 274);
+            this.b_down_inv.Name = "b_down_inv";
+            this.b_down_inv.Size = new System.Drawing.Size(42, 42);
+            this.b_down_inv.TabIndex = 10;
+            this.b_down_inv.UseVisualStyleBackColor = true;
+            this.b_down_inv.Click += new System.EventHandler(this.b_down_Inv);
+            // 
+            // b_up_inv
+            // 
+            this.b_up_inv.Image = global::monitor3lx.Properties.Resources.upInv;
+            this.b_up_inv.Location = new System.Drawing.Point(661, 274);
+            this.b_up_inv.Name = "b_up_inv";
+            this.b_up_inv.Size = new System.Drawing.Size(42, 42);
+            this.b_up_inv.TabIndex = 9;
+            this.b_up_inv.UseVisualStyleBackColor = true;
+            this.b_up_inv.Click += new System.EventHandler(this.b_up_Inv);
+            // 
+            // b_down_
+            // 
+            this.b_down_.Image = global::monitor3lx.Properties.Resources.down;
+            this.b_down_.Location = new System.Drawing.Point(562, 275);
+            this.b_down_.Name = "b_down_";
+            this.b_down_.Size = new System.Drawing.Size(42, 42);
+            this.b_down_.TabIndex = 8;
+            this.b_down_.UseVisualStyleBackColor = true;
+            this.b_down_.Click += new System.EventHandler(this.b_down_Click);
+            // 
+            // b_Up_
+            // 
+            this.b_Up_.Image = global::monitor3lx.Properties.Resources.up;
+            this.b_Up_.Location = new System.Drawing.Point(514, 275);
+            this.b_Up_.Name = "b_Up_";
+            this.b_Up_.Size = new System.Drawing.Size(42, 42);
+            this.b_Up_.TabIndex = 7;
+            this.b_Up_.UseVisualStyleBackColor = true;
+            this.b_Up_.Click += new System.EventHandler(this.b_Up_Click);
+            // 
+            // l_Kfs_with_TP
+            // 
+            this.l_Kfs_with_TP.AutoSize = true;
+            this.l_Kfs_with_TP.Location = new System.Drawing.Point(236, 283);
+            this.l_Kfs_with_TP.Name = "l_Kfs_with_TP";
+            this.l_Kfs_with_TP.Size = new System.Drawing.Size(53, 17);
+            this.l_Kfs_with_TP.TabIndex = 6;
+            this.l_Kfs_with_TP.Text = "Kfs for ";
             // 
             // tabControl_Main
             // 
@@ -327,7 +376,7 @@
             this.dgvFR_Reval.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvFR_Reval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFR_Reval.Location = new System.Drawing.Point(377, 14);
-            this.dgvFR_Reval.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvFR_Reval.Margin = new System.Windows.Forms.Padding(1);
             this.dgvFR_Reval.Name = "dgvFR_Reval";
             this.dgvFR_Reval.RowHeadersWidth = 5;
             this.dgvFR_Reval.RowTemplate.Height = 24;
@@ -393,7 +442,7 @@
             this.t_BasisCount.Controls.Add(this.b_BC_Load);
             this.t_BasisCount.Controls.Add(this.dgv_BC_settings);
             this.t_BasisCount.Location = new System.Drawing.Point(4, 31);
-            this.t_BasisCount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.t_BasisCount.Margin = new System.Windows.Forms.Padding(4);
             this.t_BasisCount.Name = "t_BasisCount";
             this.t_BasisCount.Size = new System.Drawing.Size(1774, 532);
             this.t_BasisCount.TabIndex = 2;
@@ -403,7 +452,7 @@
             // 
             this.cb_BC_Autoreload.AutoSize = true;
             this.cb_BC_Autoreload.Location = new System.Drawing.Point(1380, 18);
-            this.cb_BC_Autoreload.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cb_BC_Autoreload.Margin = new System.Windows.Forms.Padding(4);
             this.cb_BC_Autoreload.Name = "cb_BC_Autoreload";
             this.cb_BC_Autoreload.Size = new System.Drawing.Size(228, 21);
             this.cb_BC_Autoreload.TabIndex = 4;
@@ -414,7 +463,7 @@
             // tb_BC_Interval
             // 
             this.tb_BC_Interval.Location = new System.Drawing.Point(1620, 16);
-            this.tb_BC_Interval.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_BC_Interval.Margin = new System.Windows.Forms.Padding(4);
             this.tb_BC_Interval.Name = "tb_BC_Interval";
             this.tb_BC_Interval.Size = new System.Drawing.Size(119, 22);
             this.tb_BC_Interval.TabIndex = 3;
@@ -424,7 +473,7 @@
             // 
             this.b_BC_Set.BackColor = System.Drawing.Color.WhiteSmoke;
             this.b_BC_Set.Location = new System.Drawing.Point(212, 16);
-            this.b_BC_Set.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.b_BC_Set.Margin = new System.Windows.Forms.Padding(4);
             this.b_BC_Set.Name = "b_BC_Set";
             this.b_BC_Set.Size = new System.Drawing.Size(144, 28);
             this.b_BC_Set.TabIndex = 2;
@@ -436,7 +485,7 @@
             // 
             this.b_BC_Load.BackColor = System.Drawing.Color.WhiteSmoke;
             this.b_BC_Load.Location = new System.Drawing.Point(12, 16);
-            this.b_BC_Load.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.b_BC_Load.Margin = new System.Windows.Forms.Padding(4);
             this.b_BC_Load.Name = "b_BC_Load";
             this.b_BC_Load.Size = new System.Drawing.Size(144, 28);
             this.b_BC_Load.TabIndex = 1;
@@ -451,7 +500,7 @@
             this.dgv_BC_settings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgv_BC_settings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_BC_settings.Location = new System.Drawing.Point(11, 52);
-            this.dgv_BC_settings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgv_BC_settings.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_BC_settings.Name = "dgv_BC_settings";
             this.dgv_BC_settings.RowHeadersWidth = 5;
             this.dgv_BC_settings.Size = new System.Drawing.Size(1731, 140);
@@ -461,55 +510,6 @@
             // 
             this.timer_BC.Interval = 60000;
             this.timer_BC.Tick += new System.EventHandler(this.BC_Timer_Work);
-            // 
-            // l_Kfs_with_TP
-            // 
-            this.l_Kfs_with_TP.AutoSize = true;
-            this.l_Kfs_with_TP.Location = new System.Drawing.Point(236, 283);
-            this.l_Kfs_with_TP.Name = "l_Kfs_with_TP";
-            this.l_Kfs_with_TP.Size = new System.Drawing.Size(53, 17);
-            this.l_Kfs_with_TP.TabIndex = 6;
-            this.l_Kfs_with_TP.Text = "Kfs for ";
-            // 
-            // b_down_inv
-            // 
-            this.b_down_inv.Image = global::monitor3lx.Properties.Resources.downInv;
-            this.b_down_inv.Location = new System.Drawing.Point(709, 274);
-            this.b_down_inv.Name = "b_down_inv";
-            this.b_down_inv.Size = new System.Drawing.Size(42, 42);
-            this.b_down_inv.TabIndex = 10;
-            this.b_down_inv.UseVisualStyleBackColor = true;
-            this.b_down_inv.Click += new System.EventHandler(this.b_down_Inv);
-            // 
-            // b_up_inv
-            // 
-            this.b_up_inv.Image = global::monitor3lx.Properties.Resources.upInv;
-            this.b_up_inv.Location = new System.Drawing.Point(661, 274);
-            this.b_up_inv.Name = "b_up_inv";
-            this.b_up_inv.Size = new System.Drawing.Size(42, 42);
-            this.b_up_inv.TabIndex = 9;
-            this.b_up_inv.UseVisualStyleBackColor = true;
-            this.b_up_inv.Click += new System.EventHandler(this.b_up_Inv);
-            // 
-            // b_down_
-            // 
-            this.b_down_.Image = global::monitor3lx.Properties.Resources.down;
-            this.b_down_.Location = new System.Drawing.Point(562, 275);
-            this.b_down_.Name = "b_down_";
-            this.b_down_.Size = new System.Drawing.Size(42, 42);
-            this.b_down_.TabIndex = 8;
-            this.b_down_.UseVisualStyleBackColor = true;
-            this.b_down_.Click += new System.EventHandler(this.b_down_Click);
-            // 
-            // b_Up_
-            // 
-            this.b_Up_.Image = global::monitor3lx.Properties.Resources.up;
-            this.b_Up_.Location = new System.Drawing.Point(514, 275);
-            this.b_Up_.Name = "b_Up_";
-            this.b_Up_.Size = new System.Drawing.Size(42, 42);
-            this.b_Up_.TabIndex = 7;
-            this.b_Up_.UseVisualStyleBackColor = true;
-            this.b_Up_.Click += new System.EventHandler(this.b_Up_Click);
             // 
             // Form1
             // 
