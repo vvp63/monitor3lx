@@ -131,6 +131,7 @@ namespace monitor3lx
         private void getTPComboBox()
         {
             FillCBByQuery(cbFR_TP, "select tpid, fullname FROM public.\"TPList\"", "tpid", "fullname");
+            FillCBByQuery(cbFRH_TP, "select tpid, fullname FROM public.\"TPList\"", "tpid", "fullname");
         }
 
         private void updateTPclick(object sender, EventArgs e)
@@ -419,8 +420,13 @@ namespace monitor3lx
             }
         }
 
+        private void Show_FRH(object sender, EventArgs e)
+        {
+            string vQuery = String.Format("SELECT * FROM \"public\".\"Daily_Finres\" WHERE tpid = {0} ORDER BY \"date\" DESC",
+                     cbFRH_TP.SelectedValue);
+            FillDGVByQuery(dgvFRH, vQuery);
 
-
+        }
     }
 
 

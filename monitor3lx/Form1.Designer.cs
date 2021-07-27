@@ -65,6 +65,11 @@
             this.b_BC_Load = new System.Windows.Forms.Button();
             this.dgv_BC_settings = new System.Windows.Forms.DataGridView();
             this.timer_BC = new System.Windows.Forms.Timer(this.components);
+            this.t_FinresHistory = new System.Windows.Forms.TabPage();
+            this.lFRH_TP = new System.Windows.Forms.Label();
+            this.cbFRH_TP = new System.Windows.Forms.ComboBox();
+            this.dgvFRH = new System.Windows.Forms.DataGridView();
+            this.bFRH_Show = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl_Main.SuspendLayout();
@@ -76,6 +81,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvFR_Reval)).BeginInit();
             this.t_BasisCount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).BeginInit();
+            this.t_FinresHistory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFRH)).BeginInit();
             this.SuspendLayout();
             // 
             // tbLog
@@ -214,6 +221,7 @@
             // 
             this.tabControl_Main.Controls.Add(this.t_CurrPos);
             this.tabControl_Main.Controls.Add(this.t_Finres);
+            this.tabControl_Main.Controls.Add(this.t_FinresHistory);
             this.tabControl_Main.Controls.Add(this.t_BasisCount);
             this.tabControl_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl_Main.Enabled = false;
@@ -405,10 +413,10 @@
             // bFR_Count
             // 
             this.bFR_Count.BackColor = System.Drawing.Color.White;
-            this.bFR_Count.Location = new System.Drawing.Point(103, 110);
+            this.bFR_Count.Location = new System.Drawing.Point(103, 105);
             this.bFR_Count.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bFR_Count.Name = "bFR_Count";
-            this.bFR_Count.Size = new System.Drawing.Size(252, 39);
+            this.bFR_Count.Size = new System.Drawing.Size(252, 32);
             this.bFR_Count.TabIndex = 2;
             this.bFR_Count.Text = "Count";
             this.bFR_Count.UseVisualStyleBackColor = false;
@@ -511,6 +519,64 @@
             this.timer_BC.Interval = 60000;
             this.timer_BC.Tick += new System.EventHandler(this.BC_Timer_Work);
             // 
+            // t_FinresHistory
+            // 
+            this.t_FinresHistory.BackColor = System.Drawing.Color.LightGray;
+            this.t_FinresHistory.Controls.Add(this.bFRH_Show);
+            this.t_FinresHistory.Controls.Add(this.dgvFRH);
+            this.t_FinresHistory.Controls.Add(this.lFRH_TP);
+            this.t_FinresHistory.Controls.Add(this.cbFRH_TP);
+            this.t_FinresHistory.Location = new System.Drawing.Point(4, 31);
+            this.t_FinresHistory.Name = "t_FinresHistory";
+            this.t_FinresHistory.Padding = new System.Windows.Forms.Padding(3);
+            this.t_FinresHistory.Size = new System.Drawing.Size(1774, 532);
+            this.t_FinresHistory.TabIndex = 3;
+            this.t_FinresHistory.Text = "Finres History";
+            // 
+            // lFRH_TP
+            // 
+            this.lFRH_TP.AutoSize = true;
+            this.lFRH_TP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFRH_TP.Location = new System.Drawing.Point(19, 19);
+            this.lFRH_TP.Name = "lFRH_TP";
+            this.lFRH_TP.Size = new System.Drawing.Size(80, 20);
+            this.lFRH_TP.TabIndex = 6;
+            this.lFRH_TP.Text = "Tradepair";
+            // 
+            // cbFRH_TP
+            // 
+            this.cbFRH_TP.FormattingEnabled = true;
+            this.cbFRH_TP.Location = new System.Drawing.Point(114, 15);
+            this.cbFRH_TP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbFRH_TP.Name = "cbFRH_TP";
+            this.cbFRH_TP.Size = new System.Drawing.Size(252, 24);
+            this.cbFRH_TP.TabIndex = 5;
+            // 
+            // dgvFRH
+            // 
+            this.dgvFRH.AllowUserToAddRows = false;
+            this.dgvFRH.AllowUserToDeleteRows = false;
+            this.dgvFRH.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvFRH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFRH.Location = new System.Drawing.Point(395, 15);
+            this.dgvFRH.Margin = new System.Windows.Forms.Padding(1);
+            this.dgvFRH.Name = "dgvFRH";
+            this.dgvFRH.RowHeadersWidth = 5;
+            this.dgvFRH.RowTemplate.Height = 24;
+            this.dgvFRH.Size = new System.Drawing.Size(1360, 490);
+            this.dgvFRH.TabIndex = 7;
+            // 
+            // bFRH_Show
+            // 
+            this.bFRH_Show.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.bFRH_Show.Location = new System.Drawing.Point(114, 54);
+            this.bFRH_Show.Name = "bFRH_Show";
+            this.bFRH_Show.Size = new System.Drawing.Size(252, 29);
+            this.bFRH_Show.TabIndex = 8;
+            this.bFRH_Show.Text = "Show History";
+            this.bFRH_Show.UseVisualStyleBackColor = false;
+            this.bFRH_Show.Click += new System.EventHandler(this.Show_FRH);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -537,6 +603,9 @@
             this.t_BasisCount.ResumeLayout(false);
             this.t_BasisCount.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).EndInit();
+            this.t_FinresHistory.ResumeLayout(false);
+            this.t_FinresHistory.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFRH)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -580,6 +649,11 @@
         private System.Windows.Forms.Button b_down_;
         private System.Windows.Forms.Button b_down_inv;
         private System.Windows.Forms.Button b_up_inv;
+        private System.Windows.Forms.TabPage t_FinresHistory;
+        private System.Windows.Forms.Label lFRH_TP;
+        private System.Windows.Forms.ComboBox cbFRH_TP;
+        private System.Windows.Forms.Button bFRH_Show;
+        private System.Windows.Forms.DataGridView dgvFRH;
     }
 }
 
