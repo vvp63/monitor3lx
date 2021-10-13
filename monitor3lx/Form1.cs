@@ -28,6 +28,7 @@ namespace monitor3lx
             InitializeComponent();
             dgvTP.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtpFR_date.Value = DateTime.Now.Date;
+            dtp_MoveDate.Value = DateTime.Now.Date;
         }
 
         private void TextLog(string aLogStr, params object[] aParams)
@@ -84,9 +85,10 @@ namespace monitor3lx
                 getBalancesTable();
                 FillFullBalance();
                 getTPComboBox();
+                getAMtable();
+                timer_keepconn.Enabled = true;
             }
         }
-
 
         private void FillDGVByQuery(DataGridView aDGV, string aQuery)
         {
@@ -122,7 +124,6 @@ namespace monitor3lx
             else TextLog("No connection");
         }
 
-
         private void getTPtable()
         {
             FillDGVByQuery(dgvTP, "SELECT * FROM public.tp WHERE isactive = B'1' ORDER BY tpid");
@@ -131,7 +132,7 @@ namespace monitor3lx
         private void getTPComboBox()
         {
             FillCBByQuery(cbFR_TP, "select tpid, fullname FROM public.\"TPList\"", "tpid", "fullname");
-            FillCBByQuery(cbFRH_TP, "select tpid, fullname FROM public.\"TPList\"", "tpid", "fullname");
+            FillCBByQuery(cbFRH_TP, "select tpid, fullname FROM public.\"TPListService\"", "tpid", "fullname");
         }
 
         private void updateTPclick(object sender, EventArgs e)
@@ -143,7 +144,6 @@ namespace monitor3lx
         {
             SaveTPLine(e.RowIndex);
         }
-
 
         private void SaveTPLine(int aIdx)
         {
@@ -172,12 +172,10 @@ namespace monitor3lx
             else TextLog("No connection");
         }
 
-
         private void b_Apply_Click(object sender, EventArgs e)
         {
             Apply_proc();
         }
-
 
         private void Apply_proc()
         {
@@ -189,7 +187,6 @@ namespace monitor3lx
             }
             else TextLog("No connection");
         }
-
 
         private void getBalancesTable()
         {
@@ -220,12 +217,10 @@ namespace monitor3lx
             }
         }
 
-
         private void ClickFullBalance(object sender, EventArgs e)
         {
             FillFullBalance();
         }
-
 
         private void FillFullBalance()
         {
@@ -253,111 +248,7 @@ namespace monitor3lx
 
         }
 
-
-
-
-        //      -----------------------------   Finres (FR) ----------------------------------------------------    //
-
-
-        private void bFR_CountClick(object sender, EventArgs e)
-        {
-
-            TextLog("{0} - {1}  IsToday = {2} TPID = {3}", dtpFR_date.Value, dtpFR_date.Value.AddDays(1), (dtpFR_date.Value == DateTime.Now.Date), cbFR_TP.SelectedValue);
-            string vQuery = "SELECT * FROM ";
-            if (dtpFR_date.Value == DateTime.Now.Date)
-            {
-                vQuery += String.Format("\"public\".\"FR_RevalAndTradesToNow\"({0}, '{1}')", 
-                    cbFR_TP.SelectedValue, dtpFR_date.Value.ToString("yyyyMMdd")); 
-            } else
-            {
-                vQuery += String.Format("\"public\".\"FR_RevalAndTradesToDate\"({0}, '{1}', '{2}')",
-                    cbFR_TP.SelectedValue, dtpFR_date.Value.ToString("yyyyMMdd"), dtpFR_date.Value.AddDays(1).ToString("yyyyMMdd"));
-            }
-            FillDGVByQuery(dgvFR_Reval, vQuery);
-            float vFr = 0;
-            for (int i = 0; i < dgvFR_Reval.RowCount; i++) {
-
-                float vpdkf = 1;
-                float vTmp = 0;
-                for (int j = 0; j < dgvFR_Reval.RowCount; j++)
-                {
-                    if (dgvFR_Reval.Rows[i].Cells[0].Value.ToString() == dgvFR_Reval.Rows[j].Cells[3].Value.ToString())
-                    {
-                        float vpdmult   =   1;
-                        float vpdquot   =   10;
-                        float.TryParse(dgvFR_Reval.Rows[j].Cells[4].Value.ToString(), out vpdmult);
-                        float.TryParse(dgvFR_Reval.Rows[j].Cells[8].Value.ToString(), out vpdquot);
-                        vpdkf = vpdmult * vpdquot / 10;
-                    }
-                }
-     
-                float.TryParse(dgvFR_Reval.Rows[i].Cells[dgvFR_Reval.ColumnCount - 1].Value.ToString(), out vTmp);
-                vFr += vTmp * vpdkf;
-            }
-            lFR_FullResult.Text = String.Format("{0:C}", vFr); 
-
-        }
-
-
-        //      --------------------------  Basis Count (BC)    ------------------------------------------  //
-
-
-        private void BC_Count_Click(object sender, EventArgs e)
-        {
-            BC_Count();
-        }
-
-
-        private void BC_Set_Click(object sender, EventArgs e)
-        {
-            BC_Count();
-            BC_Set();
-            Apply_proc();
-        }
-
-
-        private void BC_Count()
-        {
-            FillDGVByQuery(dgv_BC_settings, "SELECT * FROM \"public\".\"TP_Basis_Count_Full\"");
-        }
-
-        private void BC_Set()
-        {
-            for (int j = 0; j < dgv_BC_settings.Rows.Count; j++)
-            {
-                string vTpid    =   dgv_BC_settings.Rows[j].Cells[0].Value.ToString();
-                string vBdir = dgv_BC_settings.Rows[j].Cells[14].Value.ToString();
-                string vBinv = dgv_BC_settings.Rows[j].Cells[15].Value.ToString();
-                TextLog("{0}   dir={1} inv={2}", vTpid, vBdir, vBinv);
-                for (int i = 0; i < dgvTP.Rows.Count; i++)
-                {
-                    if (dgvTP.Rows[i].Cells[0].Value.ToString() == vTpid)
-                    {
-                        dgvTP.Rows[i].Cells[5].Value = vBdir;
-                        dgvTP.Rows[i].Cells[6].Value = vBinv;
-                    }
-                    SaveTPLine(i);
-                }
-            }
-        }
-
-        private void BC_Autoreload_check(object sender, EventArgs e)
-        {
-            //
-            tb_BC_Interval.Enabled = !cb_BC_Autoreload.Checked;
-            int vInterval = 60;
-            int.TryParse(tb_BC_Interval.Text, out vInterval);
-            timer_BC.Interval = vInterval * 1000;
-            timer_BC.Enabled = cb_BC_Autoreload.Checked;
-        }
-
-        private void BC_Timer_Work(object sender, EventArgs e)
-        {
-            BC_Count();
-            BC_Set();
-            Apply_proc();
-        }
-
+        //      --------------------------  Service Functions    ------------------------------------------  //
 
         int gCurrTPIdx = 0;
         float gBArrowMove = 0.00025F;
@@ -420,6 +311,122 @@ namespace monitor3lx
             }
         }
 
+        private void KeepConnect(object sender, EventArgs e)
+        {
+            if (gConn.State == ConnectionState.Open) getBalancesTable();
+        }
+
+
+        //      -----------------------------   Finres (FR) ----------------------------------------------------    //
+
+
+        private void bFR_CountClick(object sender, EventArgs e)
+        {
+
+            TextLog("{0} - {1}  IsToday = {2} TPID = {3}", dtpFR_date.Value, dtpFR_date.Value.AddDays(1), (dtpFR_date.Value == DateTime.Now.Date), cbFR_TP.SelectedValue);
+            string vQuery = "SELECT * FROM ";
+            if (dtpFR_date.Value == DateTime.Now.Date)
+            {
+                vQuery += String.Format("\"public\".\"FR_RevalAndTradesToNow\"({0}, '{1}')", 
+                    cbFR_TP.SelectedValue, dtpFR_date.Value.ToString("yyyyMMdd")); 
+            } else
+            {
+                vQuery += String.Format("\"public\".\"FR_RevalAndTradesToDate\"({0}, '{1}', '{2}')",
+                    cbFR_TP.SelectedValue, dtpFR_date.Value.ToString("yyyyMMdd"), dtpFR_date.Value.AddDays(1).ToString("yyyyMMdd"));
+            }
+            FillDGVByQuery(dgvFR_Reval, vQuery);
+            float vFr = 0;
+            for (int i = 0; i < dgvFR_Reval.RowCount; i++) {
+
+                float vpdkf = 1;
+                float vTmp = 0;
+                for (int j = 0; j < dgvFR_Reval.RowCount; j++)
+                {
+                    if (dgvFR_Reval.Rows[i].Cells[0].Value.ToString() == dgvFR_Reval.Rows[j].Cells[3].Value.ToString())
+                    {
+                        float vpdmult   =   1;
+                        float vpdquot   =   10;
+                        float.TryParse(dgvFR_Reval.Rows[j].Cells[4].Value.ToString(), out vpdmult);
+                        float.TryParse(dgvFR_Reval.Rows[j].Cells[8].Value.ToString(), out vpdquot);
+                        vpdkf = vpdmult * vpdquot / 10;
+                    }
+                }
+     
+                float.TryParse(dgvFR_Reval.Rows[i].Cells[dgvFR_Reval.ColumnCount - 1].Value.ToString(), out vTmp);
+                vFr += vTmp * vpdkf;
+            }
+            lFR_FullResult.Text = String.Format("{0:C}", vFr); 
+
+        }
+
+
+        //      --------------------------  Basis Count (BC)    ------------------------------------------  //
+
+
+        private void BC_Count_Click(object sender, EventArgs e)
+        {
+            BC_Count();
+        }
+
+        private void BC_Set_Click(object sender, EventArgs e)
+        {
+            BC_Count();
+            BC_Set();
+            Apply_proc();
+        }
+
+        private void BC_Count()
+        {
+            FillDGVByQuery(dgv_BC_settings, "SELECT * FROM \"public\".\"TP_Basis_Count_Full\"");
+        }
+
+        private void BC_Set()
+        {
+            for (int j = 0; j < dgv_BC_settings.Rows.Count; j++)
+            {
+                string vTpid    =   dgv_BC_settings.Rows[j].Cells[0].Value.ToString();
+                string vBdir = dgv_BC_settings.Rows[j].Cells[14].Value.ToString();
+                string vBinv = dgv_BC_settings.Rows[j].Cells[15].Value.ToString();
+                string vQuoteStr = dgv_BC_settings.Rows[j].Cells[2].Value.ToString();
+                float vQuote = 0;
+                float.TryParse(vQuoteStr, out vQuote);
+                TextLog("{0}   dir={1} inv={2}  quote = {3}", vTpid, vBdir, vBinv, vQuote);
+                if (vQuote > 0)
+                {
+                    for (int i = 0; i < dgvTP.Rows.Count; i++)
+                    {
+                        if (dgvTP.Rows[i].Cells[0].Value.ToString() == vTpid)
+                        {
+                            dgvTP.Rows[i].Cells[5].Value = vBdir;
+                            dgvTP.Rows[i].Cells[6].Value = vBinv;
+                        }
+                        SaveTPLine(i);
+                    }
+                }
+                else dgv_BC_settings.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
+            }
+        }
+
+        private void BC_Autoreload_check(object sender, EventArgs e)
+        {
+            //
+            tb_BC_Interval.Enabled = !cb_BC_Autoreload.Checked;
+            int vInterval = 60;
+            int.TryParse(tb_BC_Interval.Text, out vInterval);
+            timer_BC.Interval = vInterval * 1000;
+            timer_BC.Enabled = cb_BC_Autoreload.Checked;
+        }
+
+        private void BC_Timer_Work(object sender, EventArgs e)
+        {
+            BC_Count();
+            BC_Set();
+            Apply_proc();
+        }
+
+
+        //      -----------------------------   Daily Finres (DFR) ----------------------------------------------------    //
+
         private void Show_FRH(object sender, EventArgs e)
         {
             string vQuery = String.Format("SELECT * FROM \"public\".\"Daily_Finres\" WHERE tpid = {0} ORDER BY \"date\" DESC",
@@ -427,6 +434,66 @@ namespace monitor3lx
             FillDGVByQuery(dgvFRH, vQuery);
 
         }
+
+
+        //      -----------------------------   Asset Move (AM) ----------------------------------------------------    //
+
+        int vAmRowEnter = -1;
+
+        private void getAMtable()
+        {
+            FillDGVByQuery(dgv_AssetMove, "SELECT * FROM public.asset_move ORDER BY date desc");
+            vAmRowEnter = -1;
+        }
+
+        private void b_AddClick(object sender, EventArgs e)
+        {
+            float vVal = 0;
+            float.TryParse(tb_Value.Text, out vVal);
+            if (vVal != 0) {
+                string vAddQuery = string.Format("INSERT INTO public.asset_move (date, value, comment) VALUES ('{0}-{1}-{2}', {3}, '{4}')",
+                                                    dtp_MoveDate.Value.Year, dtp_MoveDate.Value.Month, dtp_MoveDate.Value.Day, vVal, tb_Comment.Text);
+                TextLog(vAddQuery);
+                if (gConn.State == ConnectionState.Open)
+                {
+                    NpgsqlCommand vComm = new NpgsqlCommand(vAddQuery, gConn);
+                    vComm.ExecuteNonQuery();
+                };                
+                getAMtable();
+            }
+
+        }
+
+        private void kd_am_delete(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Delete) && (vAmRowEnter >=0))
+            {
+                string vAMStr = string.Format("{0} Move={1}  ({2})", dgv_AssetMove.Rows[vAmRowEnter].Cells[1].Value,
+                                            dgv_AssetMove.Rows[vAmRowEnter].Cells[2].Value, dgv_AssetMove.Rows[vAmRowEnter].Cells[3].Value);
+                DialogResult result = MessageBox.Show("Delete asset move?", vAMStr, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    //
+                    string vDeleteQuery = string.Format("DELETE FROM public.asset_move WHERE id = {0}", dgv_AssetMove.Rows[vAmRowEnter].Cells[0].Value);
+                    if (gConn.State == ConnectionState.Open)
+                    {
+                        NpgsqlCommand vComm = new NpgsqlCommand(vDeleteQuery, gConn);
+                        vComm.ExecuteNonQuery();
+                    };
+                    getAMtable();
+                }
+            }
+        }
+
+
+
+        private void ce_am(object sender, DataGridViewCellEventArgs e)
+        {
+            vAmRowEnter = e.RowIndex;
+        }
+
+
+
     }
 
 
