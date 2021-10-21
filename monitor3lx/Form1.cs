@@ -429,10 +429,22 @@ namespace monitor3lx
 
         private void Show_FRH(object sender, EventArgs e)
         {
-            string vQuery = String.Format("SELECT * FROM \"public\".\"Daily_Finres\" WHERE tpid = {0} ORDER BY \"date\" DESC",
-                     cbFRH_TP.SelectedValue);
-            FillDGVByQuery(dgvFRH, vQuery);
+            string vQuery = "";
+            switch (cbFRH_TP.SelectedValue.ToString())
+            {
+                case "9999999":
+                    vQuery = "SELECT * FROM \"public\".\"AssetMoves_Full\" ORDER BY \"date\" DESC";
+                    break;
 
+                case "10000000":
+                    vQuery = "SELECT * FROM \"public\".\"SummFinres_Full\" ORDER BY \"date\" DESC";
+                    break;
+
+                default:
+                    vQuery = String.Format("SELECT * FROM \"public\".\"Daily_Finres\" WHERE tpid = {0} ORDER BY \"date\" DESC", cbFRH_TP.SelectedValue);
+                    break;
+            }
+            if (vQuery.Length > 1) FillDGVByQuery(dgvFRH, vQuery);
         }
 
 
@@ -452,7 +464,7 @@ namespace monitor3lx
             float.TryParse(tb_Value.Text, out vVal);
             if (vVal != 0) {
                 string vAddQuery = string.Format("INSERT INTO public.asset_move (date, value, comment) VALUES ('{0}-{1}-{2}', {3}, '{4}')",
-                                                    dtp_MoveDate.Value.Year, dtp_MoveDate.Value.Month, dtp_MoveDate.Value.Day, vVal, tb_Comment.Text);
+                                                    dtp_MoveDate.Value.Year, dtp_MoveDate.Value.Month, dtp_MoveDate.Value.Day, vVal, cb_CommentsVar.Text);
                 TextLog(vAddQuery);
                 if (gConn.State == ConnectionState.Open)
                 {
@@ -491,6 +503,7 @@ namespace monitor3lx
         {
             vAmRowEnter = e.RowIndex;
         }
+
 
 
 

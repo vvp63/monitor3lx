@@ -68,7 +68,6 @@
             this.b_Add = new System.Windows.Forms.Button();
             this.dtp_MoveDate = new System.Windows.Forms.DateTimePicker();
             this.l_AssetMove = new System.Windows.Forms.Label();
-            this.tb_Comment = new System.Windows.Forms.TextBox();
             this.l_Date = new System.Windows.Forms.Label();
             this.l_Comment = new System.Windows.Forms.Label();
             this.l_Value = new System.Windows.Forms.Label();
@@ -82,6 +81,7 @@
             this.dgv_BC_settings = new System.Windows.Forms.DataGridView();
             this.timer_BC = new System.Windows.Forms.Timer(this.components);
             this.timer_keepconn = new System.Windows.Forms.Timer(this.components);
+            this.cb_CommentsVar = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl_Main.SuspendLayout();
@@ -538,29 +538,28 @@
             this.t_AssetMove.Name = "t_AssetMove";
             this.t_AssetMove.Size = new System.Drawing.Size(1328, 425);
             this.t_AssetMove.TabIndex = 4;
-            this.t_AssetMove.Text = "AssetMove";
-            this.t_AssetMove.Click += new System.EventHandler(this.b_AddClick);
+            this.t_AssetMove.Text = "Asset Moves";
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LightGray;
+            this.panel2.Controls.Add(this.cb_CommentsVar);
             this.panel2.Controls.Add(this.b_Add);
             this.panel2.Controls.Add(this.dtp_MoveDate);
             this.panel2.Controls.Add(this.l_AssetMove);
-            this.panel2.Controls.Add(this.tb_Comment);
             this.panel2.Controls.Add(this.l_Date);
             this.panel2.Controls.Add(this.l_Comment);
             this.panel2.Controls.Add(this.l_Value);
             this.panel2.Controls.Add(this.tb_Value);
             this.panel2.Location = new System.Drawing.Point(892, 15);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(428, 182);
+            this.panel2.Size = new System.Drawing.Size(428, 169);
             this.panel2.TabIndex = 9;
             // 
             // b_Add
             // 
             this.b_Add.BackColor = System.Drawing.Color.Silver;
-            this.b_Add.Location = new System.Drawing.Point(23, 141);
+            this.b_Add.Location = new System.Drawing.Point(23, 127);
             this.b_Add.Name = "b_Add";
             this.b_Add.Size = new System.Drawing.Size(75, 27);
             this.b_Add.TabIndex = 8;
@@ -585,13 +584,6 @@
             this.l_AssetMove.TabIndex = 1;
             this.l_AssetMove.Text = "Add asset move";
             // 
-            // tb_Comment
-            // 
-            this.tb_Comment.Location = new System.Drawing.Point(92, 103);
-            this.tb_Comment.Name = "tb_Comment";
-            this.tb_Comment.Size = new System.Drawing.Size(316, 20);
-            this.tb_Comment.TabIndex = 7;
-            // 
             // l_Date
             // 
             this.l_Date.AutoSize = true;
@@ -604,7 +596,7 @@
             // l_Comment
             // 
             this.l_Comment.AutoSize = true;
-            this.l_Comment.Location = new System.Drawing.Point(20, 106);
+            this.l_Comment.Location = new System.Drawing.Point(20, 103);
             this.l_Comment.Name = "l_Comment";
             this.l_Comment.Size = new System.Drawing.Size(51, 13);
             this.l_Comment.TabIndex = 6;
@@ -623,7 +615,7 @@
             // 
             this.tb_Value.Location = new System.Drawing.Point(92, 73);
             this.tb_Value.Name = "tb_Value";
-            this.tb_Value.Size = new System.Drawing.Size(100, 20);
+            this.tb_Value.Size = new System.Drawing.Size(149, 20);
             this.tb_Value.TabIndex = 5;
             // 
             // dgv_AssetMove
@@ -718,6 +710,18 @@
             this.timer_keepconn.Interval = 1800000;
             this.timer_keepconn.Tick += new System.EventHandler(this.KeepConnect);
             // 
+            // cb_CommentsVar
+            // 
+            this.cb_CommentsVar.FormattingEnabled = true;
+            this.cb_CommentsVar.Items.AddRange(new object[] {
+            "Комиссия FORTS",
+            "Комиссия ММВБ",
+            "Дивиденды "});
+            this.cb_CommentsVar.Location = new System.Drawing.Point(92, 100);
+            this.cb_CommentsVar.Name = "cb_CommentsVar";
+            this.cb_CommentsVar.Size = new System.Drawing.Size(320, 21);
+            this.cb_CommentsVar.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -803,7 +807,6 @@
         private System.Windows.Forms.TabPage t_AssetMove;
         private System.Windows.Forms.DataGridView dgv_AssetMove;
         private System.Windows.Forms.Button b_Add;
-        private System.Windows.Forms.TextBox tb_Comment;
         private System.Windows.Forms.Label l_Comment;
         private System.Windows.Forms.TextBox tb_Value;
         private System.Windows.Forms.Label l_Value;
@@ -811,6 +814,7 @@
         private System.Windows.Forms.DateTimePicker dtp_MoveDate;
         private System.Windows.Forms.Label l_AssetMove;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ComboBox cb_CommentsVar;
     }
 }
 
