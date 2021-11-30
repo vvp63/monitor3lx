@@ -425,8 +425,7 @@ namespace monitor3lx
 
         private void BC_Enter(object sender, EventArgs e)
         {
-            FillDGVByQuery(dgv_BC_Params, "SELECT \"TPId\", \"RepoPerc\", \"DivSumm\", \"Spread\" FROM \"public\".\"tp_basis_count\" ORDER BY \"TPId\"");
-            //WHERE \"IsActive\" = B'1'
+            FillDGVByQuery(dgv_BC_Params, "SELECT \"TPId\", \"RepoPerc\", \"DivSumm\", \"Spread\" FROM \"public\".\"tp_basis_count\" WHERE \"IsActive\" = B'1' ORDER BY \"TPId\"");
         }
 
         private void BC_EndEdit(object sender, DataGridViewCellEventArgs e)
