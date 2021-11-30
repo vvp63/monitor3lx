@@ -159,7 +159,6 @@ namespace monitor3lx
                     vUpdates = vUpdates + dgvTP.Columns[j].HeaderText + " = " +
                             (dgvTP.Columns[j].HeaderText == "hedgemode" ? "'" + vVal + "'" : vVal);
                 }
-
                 if ((j > 2) && (j < dgvTP.ColumnCount - 1)) vUpdates = vUpdates + ", ";
             }
             vUpdates = vUpdates.Replace("False", "B'0'").Replace("True", "B'1'");
@@ -424,6 +423,42 @@ namespace monitor3lx
             Apply_proc();
         }
 
+        private void BC_Enter(object sender, EventArgs e)
+        {
+            FillDGVByQuery(dgv_BC_Params, "SELECT \"TPId\", \"RepoPerc\", \"DivSumm\", \"Spread\" FROM \"public\".\"tp_basis_count\" ORDER BY \"TPId\"");
+            //WHERE \"IsActive\" = B'1'
+        }
+
+        private void BC_EndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            BC_SaveLine(e.RowIndex);
+        }
+
+        private void BC_SaveLine(int aIdx)
+        {
+            string vUpdates = "";
+            string vId = "";
+            for (int j = 0; j < dgv_BC_Params.ColumnCount; j++)
+            {
+                if (j == 0) vId = dgv_BC_Params.Rows[aIdx].Cells[j].Value.ToString();
+                else
+                {
+                    string vVal = dgv_BC_Params.Rows[aIdx].Cells[j].Value.ToString();
+                    vVal = vVal.Replace(",", ".").Replace(" ", "");
+                    vUpdates = vUpdates + "\"" + dgv_BC_Params.Columns[j].HeaderText + "\" = " + vVal;
+                }
+                if ((j > 0) && (j < dgv_BC_Params.ColumnCount - 1)) vUpdates = vUpdates + ", ";
+            }
+            string vUpdQuery = string.Format("UPDATE tp_basis_count SET {0} WHERE \"TPId\" = {1}", vUpdates, vId);
+            if (gConn.State == ConnectionState.Open)
+            {
+                NpgsqlCommand vComm = new NpgsqlCommand(vUpdQuery, gConn);
+                vComm.ExecuteNonQuery();
+            }
+            else TextLog("No connection");
+        }
+
+
 
         //      -----------------------------   Daily Finres (DFR) ----------------------------------------------------    //
 
@@ -497,14 +532,10 @@ namespace monitor3lx
             }
         }
 
-
-
         private void ce_am(object sender, DataGridViewCellEventArgs e)
         {
             vAmRowEnter = e.RowIndex;
         }
-
-
 
 
     }

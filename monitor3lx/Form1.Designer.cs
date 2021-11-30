@@ -65,6 +65,7 @@
             this.cbFRH_TP = new System.Windows.Forms.ComboBox();
             this.t_AssetMove = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cb_CommentsVar = new System.Windows.Forms.ComboBox();
             this.b_Add = new System.Windows.Forms.Button();
             this.dtp_MoveDate = new System.Windows.Forms.DateTimePicker();
             this.l_AssetMove = new System.Windows.Forms.Label();
@@ -81,7 +82,8 @@
             this.dgv_BC_settings = new System.Windows.Forms.DataGridView();
             this.timer_BC = new System.Windows.Forms.Timer(this.components);
             this.timer_keepconn = new System.Windows.Forms.Timer(this.components);
-            this.cb_CommentsVar = new System.Windows.Forms.ComboBox();
+            this.l_BC_Params = new System.Windows.Forms.Label();
+            this.dgv_BC_Params = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl_Main.SuspendLayout();
@@ -98,6 +100,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AssetMove)).BeginInit();
             this.t_BasisCount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_Params)).BeginInit();
             this.SuspendLayout();
             // 
             // tbLog
@@ -556,6 +559,18 @@
             this.panel2.Size = new System.Drawing.Size(428, 169);
             this.panel2.TabIndex = 9;
             // 
+            // cb_CommentsVar
+            // 
+            this.cb_CommentsVar.FormattingEnabled = true;
+            this.cb_CommentsVar.Items.AddRange(new object[] {
+            "Комиссия FORTS",
+            "Комиссия ММВБ",
+            "Дивиденды "});
+            this.cb_CommentsVar.Location = new System.Drawing.Point(92, 100);
+            this.cb_CommentsVar.Name = "cb_CommentsVar";
+            this.cb_CommentsVar.Size = new System.Drawing.Size(320, 21);
+            this.cb_CommentsVar.TabIndex = 9;
+            // 
             // b_Add
             // 
             this.b_Add.BackColor = System.Drawing.Color.Silver;
@@ -636,6 +651,8 @@
             // t_BasisCount
             // 
             this.t_BasisCount.BackColor = System.Drawing.Color.Gainsboro;
+            this.t_BasisCount.Controls.Add(this.dgv_BC_Params);
+            this.t_BasisCount.Controls.Add(this.l_BC_Params);
             this.t_BasisCount.Controls.Add(this.cb_BC_Autoreload);
             this.t_BasisCount.Controls.Add(this.tb_BC_Interval);
             this.t_BasisCount.Controls.Add(this.b_BC_Set);
@@ -646,6 +663,7 @@
             this.t_BasisCount.Size = new System.Drawing.Size(1328, 425);
             this.t_BasisCount.TabIndex = 2;
             this.t_BasisCount.Text = "Basis Count";
+            this.t_BasisCount.Enter += new System.EventHandler(this.BC_Enter);
             // 
             // cb_BC_Autoreload
             // 
@@ -697,7 +715,7 @@
             this.dgv_BC_settings.Location = new System.Drawing.Point(8, 42);
             this.dgv_BC_settings.Name = "dgv_BC_settings";
             this.dgv_BC_settings.RowHeadersWidth = 5;
-            this.dgv_BC_settings.Size = new System.Drawing.Size(1298, 114);
+            this.dgv_BC_settings.Size = new System.Drawing.Size(1298, 138);
             this.dgv_BC_settings.TabIndex = 0;
             // 
             // timer_BC
@@ -710,17 +728,27 @@
             this.timer_keepconn.Interval = 1800000;
             this.timer_keepconn.Tick += new System.EventHandler(this.KeepConnect);
             // 
-            // cb_CommentsVar
+            // l_BC_Params
             // 
-            this.cb_CommentsVar.FormattingEnabled = true;
-            this.cb_CommentsVar.Items.AddRange(new object[] {
-            "Комиссия FORTS",
-            "Комиссия ММВБ",
-            "Дивиденды "});
-            this.cb_CommentsVar.Location = new System.Drawing.Point(92, 100);
-            this.cb_CommentsVar.Name = "cb_CommentsVar";
-            this.cb_CommentsVar.Size = new System.Drawing.Size(320, 21);
-            this.cb_CommentsVar.TabIndex = 9;
+            this.l_BC_Params.AutoSize = true;
+            this.l_BC_Params.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_BC_Params.Location = new System.Drawing.Point(8, 215);
+            this.l_BC_Params.Name = "l_BC_Params";
+            this.l_BC_Params.Size = new System.Drawing.Size(174, 16);
+            this.l_BC_Params.TabIndex = 5;
+            this.l_BC_Params.Text = "Basis Count Parameters";
+            // 
+            // dgv_BC_Params
+            // 
+            this.dgv_BC_Params.AllowUserToAddRows = false;
+            this.dgv_BC_Params.AllowUserToDeleteRows = false;
+            this.dgv_BC_Params.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_BC_Params.Location = new System.Drawing.Point(8, 244);
+            this.dgv_BC_Params.Name = "dgv_BC_Params";
+            this.dgv_BC_Params.RowHeadersWidth = 5;
+            this.dgv_BC_Params.Size = new System.Drawing.Size(716, 166);
+            this.dgv_BC_Params.TabIndex = 6;
+            this.dgv_BC_Params.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.BC_EndEdit);
             // 
             // Form1
             // 
@@ -755,6 +783,7 @@
             this.t_BasisCount.ResumeLayout(false);
             this.t_BasisCount.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_Params)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -815,6 +844,8 @@
         private System.Windows.Forms.Label l_AssetMove;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ComboBox cb_CommentsVar;
+        private System.Windows.Forms.DataGridView dgv_BC_Params;
+        private System.Windows.Forms.Label l_BC_Params;
     }
 }
 
