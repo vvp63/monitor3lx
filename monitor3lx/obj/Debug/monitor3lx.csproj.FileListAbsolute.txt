@@ -42,7 +42,7 @@ D:\Poliektov\tmp\sld\vv_dev\monitor3_lx\monitor3lx\bin\Debug\Microsoft.Extension
 D:\Poliektov\tmp\sld\vv_dev\monitor3_lx\monitor3lx\bin\Debug\Npgsql.xml
 D:\Poliektov\tmp\sld\vv_dev\monitor3_lx\monitor3lx\bin\Debug\Renci.SshNet.xml
 D:\Poliektov\tmp\sld\vv_dev\monitor3_lx\monitor3lx\bin\Debug\System.Threading.Tasks.Extensions.xml
-D:\Poliektov\tmp\sld\vv_dev\monitor3_lx\monitor3lx\obj\Debug\monitor3lx.csprojResolveAssemblyReference.cache
 D:\Poliektov\tmp\sld\vv_dev\monitor3_lx\monitor3lx\obj\Debug\monitor3lx.Form1.resources
 D:\Poliektov\tmp\sld\vv_dev\monitor3_lx\monitor3lx\obj\Debug\monitor3lx.Properties.Resources.resources
 D:\Poliektov\tmp\sld\vv_dev\monitor3_lx\monitor3lx\obj\Debug\monitor3lx.csproj.GenerateResource.Cache
+D:\Poliektov\tmp\sld\vv_dev\monitor3_lx\monitor3lx\obj\Debug\monitor3lx.csprojResolveAssemblyReference.cache

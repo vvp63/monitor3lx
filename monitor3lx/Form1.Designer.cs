@@ -35,6 +35,8 @@
             this.bUpdateTP = new System.Windows.Forms.Button();
             this.b_Apply = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tb_kfp = new System.Windows.Forms.TextBox();
+            this.l_kfp = new System.Windows.Forms.Label();
             this.b_down_inv = new System.Windows.Forms.Button();
             this.b_up_inv = new System.Windows.Forms.Button();
             this.b_down_ = new System.Windows.Forms.Button();
@@ -75,6 +77,8 @@
             this.tb_Value = new System.Windows.Forms.TextBox();
             this.dgv_AssetMove = new System.Windows.Forms.DataGridView();
             this.t_BasisCount = new System.Windows.Forms.TabPage();
+            this.dgv_BC_Params = new System.Windows.Forms.DataGridView();
+            this.l_BC_Params = new System.Windows.Forms.Label();
             this.cb_BC_Autoreload = new System.Windows.Forms.CheckBox();
             this.tb_BC_Interval = new System.Windows.Forms.TextBox();
             this.b_BC_Set = new System.Windows.Forms.Button();
@@ -82,8 +86,8 @@
             this.dgv_BC_settings = new System.Windows.Forms.DataGridView();
             this.timer_BC = new System.Windows.Forms.Timer(this.components);
             this.timer_keepconn = new System.Windows.Forms.Timer(this.components);
-            this.l_BC_Params = new System.Windows.Forms.Label();
-            this.dgv_BC_Params = new System.Windows.Forms.DataGridView();
+            this.dgv_LParams = new System.Windows.Forms.DataGridView();
+            this.b_loadParams = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl_Main.SuspendLayout();
@@ -99,8 +103,9 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AssetMove)).BeginInit();
             this.t_BasisCount.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_Params)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_LParams)).BeginInit();
             this.SuspendLayout();
             // 
             // tbLog
@@ -170,6 +175,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Silver;
+            this.panel1.Controls.Add(this.tb_kfp);
+            this.panel1.Controls.Add(this.l_kfp);
             this.panel1.Controls.Add(this.b_down_inv);
             this.panel1.Controls.Add(this.b_up_inv);
             this.panel1.Controls.Add(this.b_down_);
@@ -185,6 +192,25 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1336, 262);
             this.panel1.TabIndex = 6;
+            // 
+            // tb_kfp
+            // 
+            this.tb_kfp.Location = new System.Drawing.Point(232, 15);
+            this.tb_kfp.Margin = new System.Windows.Forms.Padding(2);
+            this.tb_kfp.Name = "tb_kfp";
+            this.tb_kfp.PasswordChar = '*';
+            this.tb_kfp.Size = new System.Drawing.Size(146, 20);
+            this.tb_kfp.TabIndex = 12;
+            // 
+            // l_kfp
+            // 
+            this.l_kfp.AutoSize = true;
+            this.l_kfp.Location = new System.Drawing.Point(139, 17);
+            this.l_kfp.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.l_kfp.Name = "l_kfp";
+            this.l_kfp.Size = new System.Drawing.Size(89, 13);
+            this.l_kfp.TabIndex = 11;
+            this.l_kfp.Text = "Key file password";
             // 
             // b_down_inv
             // 
@@ -651,6 +677,8 @@
             // t_BasisCount
             // 
             this.t_BasisCount.BackColor = System.Drawing.Color.Gainsboro;
+            this.t_BasisCount.Controls.Add(this.b_loadParams);
+            this.t_BasisCount.Controls.Add(this.dgv_LParams);
             this.t_BasisCount.Controls.Add(this.dgv_BC_Params);
             this.t_BasisCount.Controls.Add(this.l_BC_Params);
             this.t_BasisCount.Controls.Add(this.cb_BC_Autoreload);
@@ -664,6 +692,28 @@
             this.t_BasisCount.TabIndex = 2;
             this.t_BasisCount.Text = "Basis Count";
             this.t_BasisCount.Enter += new System.EventHandler(this.BC_Enter);
+            // 
+            // dgv_BC_Params
+            // 
+            this.dgv_BC_Params.AllowUserToAddRows = false;
+            this.dgv_BC_Params.AllowUserToDeleteRows = false;
+            this.dgv_BC_Params.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_BC_Params.Location = new System.Drawing.Point(8, 244);
+            this.dgv_BC_Params.Name = "dgv_BC_Params";
+            this.dgv_BC_Params.RowHeadersWidth = 5;
+            this.dgv_BC_Params.Size = new System.Drawing.Size(480, 166);
+            this.dgv_BC_Params.TabIndex = 6;
+            this.dgv_BC_Params.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.BC_EndEdit);
+            // 
+            // l_BC_Params
+            // 
+            this.l_BC_Params.AutoSize = true;
+            this.l_BC_Params.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_BC_Params.Location = new System.Drawing.Point(8, 215);
+            this.l_BC_Params.Name = "l_BC_Params";
+            this.l_BC_Params.Size = new System.Drawing.Size(174, 16);
+            this.l_BC_Params.TabIndex = 5;
+            this.l_BC_Params.Text = "Basis Count Parameters";
             // 
             // cb_BC_Autoreload
             // 
@@ -725,30 +775,30 @@
             // 
             // timer_keepconn
             // 
-            this.timer_keepconn.Interval = 1800000;
+            this.timer_keepconn.Interval = 300000;
             this.timer_keepconn.Tick += new System.EventHandler(this.KeepConnect);
             // 
-            // l_BC_Params
+            // dgv_LParams
             // 
-            this.l_BC_Params.AutoSize = true;
-            this.l_BC_Params.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.l_BC_Params.Location = new System.Drawing.Point(8, 215);
-            this.l_BC_Params.Name = "l_BC_Params";
-            this.l_BC_Params.Size = new System.Drawing.Size(174, 16);
-            this.l_BC_Params.TabIndex = 5;
-            this.l_BC_Params.Text = "Basis Count Parameters";
+            this.dgv_LParams.AllowUserToAddRows = false;
+            this.dgv_LParams.AllowUserToDeleteRows = false;
+            this.dgv_LParams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_LParams.Location = new System.Drawing.Point(563, 244);
+            this.dgv_LParams.Name = "dgv_LParams";
+            this.dgv_LParams.RowHeadersWidth = 5;
+            this.dgv_LParams.Size = new System.Drawing.Size(742, 166);
+            this.dgv_LParams.TabIndex = 7;
             // 
-            // dgv_BC_Params
+            // b_loadParams
             // 
-            this.dgv_BC_Params.AllowUserToAddRows = false;
-            this.dgv_BC_Params.AllowUserToDeleteRows = false;
-            this.dgv_BC_Params.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_BC_Params.Location = new System.Drawing.Point(8, 244);
-            this.dgv_BC_Params.Name = "dgv_BC_Params";
-            this.dgv_BC_Params.RowHeadersWidth = 5;
-            this.dgv_BC_Params.Size = new System.Drawing.Size(716, 166);
-            this.dgv_BC_Params.TabIndex = 6;
-            this.dgv_BC_Params.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.BC_EndEdit);
+            this.b_loadParams.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.b_loadParams.Location = new System.Drawing.Point(563, 207);
+            this.b_loadParams.Name = "b_loadParams";
+            this.b_loadParams.Size = new System.Drawing.Size(111, 23);
+            this.b_loadParams.TabIndex = 8;
+            this.b_loadParams.Text = "Load Parameters";
+            this.b_loadParams.UseVisualStyleBackColor = false;
+            this.b_loadParams.Click += new System.EventHandler(this.b_loadParams_Click);
             // 
             // Form1
             // 
@@ -782,8 +832,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AssetMove)).EndInit();
             this.t_BasisCount.ResumeLayout(false);
             this.t_BasisCount.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_Params)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_LParams)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -846,6 +897,10 @@
         private System.Windows.Forms.ComboBox cb_CommentsVar;
         private System.Windows.Forms.DataGridView dgv_BC_Params;
         private System.Windows.Forms.Label l_BC_Params;
+        private System.Windows.Forms.TextBox tb_kfp;
+        private System.Windows.Forms.Label l_kfp;
+        private System.Windows.Forms.Button b_loadParams;
+        private System.Windows.Forms.DataGridView dgv_LParams;
     }
 }
 

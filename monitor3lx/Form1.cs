@@ -29,6 +29,7 @@ namespace monitor3lx
             dgvTP.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtpFR_date.Value = DateTime.Now.Date;
             dtp_MoveDate.Value = DateTime.Now.Date;
+            tb_kfp.Text = monitor3lx.Properties.Settings.Default.SSHPassPharse;
         }
 
         private void TextLog(string aLogStr, params object[] aParams)
@@ -43,13 +44,14 @@ namespace monitor3lx
             string  localhost = "127.0.0.1";
             string  SSHusername = monitor3lx.Properties.Settings.Default.SSHusername;          
             string  keyFile = monitor3lx.Properties.Settings.Default.SSHKeyFile;
-            string  passPharse = monitor3lx.Properties.Settings.Default.SSHPassPharse;
+            string  passPharse = tb_kfp.Text;
             string  database = monitor3lx.Properties.Settings.Default.PGDatabese;
             string  PGusername = monitor3lx.Properties.Settings.Default.PGusername;
             string  password = monitor3lx.Properties.Settings.Default.PGpass;
             int     pgPort = monitor3lx.Properties.Settings.Default.PGport;
             int     fwdPort = monitor3lx.Properties.Settings.Default.PGlocalport;
             int     SSHPort = monitor3lx.Properties.Settings.Default.SSHPort;
+
 
             ConnectionInfo ConnNfo = new ConnectionInfo(host, SSHPort, SSHusername,
                 new AuthenticationMethod[]{
@@ -87,6 +89,20 @@ namespace monitor3lx
                 getTPComboBox();
                 getAMtable();
                 timer_keepconn.Enabled = true;
+
+                //TextLog("Apply command '{0}'  Length={1}", monitor3lx.Properties.Settings.Default.ApplyCommand, monitor3lx.Properties.Settings.Default.ApplyCommand.Length);
+
+                if (monitor3lx.Properties.Settings.Default.ApplyCommand.Length < 3)
+                {
+                    dgvTP.Enabled = false;
+                    dgv_BC_Params.Enabled = false;
+                    b_Apply.Enabled = false;
+                    b_BC_Set.Enabled = false;
+                    cb_BC_Autoreload.Enabled = false;
+                    tb_BC_Interval.Enabled = false;
+                    b_Add.Enabled = false;
+                }
+
             }
         }
 
@@ -189,8 +205,11 @@ namespace monitor3lx
 
         private void getBalancesTable()
         {
+            TextLog("gbt 1");
             FillDGVByQuery(dgvTPBalances, "SELECT * FROM public.\"TP_Balances_2\"");
+            TextLog("gbt 2");
             FillDGVByQuery(dgvDelays, "SELECT * FROM public.\"Delays_ByStock\"");
+            TextLog("gbt 3");
         }
 
         private void b_CurrPos_Click(object sender, EventArgs e)
@@ -536,6 +555,10 @@ namespace monitor3lx
             vAmRowEnter = e.RowIndex;
         }
 
+        private void b_loadParams_Click(object sender, EventArgs e)
+        {
+            FillDGVByQuery(dgv_LParams, "SELECT * FROM st.parameters");
+        }
 
     }
 
