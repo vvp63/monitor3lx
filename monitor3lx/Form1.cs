@@ -373,7 +373,49 @@ namespace monitor3lx
                 float.TryParse(dgvFR_Reval.Rows[i].Cells[dgvFR_Reval.ColumnCount - 1].Value.ToString(), out vTmp);
                 vFr += vTmp * vpdkf;
             }
-            lFR_FullResult.Text = String.Format("{0:C}", vFr); 
+            lFR_FullResult.Text = String.Format("{0:C}", vFr);
+            FR_ShowAddition();
+            float vAdd = 0;
+            float.TryParse(tbFR_Addition.Text, out vAdd);
+            lFR_AddFull.Text = String.Format("{0:C}", (vFr + vAdd));
+        }
+
+
+
+
+        private void FR_ShowAddition()
+        {
+            //
+            tbFR_Addition.Text = "0";
+            if (gConn.State == ConnectionState.Open)
+            {
+                string vQuery = String.Format("SELECT addition FROM \"public\".\"Finres_Additions\" WHERE tpid={0} AND date='{1}'", cbFR_TP.SelectedValue, dtpFR_date.Value.ToString("yyyyMMdd"));
+                TextLog(vQuery);
+                NpgsqlCommand vComm = new NpgsqlCommand(vQuery, gConn);
+                NpgsqlDataReader vReader = vComm.ExecuteReader();
+                while (vReader.Read())
+                {
+                    tbFR_Addition.Text = vReader[0].ToString();
+                }
+                vReader.Close();
+            }
+        }
+
+
+        private void bFR_SaveAdd_Click(object sender, EventArgs e)
+        {
+            float vAdd = 0;
+            float.TryParse(tbFR_Addition.Text, out vAdd);
+
+            string vAddQuery = string.Format("SELECT * FROM \"public\".\"AddUpdateAddition\"('{0}-{1}-{2}', {3}, {4})",
+                                                dtpFR_date.Value.Year, dtpFR_date.Value.Month, dtpFR_date.Value.Day, cbFR_TP.SelectedValue, vAdd);
+            TextLog(vAddQuery);
+            if (gConn.State == ConnectionState.Open)
+            {
+                NpgsqlCommand vComm = new NpgsqlCommand(vAddQuery, gConn);
+                vComm.ExecuteNonQuery();
+            };
+            bFR_CountClick(sender, e);
 
         }
 
@@ -494,7 +536,7 @@ namespace monitor3lx
                     break;
 
                 default:
-                    vQuery = String.Format("SELECT * FROM \"public\".\"Daily_Finres\" WHERE tpid = {0} ORDER BY \"date\" DESC", cbFRH_TP.SelectedValue);
+                    vQuery = String.Format("SELECT * FROM \"public\".\"Daily_Finres_Add\" WHERE tpid = {0} ORDER BY \"date\" DESC", cbFRH_TP.SelectedValue);
                     break;
             }
             if (vQuery.Length > 1) FillDGVByQuery(dgvFRH, vQuery);
@@ -559,6 +601,7 @@ namespace monitor3lx
         {
             FillDGVByQuery(dgv_LParams, "SELECT * FROM st.parameters");
         }
+
 
     }
 

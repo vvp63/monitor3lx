@@ -52,6 +52,8 @@
             this.dgvTPBalances = new System.Windows.Forms.DataGridView();
             this.b_CurrPos = new System.Windows.Forms.Button();
             this.t_Finres = new System.Windows.Forms.TabPage();
+            this.lFR_Addition = new System.Windows.Forms.Label();
+            this.tbFR_Addition = new System.Windows.Forms.TextBox();
             this.lFR_Result = new System.Windows.Forms.Label();
             this.lFR_FullResult = new System.Windows.Forms.Label();
             this.dgvFR_Reval = new System.Windows.Forms.DataGridView();
@@ -77,6 +79,8 @@
             this.tb_Value = new System.Windows.Forms.TextBox();
             this.dgv_AssetMove = new System.Windows.Forms.DataGridView();
             this.t_BasisCount = new System.Windows.Forms.TabPage();
+            this.b_loadParams = new System.Windows.Forms.Button();
+            this.dgv_LParams = new System.Windows.Forms.DataGridView();
             this.dgv_BC_Params = new System.Windows.Forms.DataGridView();
             this.l_BC_Params = new System.Windows.Forms.Label();
             this.cb_BC_Autoreload = new System.Windows.Forms.CheckBox();
@@ -86,8 +90,9 @@
             this.dgv_BC_settings = new System.Windows.Forms.DataGridView();
             this.timer_BC = new System.Windows.Forms.Timer(this.components);
             this.timer_keepconn = new System.Windows.Forms.Timer(this.components);
-            this.dgv_LParams = new System.Windows.Forms.DataGridView();
-            this.b_loadParams = new System.Windows.Forms.Button();
+            this.lFR_WithAdd = new System.Windows.Forms.Label();
+            this.lFR_AddFull = new System.Windows.Forms.Label();
+            this.bFR_AddSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl_Main.SuspendLayout();
@@ -103,9 +108,9 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AssetMove)).BeginInit();
             this.t_BasisCount.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_LParams)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_Params)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_LParams)).BeginInit();
             this.SuspendLayout();
             // 
             // tbLog
@@ -392,6 +397,11 @@
             // t_Finres
             // 
             this.t_Finres.BackColor = System.Drawing.Color.Gainsboro;
+            this.t_Finres.Controls.Add(this.bFR_AddSave);
+            this.t_Finres.Controls.Add(this.lFR_AddFull);
+            this.t_Finres.Controls.Add(this.lFR_WithAdd);
+            this.t_Finres.Controls.Add(this.lFR_Addition);
+            this.t_Finres.Controls.Add(this.tbFR_Addition);
             this.t_Finres.Controls.Add(this.lFR_Result);
             this.t_Finres.Controls.Add(this.lFR_FullResult);
             this.t_Finres.Controls.Add(this.dgvFR_Reval);
@@ -408,26 +418,46 @@
             this.t_Finres.TabIndex = 1;
             this.t_Finres.Text = "Finres";
             // 
+            // lFR_Addition
+            // 
+            this.lFR_Addition.AutoSize = true;
+            this.lFR_Addition.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFR_Addition.ForeColor = System.Drawing.Color.Indigo;
+            this.lFR_Addition.Location = new System.Drawing.Point(6, 203);
+            this.lFR_Addition.Name = "lFR_Addition";
+            this.lFR_Addition.Size = new System.Drawing.Size(75, 20);
+            this.lFR_Addition.TabIndex = 9;
+            this.lFR_Addition.Text = "Addition";
+            // 
+            // tbFR_Addition
+            // 
+            this.tbFR_Addition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbFR_Addition.Location = new System.Drawing.Point(8, 226);
+            this.tbFR_Addition.Name = "tbFR_Addition";
+            this.tbFR_Addition.Size = new System.Drawing.Size(185, 22);
+            this.tbFR_Addition.TabIndex = 8;
+            this.tbFR_Addition.Text = "0";
+            // 
             // lFR_Result
             // 
             this.lFR_Result.AutoSize = true;
-            this.lFR_Result.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lFR_Result.Location = new System.Drawing.Point(7, 139);
+            this.lFR_Result.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFR_Result.Location = new System.Drawing.Point(7, 126);
             this.lFR_Result.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lFR_Result.Name = "lFR_Result";
-            this.lFR_Result.Size = new System.Drawing.Size(68, 20);
+            this.lFR_Result.Size = new System.Drawing.Size(63, 18);
             this.lFR_Result.TabIndex = 7;
             this.lFR_Result.Text = "Result =";
             // 
             // lFR_FullResult
             // 
             this.lFR_FullResult.AutoSize = true;
-            this.lFR_FullResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFR_FullResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lFR_FullResult.ForeColor = System.Drawing.Color.Navy;
-            this.lFR_FullResult.Location = new System.Drawing.Point(74, 139);
+            this.lFR_FullResult.Location = new System.Drawing.Point(67, 126);
             this.lFR_FullResult.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lFR_FullResult.Name = "lFR_FullResult";
-            this.lFR_FullResult.Size = new System.Drawing.Size(19, 20);
+            this.lFR_FullResult.Size = new System.Drawing.Size(17, 18);
             this.lFR_FullResult.TabIndex = 6;
             this.lFR_FullResult.Text = "0";
             // 
@@ -693,6 +723,28 @@
             this.t_BasisCount.Text = "Basis Count";
             this.t_BasisCount.Enter += new System.EventHandler(this.BC_Enter);
             // 
+            // b_loadParams
+            // 
+            this.b_loadParams.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.b_loadParams.Location = new System.Drawing.Point(563, 207);
+            this.b_loadParams.Name = "b_loadParams";
+            this.b_loadParams.Size = new System.Drawing.Size(111, 23);
+            this.b_loadParams.TabIndex = 8;
+            this.b_loadParams.Text = "Load Parameters";
+            this.b_loadParams.UseVisualStyleBackColor = false;
+            this.b_loadParams.Click += new System.EventHandler(this.b_loadParams_Click);
+            // 
+            // dgv_LParams
+            // 
+            this.dgv_LParams.AllowUserToAddRows = false;
+            this.dgv_LParams.AllowUserToDeleteRows = false;
+            this.dgv_LParams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_LParams.Location = new System.Drawing.Point(563, 244);
+            this.dgv_LParams.Name = "dgv_LParams";
+            this.dgv_LParams.RowHeadersWidth = 5;
+            this.dgv_LParams.Size = new System.Drawing.Size(742, 166);
+            this.dgv_LParams.TabIndex = 7;
+            // 
             // dgv_BC_Params
             // 
             this.dgv_BC_Params.AllowUserToAddRows = false;
@@ -778,27 +830,37 @@
             this.timer_keepconn.Interval = 300000;
             this.timer_keepconn.Tick += new System.EventHandler(this.KeepConnect);
             // 
-            // dgv_LParams
+            // lFR_WithAdd
             // 
-            this.dgv_LParams.AllowUserToAddRows = false;
-            this.dgv_LParams.AllowUserToDeleteRows = false;
-            this.dgv_LParams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_LParams.Location = new System.Drawing.Point(563, 244);
-            this.dgv_LParams.Name = "dgv_LParams";
-            this.dgv_LParams.RowHeadersWidth = 5;
-            this.dgv_LParams.Size = new System.Drawing.Size(742, 166);
-            this.dgv_LParams.TabIndex = 7;
+            this.lFR_WithAdd.AutoSize = true;
+            this.lFR_WithAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFR_WithAdd.Location = new System.Drawing.Point(8, 253);
+            this.lFR_WithAdd.Name = "lFR_WithAdd";
+            this.lFR_WithAdd.Size = new System.Drawing.Size(107, 18);
+            this.lFR_WithAdd.TabIndex = 10;
+            this.lFR_WithAdd.Text = "Full With Add =";
             // 
-            // b_loadParams
+            // lFR_AddFull
             // 
-            this.b_loadParams.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.b_loadParams.Location = new System.Drawing.Point(563, 207);
-            this.b_loadParams.Name = "b_loadParams";
-            this.b_loadParams.Size = new System.Drawing.Size(111, 23);
-            this.b_loadParams.TabIndex = 8;
-            this.b_loadParams.Text = "Load Parameters";
-            this.b_loadParams.UseVisualStyleBackColor = false;
-            this.b_loadParams.Click += new System.EventHandler(this.b_loadParams_Click);
+            this.lFR_AddFull.AutoSize = true;
+            this.lFR_AddFull.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFR_AddFull.ForeColor = System.Drawing.Color.Navy;
+            this.lFR_AddFull.Location = new System.Drawing.Point(113, 253);
+            this.lFR_AddFull.Name = "lFR_AddFull";
+            this.lFR_AddFull.Size = new System.Drawing.Size(17, 18);
+            this.lFR_AddFull.TabIndex = 11;
+            this.lFR_AddFull.Text = "0";
+            // 
+            // bFR_AddSave
+            // 
+            this.bFR_AddSave.BackColor = System.Drawing.Color.White;
+            this.bFR_AddSave.Location = new System.Drawing.Point(10, 283);
+            this.bFR_AddSave.Name = "bFR_AddSave";
+            this.bFR_AddSave.Size = new System.Drawing.Size(183, 23);
+            this.bFR_AddSave.TabIndex = 12;
+            this.bFR_AddSave.Text = "Save Addition";
+            this.bFR_AddSave.UseVisualStyleBackColor = false;
+            this.bFR_AddSave.Click += new System.EventHandler(this.bFR_SaveAdd_Click);
             // 
             // Form1
             // 
@@ -832,9 +894,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AssetMove)).EndInit();
             this.t_BasisCount.ResumeLayout(false);
             this.t_BasisCount.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_LParams)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_Params)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_LParams)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -901,6 +963,11 @@
         private System.Windows.Forms.Label l_kfp;
         private System.Windows.Forms.Button b_loadParams;
         private System.Windows.Forms.DataGridView dgv_LParams;
+        private System.Windows.Forms.Label lFR_Addition;
+        private System.Windows.Forms.TextBox tbFR_Addition;
+        private System.Windows.Forms.Label lFR_AddFull;
+        private System.Windows.Forms.Label lFR_WithAdd;
+        private System.Windows.Forms.Button bFR_AddSave;
     }
 }
 
