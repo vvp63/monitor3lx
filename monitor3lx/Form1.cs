@@ -101,6 +101,8 @@ namespace monitor3lx
                     cb_BC_Autoreload.Enabled = false;
                     tb_BC_Interval.Enabled = false;
                     b_Add.Enabled = false;
+                    tbFR_Addition.Enabled = false;
+                    bFR_AddSave.Enabled = false;
                 }
 
             }
@@ -390,7 +392,7 @@ namespace monitor3lx
             if (gConn.State == ConnectionState.Open)
             {
                 string vQuery = String.Format("SELECT addition FROM \"public\".\"Finres_Additions\" WHERE tpid={0} AND date='{1}'", cbFR_TP.SelectedValue, dtpFR_date.Value.ToString("yyyyMMdd"));
-                TextLog(vQuery);
+                //TextLog(vQuery);
                 NpgsqlCommand vComm = new NpgsqlCommand(vQuery, gConn);
                 NpgsqlDataReader vReader = vComm.ExecuteReader();
                 while (vReader.Read())
@@ -409,7 +411,7 @@ namespace monitor3lx
 
             string vAddQuery = string.Format("SELECT * FROM \"public\".\"AddUpdateAddition\"('{0}-{1}-{2}', {3}, {4})",
                                                 dtpFR_date.Value.Year, dtpFR_date.Value.Month, dtpFR_date.Value.Day, cbFR_TP.SelectedValue, vAdd);
-            TextLog(vAddQuery);
+            //TextLog(vAddQuery);
             if (gConn.State == ConnectionState.Open)
             {
                 NpgsqlCommand vComm = new NpgsqlCommand(vAddQuery, gConn);

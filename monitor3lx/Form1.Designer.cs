@@ -52,6 +52,9 @@
             this.dgvTPBalances = new System.Windows.Forms.DataGridView();
             this.b_CurrPos = new System.Windows.Forms.Button();
             this.t_Finres = new System.Windows.Forms.TabPage();
+            this.bFR_AddSave = new System.Windows.Forms.Button();
+            this.lFR_AddFull = new System.Windows.Forms.Label();
+            this.lFR_WithAdd = new System.Windows.Forms.Label();
             this.lFR_Addition = new System.Windows.Forms.Label();
             this.tbFR_Addition = new System.Windows.Forms.TextBox();
             this.lFR_Result = new System.Windows.Forms.Label();
@@ -90,9 +93,6 @@
             this.dgv_BC_settings = new System.Windows.Forms.DataGridView();
             this.timer_BC = new System.Windows.Forms.Timer(this.components);
             this.timer_keepconn = new System.Windows.Forms.Timer(this.components);
-            this.lFR_WithAdd = new System.Windows.Forms.Label();
-            this.lFR_AddFull = new System.Windows.Forms.Label();
-            this.bFR_AddSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl_Main.SuspendLayout();
@@ -417,6 +417,38 @@
             this.t_Finres.Size = new System.Drawing.Size(1328, 425);
             this.t_Finres.TabIndex = 1;
             this.t_Finres.Text = "Finres";
+            // 
+            // bFR_AddSave
+            // 
+            this.bFR_AddSave.BackColor = System.Drawing.Color.White;
+            this.bFR_AddSave.Location = new System.Drawing.Point(10, 278);
+            this.bFR_AddSave.Name = "bFR_AddSave";
+            this.bFR_AddSave.Size = new System.Drawing.Size(183, 28);
+            this.bFR_AddSave.TabIndex = 12;
+            this.bFR_AddSave.Text = "Save Addition";
+            this.bFR_AddSave.UseVisualStyleBackColor = false;
+            this.bFR_AddSave.Click += new System.EventHandler(this.bFR_SaveAdd_Click);
+            // 
+            // lFR_AddFull
+            // 
+            this.lFR_AddFull.AutoSize = true;
+            this.lFR_AddFull.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFR_AddFull.ForeColor = System.Drawing.Color.Navy;
+            this.lFR_AddFull.Location = new System.Drawing.Point(113, 253);
+            this.lFR_AddFull.Name = "lFR_AddFull";
+            this.lFR_AddFull.Size = new System.Drawing.Size(17, 18);
+            this.lFR_AddFull.TabIndex = 11;
+            this.lFR_AddFull.Text = "0";
+            // 
+            // lFR_WithAdd
+            // 
+            this.lFR_WithAdd.AutoSize = true;
+            this.lFR_WithAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFR_WithAdd.Location = new System.Drawing.Point(8, 253);
+            this.lFR_WithAdd.Name = "lFR_WithAdd";
+            this.lFR_WithAdd.Size = new System.Drawing.Size(107, 18);
+            this.lFR_WithAdd.TabIndex = 10;
+            this.lFR_WithAdd.Text = "Full With Add =";
             // 
             // lFR_Addition
             // 
@@ -829,38 +861,6 @@
             // 
             this.timer_keepconn.Interval = 300000;
             this.timer_keepconn.Tick += new System.EventHandler(this.KeepConnect);
-            // 
-            // lFR_WithAdd
-            // 
-            this.lFR_WithAdd.AutoSize = true;
-            this.lFR_WithAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lFR_WithAdd.Location = new System.Drawing.Point(8, 253);
-            this.lFR_WithAdd.Name = "lFR_WithAdd";
-            this.lFR_WithAdd.Size = new System.Drawing.Size(107, 18);
-            this.lFR_WithAdd.TabIndex = 10;
-            this.lFR_WithAdd.Text = "Full With Add =";
-            // 
-            // lFR_AddFull
-            // 
-            this.lFR_AddFull.AutoSize = true;
-            this.lFR_AddFull.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lFR_AddFull.ForeColor = System.Drawing.Color.Navy;
-            this.lFR_AddFull.Location = new System.Drawing.Point(113, 253);
-            this.lFR_AddFull.Name = "lFR_AddFull";
-            this.lFR_AddFull.Size = new System.Drawing.Size(17, 18);
-            this.lFR_AddFull.TabIndex = 11;
-            this.lFR_AddFull.Text = "0";
-            // 
-            // bFR_AddSave
-            // 
-            this.bFR_AddSave.BackColor = System.Drawing.Color.White;
-            this.bFR_AddSave.Location = new System.Drawing.Point(10, 283);
-            this.bFR_AddSave.Name = "bFR_AddSave";
-            this.bFR_AddSave.Size = new System.Drawing.Size(183, 23);
-            this.bFR_AddSave.TabIndex = 12;
-            this.bFR_AddSave.Text = "Save Addition";
-            this.bFR_AddSave.UseVisualStyleBackColor = false;
-            this.bFR_AddSave.Click += new System.EventHandler(this.bFR_SaveAdd_Click);
             // 
             // Form1
             // 
