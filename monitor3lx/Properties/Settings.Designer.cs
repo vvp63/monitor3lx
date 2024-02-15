@@ -154,5 +154,17 @@ namespace monitor3lx.Properties {
                 this["SSHPort"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SELECT public.addmessage(\'monitor\', \'mts3\', \'vol\')")]
+        public string VolCommand {
+            get {
+                return ((string)(this["VolCommand"]));
+            }
+            set {
+                this["VolCommand"] = value;
+            }
+        }
     }
 }

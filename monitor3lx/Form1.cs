@@ -105,6 +105,8 @@ namespace monitor3lx
                     b_Add.Enabled = false;
                     tbFR_Addition.Enabled = false;
                     bFR_AddSave.Enabled = false;
+                    b_exp_itteration.Enabled = false;
+                    cb_AutoExp.Enabled = false;
                 }
 
             }
@@ -615,10 +617,69 @@ namespace monitor3lx
 
         private void b_State_click(object sender, EventArgs e)
         {
-            //
+            ExpState();
+        }
+
+        private void b_itteration_click(object sender, EventArgs e)
+        {
+            ExpItteration();
+        }
+
+        private void ExpState()
+        {
             FillDGVByQuery(dgv_Exp_Robotsett, "select * from public.exp_robot_state");
         }
 
+
+        private void ExpItteration()
+        {
+            bool vSendVol = false;
+            for (int i = 0; i < dgv_Exp_Robotsett.RowCount; i++)
+            {
+                string vTpid = dgv_Exp_Robotsett.Rows[i].Cells[0].Value.ToString();
+                string vSecId = dgv_Exp_Robotsett.Rows[i].Cells[2].Value.ToString();
+                string vActive = dgv_Exp_Robotsett.Rows[i].Cells[4].Value.ToString();
+                string vBalance = dgv_Exp_Robotsett.Rows[i].Cells[6].Value.ToString();
+                string vNextBalance = dgv_Exp_Robotsett.Rows[i].Cells[9].Value.ToString();
+                string vReload = dgv_Exp_Robotsett.Rows[i].Cells[11].Value.ToString();
+
+                TextLog("Expiration Itteration {0} {1} {2} {3} {4}", vTpid, vSecId, vActive, vNextBalance, vReload);
+
+                if ((vBalance != vNextBalance) && (vActive == "True") && (vReload == "1"))
+                {
+                    string vIttQuery = string.Format("SELECT * FROM \"public\".\"ExpRobotItteration\"({0}, {1}, {2})", vTpid, vSecId, vNextBalance);
+                    if (gConn.State == ConnectionState.Open)
+                    {
+                        NpgsqlCommand vComm = new NpgsqlCommand(vIttQuery, gConn);
+                        vComm.ExecuteNonQuery();
+                    };
+                    vSendVol = true;
+                }
+            }
+
+            if (vSendVol)
+            {
+                if (gConn.State == ConnectionState.Open)
+                {
+                    TextLog("Sending vol message");
+                    NpgsqlCommand vComm = new NpgsqlCommand(monitor3lx.Properties.Settings.Default.VolCommand, gConn);
+                    vComm.ExecuteNonQuery();
+                }
+                else TextLog("No connection");
+            }
+
+        }
+
+        private void timer_ExpRobot(object sender, EventArgs e)
+        {
+            ExpState();
+            ExpItteration();
+        }
+
+        private void cb_Exp_CchekChange(object sender, EventArgs e)
+        {
+            timer_exprobot.Enabled = cb_AutoExp.Checked;
+        }
 
 
     }

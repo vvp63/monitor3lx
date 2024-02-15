@@ -35,5 +35,8 @@
     <Setting Name="SSHPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">22</Value>
     </Setting>
+    <Setting Name="VolCommand" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT public.addmessage('monitor', 'mts3', 'vol')</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

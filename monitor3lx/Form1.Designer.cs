@@ -96,6 +96,10 @@
             this.b_exp_state = new System.Windows.Forms.Button();
             this.timer_BC = new System.Windows.Forms.Timer(this.components);
             this.timer_keepconn = new System.Windows.Forms.Timer(this.components);
+            this.b_exp_itteration = new System.Windows.Forms.Button();
+            this.timer_exprobot = new System.Windows.Forms.Timer(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.cb_AutoExp = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl_Main.SuspendLayout();
@@ -116,6 +120,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).BeginInit();
             this.t_Expiration.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Exp_Robotsett)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbLog
@@ -863,6 +868,7 @@
             // t_Expiration
             // 
             this.t_Expiration.BackColor = System.Drawing.Color.Gainsboro;
+            this.t_Expiration.Controls.Add(this.panel3);
             this.t_Expiration.Controls.Add(this.dgv_Exp_Robotsett);
             this.t_Expiration.Controls.Add(this.b_exp_state);
             this.t_Expiration.Location = new System.Drawing.Point(4, 31);
@@ -885,7 +891,7 @@
             // b_exp_state
             // 
             this.b_exp_state.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.b_exp_state.Location = new System.Drawing.Point(8, 17);
+            this.b_exp_state.Location = new System.Drawing.Point(8, 13);
             this.b_exp_state.Name = "b_exp_state";
             this.b_exp_state.Size = new System.Drawing.Size(163, 32);
             this.b_exp_state.TabIndex = 2;
@@ -902,6 +908,44 @@
             // 
             this.timer_keepconn.Interval = 300000;
             this.timer_keepconn.Tick += new System.EventHandler(this.KeepConnect);
+            // 
+            // b_exp_itteration
+            // 
+            this.b_exp_itteration.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.b_exp_itteration.Location = new System.Drawing.Point(12, 8);
+            this.b_exp_itteration.Name = "b_exp_itteration";
+            this.b_exp_itteration.Size = new System.Drawing.Size(182, 32);
+            this.b_exp_itteration.TabIndex = 4;
+            this.b_exp_itteration.Text = "Next itteration";
+            this.b_exp_itteration.UseVisualStyleBackColor = false;
+            this.b_exp_itteration.Click += new System.EventHandler(this.b_itteration_click);
+            // 
+            // timer_exprobot
+            // 
+            this.timer_exprobot.Interval = 2000;
+            this.timer_exprobot.Tick += new System.EventHandler(this.timer_ExpRobot);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Red;
+            this.panel3.Controls.Add(this.cb_AutoExp);
+            this.panel3.Controls.Add(this.b_exp_itteration);
+            this.panel3.Location = new System.Drawing.Point(418, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(649, 46);
+            this.panel3.TabIndex = 5;
+            // 
+            // cb_AutoExp
+            // 
+            this.cb_AutoExp.AutoSize = true;
+            this.cb_AutoExp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cb_AutoExp.Location = new System.Drawing.Point(404, 16);
+            this.cb_AutoExp.Name = "cb_AutoExp";
+            this.cb_AutoExp.Size = new System.Drawing.Size(196, 19);
+            this.cb_AutoExp.TabIndex = 5;
+            this.cb_AutoExp.Text = "Automatic Balance change";
+            this.cb_AutoExp.UseVisualStyleBackColor = true;
+            this.cb_AutoExp.CheckedChanged += new System.EventHandler(this.cb_Exp_CchekChange);
             // 
             // Form1
             // 
@@ -940,6 +984,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).EndInit();
             this.t_Expiration.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Exp_Robotsett)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1014,6 +1060,10 @@
         private System.Windows.Forms.TabPage t_Expiration;
         private System.Windows.Forms.Button b_exp_state;
         private System.Windows.Forms.DataGridView dgv_Exp_Robotsett;
+        private System.Windows.Forms.Button b_exp_itteration;
+        private System.Windows.Forms.Timer timer_exprobot;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.CheckBox cb_AutoExp;
     }
 }
 
