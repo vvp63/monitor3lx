@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="SSHHost" Type="System.String" Scope="User">
-      <Value Profile="(Default)">85.118.179.86</Value>
+      <Value Profile="(Default)">195.138.210.152</Value>
     </Setting>
     <Setting Name="SSHusername" Type="System.String" Scope="User">
       <Value Profile="(Default)">aquila</Value>
@@ -15,7 +15,7 @@
       <Value Profile="(Default)">D:\Poliektov\tmp\sld\vv_dev\SshHostKeys\aquila_sec_ssh.ppk</Value>
     </Setting>
     <Setting Name="PGDatabese" Type="System.String" Scope="User">
-      <Value Profile="(Default)">mts3pg</Value>
+      <Value Profile="(Default)">MTS3pg</Value>
     </Setting>
     <Setting Name="PGusername" Type="System.String" Scope="User">
       <Value Profile="(Default)">aq</Value>

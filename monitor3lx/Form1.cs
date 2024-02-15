@@ -21,6 +21,8 @@ namespace monitor3lx
         SshClient gCl;
         NpgsqlConnection gConn;
         NpgsqlDataAdapter gTP_DA;
+
+
         int gCurrTP_Balance = 0;
 
         public Form1()
@@ -123,6 +125,8 @@ namespace monitor3lx
             }
             else TextLog("No connection");
         }
+
+
 
         private void FillCBByQuery(ComboBox aCB, string aQuery, string aVal, string aData)
         {
@@ -603,6 +607,18 @@ namespace monitor3lx
         {
             FillDGVByQuery(dgv_LParams, "SELECT * FROM st.parameters");
         }
+
+
+
+
+        //  Expiration
+
+        private void b_State_click(object sender, EventArgs e)
+        {
+            //
+            FillDGVByQuery(dgv_Exp_Robotsett, "select * from public.exp_robot_state");
+        }
+
 
 
     }
