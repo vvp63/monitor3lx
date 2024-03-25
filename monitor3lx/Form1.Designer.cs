@@ -34,7 +34,8 @@
             this.dgvTP = new System.Windows.Forms.DataGridView();
             this.bUpdateTP = new System.Windows.Forms.Button();
             this.b_Apply = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pan_top = new System.Windows.Forms.Panel();
+            this.pan_Connect = new System.Windows.Forms.Panel();
             this.tb_kfp = new System.Windows.Forms.TextBox();
             this.l_kfp = new System.Windows.Forms.Label();
             this.b_down_inv = new System.Windows.Forms.Button();
@@ -42,15 +43,41 @@
             this.b_down_ = new System.Windows.Forms.Button();
             this.b_Up_ = new System.Windows.Forms.Button();
             this.l_Kfs_with_TP = new System.Windows.Forms.Label();
-            this.tabControl_Main = new System.Windows.Forms.TabControl();
-            this.t_CurrPos = new System.Windows.Forms.TabPage();
-            this.l_OrdersDelays = new System.Windows.Forms.Label();
-            this.dgvDelays = new System.Windows.Forms.DataGridView();
-            this.b_FullBall = new System.Windows.Forms.Button();
-            this.dgvFullBalance = new System.Windows.Forms.DataGridView();
-            this.l_TP_Balance = new System.Windows.Forms.Label();
-            this.dgvTPBalances = new System.Windows.Forms.DataGridView();
-            this.b_CurrPos = new System.Windows.Forms.Button();
+            this.timer_BC = new System.Windows.Forms.Timer(this.components);
+            this.timer_keepconn = new System.Windows.Forms.Timer(this.components);
+            this.timer_exprobot = new System.Windows.Forms.Timer(this.components);
+            this.t_Expiration = new System.Windows.Forms.TabPage();
+            this.pan_ExpRed = new System.Windows.Forms.Panel();
+            this.cb_AutoExp = new System.Windows.Forms.CheckBox();
+            this.b_exp_itteration = new System.Windows.Forms.Button();
+            this.dgv_Exp_Robotsett = new System.Windows.Forms.DataGridView();
+            this.b_exp_state = new System.Windows.Forms.Button();
+            this.t_BasisCount = new System.Windows.Forms.TabPage();
+            this.b_loadParams = new System.Windows.Forms.Button();
+            this.dgv_LParams = new System.Windows.Forms.DataGridView();
+            this.dgv_BC_Params = new System.Windows.Forms.DataGridView();
+            this.l_BC_Params = new System.Windows.Forms.Label();
+            this.cb_BC_Autoreload = new System.Windows.Forms.CheckBox();
+            this.tb_BC_Interval = new System.Windows.Forms.TextBox();
+            this.b_BC_Set = new System.Windows.Forms.Button();
+            this.b_BC_Load = new System.Windows.Forms.Button();
+            this.dgv_BC_settings = new System.Windows.Forms.DataGridView();
+            this.t_FinresHistory = new System.Windows.Forms.TabPage();
+            this.dgv_AssetMove = new System.Windows.Forms.DataGridView();
+            this.pan_AssetMoves = new System.Windows.Forms.Panel();
+            this.cb_CommentsVar = new System.Windows.Forms.ComboBox();
+            this.b_Add = new System.Windows.Forms.Button();
+            this.dtp_MoveDate = new System.Windows.Forms.DateTimePicker();
+            this.l_AssetMove = new System.Windows.Forms.Label();
+            this.l_Date = new System.Windows.Forms.Label();
+            this.l_Comment = new System.Windows.Forms.Label();
+            this.l_Value = new System.Windows.Forms.Label();
+            this.tb_Value = new System.Windows.Forms.TextBox();
+            this.pan_FinresHist = new System.Windows.Forms.Panel();
+            this.lFRH_TP = new System.Windows.Forms.Label();
+            this.bFRH_Show = new System.Windows.Forms.Button();
+            this.cbFRH_TP = new System.Windows.Forms.ComboBox();
+            this.dgvFRH = new System.Windows.Forms.DataGridView();
             this.t_Finres = new System.Windows.Forms.TabPage();
             this.bFR_AddSave = new System.Windows.Forms.Button();
             this.lFR_AddFull = new System.Windows.Forms.Label();
@@ -65,62 +92,53 @@
             this.bFR_Count = new System.Windows.Forms.Button();
             this.lFR_Date = new System.Windows.Forms.Label();
             this.dtpFR_date = new System.Windows.Forms.DateTimePicker();
-            this.t_FinresHistory = new System.Windows.Forms.TabPage();
-            this.bFRH_Show = new System.Windows.Forms.Button();
-            this.dgvFRH = new System.Windows.Forms.DataGridView();
-            this.lFRH_TP = new System.Windows.Forms.Label();
-            this.cbFRH_TP = new System.Windows.Forms.ComboBox();
-            this.t_AssetMove = new System.Windows.Forms.TabPage();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.cb_CommentsVar = new System.Windows.Forms.ComboBox();
-            this.b_Add = new System.Windows.Forms.Button();
-            this.dtp_MoveDate = new System.Windows.Forms.DateTimePicker();
-            this.l_AssetMove = new System.Windows.Forms.Label();
-            this.l_Date = new System.Windows.Forms.Label();
-            this.l_Comment = new System.Windows.Forms.Label();
-            this.l_Value = new System.Windows.Forms.Label();
-            this.tb_Value = new System.Windows.Forms.TextBox();
-            this.dgv_AssetMove = new System.Windows.Forms.DataGridView();
-            this.t_BasisCount = new System.Windows.Forms.TabPage();
-            this.b_loadParams = new System.Windows.Forms.Button();
-            this.dgv_LParams = new System.Windows.Forms.DataGridView();
-            this.dgv_BC_Params = new System.Windows.Forms.DataGridView();
-            this.l_BC_Params = new System.Windows.Forms.Label();
-            this.cb_BC_Autoreload = new System.Windows.Forms.CheckBox();
-            this.tb_BC_Interval = new System.Windows.Forms.TextBox();
-            this.b_BC_Set = new System.Windows.Forms.Button();
-            this.b_BC_Load = new System.Windows.Forms.Button();
-            this.dgv_BC_settings = new System.Windows.Forms.DataGridView();
-            this.t_Expiration = new System.Windows.Forms.TabPage();
-            this.dgv_Exp_Robotsett = new System.Windows.Forms.DataGridView();
-            this.b_exp_state = new System.Windows.Forms.Button();
-            this.timer_BC = new System.Windows.Forms.Timer(this.components);
-            this.timer_keepconn = new System.Windows.Forms.Timer(this.components);
-            this.b_exp_itteration = new System.Windows.Forms.Button();
-            this.timer_exprobot = new System.Windows.Forms.Timer(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.cb_AutoExp = new System.Windows.Forms.CheckBox();
+            this.t_CurrPos = new System.Windows.Forms.TabPage();
+            this.l_OrdersDelays = new System.Windows.Forms.Label();
+            this.dgvDelays = new System.Windows.Forms.DataGridView();
+            this.b_FullBall = new System.Windows.Forms.Button();
+            this.dgvFullBalance = new System.Windows.Forms.DataGridView();
+            this.l_TP_Balance = new System.Windows.Forms.Label();
+            this.dgvTPBalances = new System.Windows.Forms.DataGridView();
+            this.b_CurrPos = new System.Windows.Forms.Button();
+            this.tabControl_Main = new System.Windows.Forms.TabControl();
+            this.t_TPStruct = new System.Windows.Forms.TabPage();
+            this.cb_tps_struct = new System.Windows.Forms.CheckBox();
+            this.cb_tps_params = new System.Windows.Forms.CheckBox();
+            this.cb_tps_copyfrom = new System.Windows.Forms.ComboBox();
+            this.l_tps_copy = new System.Windows.Forms.Label();
+            this.b_tps_savetp = new System.Windows.Forms.Button();
+            this.cb_tps_active = new System.Windows.Forms.CheckBox();
+            this.tb_tps_name = new System.Windows.Forms.TextBox();
+            this.l_tps_name = new System.Windows.Forms.Label();
+            this.tb_tps_id = new System.Windows.Forms.TextBox();
+            this.l_tps_addedit = new System.Windows.Forms.Label();
+            this.dgv_tps_list = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.tabControl_Main.SuspendLayout();
-            this.t_CurrPos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDelays)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFullBalance)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTPBalances)).BeginInit();
-            this.t_Finres.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFR_Reval)).BeginInit();
-            this.t_FinresHistory.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFRH)).BeginInit();
-            this.t_AssetMove.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_AssetMove)).BeginInit();
+            this.pan_top.SuspendLayout();
+            this.pan_Connect.SuspendLayout();
+            this.t_Expiration.SuspendLayout();
+            this.pan_ExpRed.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Exp_Robotsett)).BeginInit();
             this.t_BasisCount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_LParams)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_Params)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).BeginInit();
-            this.t_Expiration.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Exp_Robotsett)).BeginInit();
-            this.panel3.SuspendLayout();
+            this.t_FinresHistory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_AssetMove)).BeginInit();
+            this.pan_AssetMoves.SuspendLayout();
+            this.pan_FinresHist.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFRH)).BeginInit();
+            this.t_Finres.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFR_Reval)).BeginInit();
+            this.t_CurrPos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDelays)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFullBalance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTPBalances)).BeginInit();
+            this.tabControl_Main.SuspendLayout();
+            this.t_TPStruct.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_list)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbLog
@@ -136,7 +154,7 @@
             // bConn
             // 
             this.bConn.BackColor = System.Drawing.Color.White;
-            this.bConn.Location = new System.Drawing.Point(9, 10);
+            this.bConn.Location = new System.Drawing.Point(3, 4);
             this.bConn.Margin = new System.Windows.Forms.Padding(2);
             this.bConn.Name = "bConn";
             this.bConn.Size = new System.Drawing.Size(112, 28);
@@ -187,40 +205,49 @@
             this.b_Apply.UseVisualStyleBackColor = false;
             this.b_Apply.Click += new System.EventHandler(this.b_Apply_Click);
             // 
-            // panel1
+            // pan_top
             // 
-            this.panel1.BackColor = System.Drawing.Color.Silver;
-            this.panel1.Controls.Add(this.tb_kfp);
-            this.panel1.Controls.Add(this.l_kfp);
-            this.panel1.Controls.Add(this.b_down_inv);
-            this.panel1.Controls.Add(this.b_up_inv);
-            this.panel1.Controls.Add(this.b_down_);
-            this.panel1.Controls.Add(this.b_Up_);
-            this.panel1.Controls.Add(this.l_Kfs_with_TP);
-            this.panel1.Controls.Add(this.b_Apply);
-            this.panel1.Controls.Add(this.dgvTP);
-            this.panel1.Controls.Add(this.bUpdateTP);
-            this.panel1.Controls.Add(this.bConn);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1533, 262);
-            this.panel1.TabIndex = 6;
+            this.pan_top.BackColor = System.Drawing.Color.Silver;
+            this.pan_top.Controls.Add(this.pan_Connect);
+            this.pan_top.Controls.Add(this.b_down_inv);
+            this.pan_top.Controls.Add(this.b_up_inv);
+            this.pan_top.Controls.Add(this.b_down_);
+            this.pan_top.Controls.Add(this.b_Up_);
+            this.pan_top.Controls.Add(this.l_Kfs_with_TP);
+            this.pan_top.Controls.Add(this.b_Apply);
+            this.pan_top.Controls.Add(this.dgvTP);
+            this.pan_top.Controls.Add(this.bUpdateTP);
+            this.pan_top.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pan_top.Location = new System.Drawing.Point(0, 0);
+            this.pan_top.Margin = new System.Windows.Forms.Padding(2);
+            this.pan_top.Name = "pan_top";
+            this.pan_top.Size = new System.Drawing.Size(1533, 262);
+            this.pan_top.TabIndex = 6;
+            // 
+            // pan_Connect
+            // 
+            this.pan_Connect.BackColor = System.Drawing.Color.Gray;
+            this.pan_Connect.Controls.Add(this.tb_kfp);
+            this.pan_Connect.Controls.Add(this.bConn);
+            this.pan_Connect.Controls.Add(this.l_kfp);
+            this.pan_Connect.Location = new System.Drawing.Point(10, 4);
+            this.pan_Connect.Name = "pan_Connect";
+            this.pan_Connect.Size = new System.Drawing.Size(408, 35);
+            this.pan_Connect.TabIndex = 13;
             // 
             // tb_kfp
             // 
-            this.tb_kfp.Location = new System.Drawing.Point(232, 15);
+            this.tb_kfp.Location = new System.Drawing.Point(239, 9);
             this.tb_kfp.Margin = new System.Windows.Forms.Padding(2);
             this.tb_kfp.Name = "tb_kfp";
             this.tb_kfp.PasswordChar = '*';
-            this.tb_kfp.Size = new System.Drawing.Size(146, 20);
+            this.tb_kfp.Size = new System.Drawing.Size(164, 20);
             this.tb_kfp.TabIndex = 12;
             // 
             // l_kfp
             // 
             this.l_kfp.AutoSize = true;
-            this.l_kfp.Location = new System.Drawing.Point(139, 17);
+            this.l_kfp.Location = new System.Drawing.Point(149, 12);
             this.l_kfp.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_kfp.Name = "l_kfp";
             this.l_kfp.Size = new System.Drawing.Size(89, 13);
@@ -281,129 +308,383 @@
             this.l_Kfs_with_TP.TabIndex = 6;
             this.l_Kfs_with_TP.Text = "Kfs for ";
             // 
-            // tabControl_Main
+            // timer_BC
             // 
-            this.tabControl_Main.Controls.Add(this.t_CurrPos);
-            this.tabControl_Main.Controls.Add(this.t_Finres);
-            this.tabControl_Main.Controls.Add(this.t_FinresHistory);
-            this.tabControl_Main.Controls.Add(this.t_AssetMove);
-            this.tabControl_Main.Controls.Add(this.t_BasisCount);
-            this.tabControl_Main.Controls.Add(this.t_Expiration);
-            this.tabControl_Main.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl_Main.Enabled = false;
-            this.tabControl_Main.ItemSize = new System.Drawing.Size(150, 27);
-            this.tabControl_Main.Location = new System.Drawing.Point(0, 262);
-            this.tabControl_Main.Margin = new System.Windows.Forms.Padding(2);
-            this.tabControl_Main.Name = "tabControl_Main";
-            this.tabControl_Main.SelectedIndex = 0;
-            this.tabControl_Main.Size = new System.Drawing.Size(1533, 460);
-            this.tabControl_Main.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControl_Main.TabIndex = 7;
+            this.timer_BC.Interval = 60000;
+            this.timer_BC.Tick += new System.EventHandler(this.BC_Timer_Work);
             // 
-            // t_CurrPos
+            // timer_keepconn
             // 
-            this.t_CurrPos.BackColor = System.Drawing.Color.Gainsboro;
-            this.t_CurrPos.Controls.Add(this.l_OrdersDelays);
-            this.t_CurrPos.Controls.Add(this.dgvDelays);
-            this.t_CurrPos.Controls.Add(this.b_FullBall);
-            this.t_CurrPos.Controls.Add(this.dgvFullBalance);
-            this.t_CurrPos.Controls.Add(this.l_TP_Balance);
-            this.t_CurrPos.Controls.Add(this.dgvTPBalances);
-            this.t_CurrPos.Controls.Add(this.b_CurrPos);
-            this.t_CurrPos.Location = new System.Drawing.Point(4, 31);
-            this.t_CurrPos.Margin = new System.Windows.Forms.Padding(2);
-            this.t_CurrPos.Name = "t_CurrPos";
-            this.t_CurrPos.Padding = new System.Windows.Forms.Padding(2);
-            this.t_CurrPos.Size = new System.Drawing.Size(1525, 425);
-            this.t_CurrPos.TabIndex = 0;
-            this.t_CurrPos.Text = "Current Positions";
+            this.timer_keepconn.Interval = 300000;
+            this.timer_keepconn.Tick += new System.EventHandler(this.KeepConnect);
             // 
-            // l_OrdersDelays
+            // timer_exprobot
             // 
-            this.l_OrdersDelays.AutoSize = true;
-            this.l_OrdersDelays.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.l_OrdersDelays.Location = new System.Drawing.Point(6, 276);
-            this.l_OrdersDelays.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.l_OrdersDelays.Name = "l_OrdersDelays";
-            this.l_OrdersDelays.Size = new System.Drawing.Size(99, 17);
-            this.l_OrdersDelays.TabIndex = 7;
-            this.l_OrdersDelays.Text = "Orders Delays";
+            this.timer_exprobot.Interval = 2000;
+            this.timer_exprobot.Tick += new System.EventHandler(this.timer_ExpRobot);
             // 
-            // dgvDelays
+            // t_Expiration
             // 
-            this.dgvDelays.AllowUserToAddRows = false;
-            this.dgvDelays.AllowUserToDeleteRows = false;
-            this.dgvDelays.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDelays.Location = new System.Drawing.Point(6, 300);
-            this.dgvDelays.Margin = new System.Windows.Forms.Padding(2);
-            this.dgvDelays.Name = "dgvDelays";
-            this.dgvDelays.RowHeadersWidth = 5;
-            this.dgvDelays.RowTemplate.Height = 24;
-            this.dgvDelays.Size = new System.Drawing.Size(569, 122);
-            this.dgvDelays.TabIndex = 6;
+            this.t_Expiration.BackColor = System.Drawing.Color.Thistle;
+            this.t_Expiration.Controls.Add(this.pan_ExpRed);
+            this.t_Expiration.Controls.Add(this.dgv_Exp_Robotsett);
+            this.t_Expiration.Controls.Add(this.b_exp_state);
+            this.t_Expiration.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.t_Expiration.Location = new System.Drawing.Point(4, 31);
+            this.t_Expiration.Name = "t_Expiration";
+            this.t_Expiration.Size = new System.Drawing.Size(1525, 425);
+            this.t_Expiration.TabIndex = 5;
+            this.t_Expiration.Text = "Expiration";
             // 
-            // b_FullBall
+            // pan_ExpRed
             // 
-            this.b_FullBall.BackColor = System.Drawing.Color.White;
-            this.b_FullBall.Location = new System.Drawing.Point(1406, 9);
-            this.b_FullBall.Margin = new System.Windows.Forms.Padding(2);
-            this.b_FullBall.Name = "b_FullBall";
-            this.b_FullBall.Size = new System.Drawing.Size(112, 28);
-            this.b_FullBall.TabIndex = 5;
-            this.b_FullBall.Text = "Full Balance";
-            this.b_FullBall.UseVisualStyleBackColor = false;
-            this.b_FullBall.Click += new System.EventHandler(this.ClickFullBalance);
+            this.pan_ExpRed.BackColor = System.Drawing.Color.Red;
+            this.pan_ExpRed.Controls.Add(this.cb_AutoExp);
+            this.pan_ExpRed.Controls.Add(this.b_exp_itteration);
+            this.pan_ExpRed.Location = new System.Drawing.Point(418, 3);
+            this.pan_ExpRed.Name = "pan_ExpRed";
+            this.pan_ExpRed.Size = new System.Drawing.Size(649, 46);
+            this.pan_ExpRed.TabIndex = 5;
             // 
-            // dgvFullBalance
+            // cb_AutoExp
             // 
-            this.dgvFullBalance.AllowUserToAddRows = false;
-            this.dgvFullBalance.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvFullBalance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFullBalance.Location = new System.Drawing.Point(598, 41);
-            this.dgvFullBalance.Margin = new System.Windows.Forms.Padding(2);
-            this.dgvFullBalance.Name = "dgvFullBalance";
-            this.dgvFullBalance.RowHeadersWidth = 4;
-            this.dgvFullBalance.RowTemplate.Height = 24;
-            this.dgvFullBalance.Size = new System.Drawing.Size(923, 384);
-            this.dgvFullBalance.TabIndex = 4;
+            this.cb_AutoExp.AutoSize = true;
+            this.cb_AutoExp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cb_AutoExp.Location = new System.Drawing.Point(404, 16);
+            this.cb_AutoExp.Name = "cb_AutoExp";
+            this.cb_AutoExp.Size = new System.Drawing.Size(196, 19);
+            this.cb_AutoExp.TabIndex = 5;
+            this.cb_AutoExp.Text = "Automatic Balance change";
+            this.cb_AutoExp.UseVisualStyleBackColor = true;
+            this.cb_AutoExp.CheckedChanged += new System.EventHandler(this.cb_Exp_CchekChange);
             // 
-            // l_TP_Balance
+            // b_exp_itteration
             // 
-            this.l_TP_Balance.AutoSize = true;
-            this.l_TP_Balance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.l_TP_Balance.Location = new System.Drawing.Point(594, 20);
-            this.l_TP_Balance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.l_TP_Balance.Name = "l_TP_Balance";
-            this.l_TP_Balance.Size = new System.Drawing.Size(85, 17);
-            this.l_TP_Balance.TabIndex = 3;
-            this.l_TP_Balance.Text = "Full Balance";
+            this.b_exp_itteration.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.b_exp_itteration.Location = new System.Drawing.Point(12, 8);
+            this.b_exp_itteration.Name = "b_exp_itteration";
+            this.b_exp_itteration.Size = new System.Drawing.Size(182, 32);
+            this.b_exp_itteration.TabIndex = 4;
+            this.b_exp_itteration.Text = "Next itteration";
+            this.b_exp_itteration.UseVisualStyleBackColor = false;
+            this.b_exp_itteration.Click += new System.EventHandler(this.b_itteration_click);
             // 
-            // dgvTPBalances
+            // dgv_Exp_Robotsett
             // 
-            this.dgvTPBalances.AllowUserToAddRows = false;
-            this.dgvTPBalances.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvTPBalances.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTPBalances.Location = new System.Drawing.Point(6, 38);
-            this.dgvTPBalances.Margin = new System.Windows.Forms.Padding(2);
-            this.dgvTPBalances.Name = "dgvTPBalances";
-            this.dgvTPBalances.RowHeadersWidth = 4;
-            this.dgvTPBalances.RowTemplate.Height = 24;
-            this.dgvTPBalances.Size = new System.Drawing.Size(569, 225);
-            this.dgvTPBalances.TabIndex = 2;
-            this.dgvTPBalances.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Click_TP_Balance);
+            this.dgv_Exp_Robotsett.AllowUserToAddRows = false;
+            this.dgv_Exp_Robotsett.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgv_Exp_Robotsett.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Exp_Robotsett.Location = new System.Drawing.Point(8, 55);
+            this.dgv_Exp_Robotsett.Name = "dgv_Exp_Robotsett";
+            this.dgv_Exp_Robotsett.RowHeadersWidth = 5;
+            this.dgv_Exp_Robotsett.Size = new System.Drawing.Size(1059, 306);
+            this.dgv_Exp_Robotsett.TabIndex = 3;
             // 
-            // b_CurrPos
+            // b_exp_state
             // 
-            this.b_CurrPos.BackColor = System.Drawing.Color.White;
-            this.b_CurrPos.Location = new System.Drawing.Point(6, 5);
-            this.b_CurrPos.Margin = new System.Windows.Forms.Padding(2);
-            this.b_CurrPos.Name = "b_CurrPos";
-            this.b_CurrPos.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.b_CurrPos.Size = new System.Drawing.Size(112, 28);
-            this.b_CurrPos.TabIndex = 1;
-            this.b_CurrPos.Text = "Current Position";
-            this.b_CurrPos.UseVisualStyleBackColor = false;
-            this.b_CurrPos.Click += new System.EventHandler(this.b_CurrPos_Click);
+            this.b_exp_state.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.b_exp_state.Location = new System.Drawing.Point(8, 13);
+            this.b_exp_state.Name = "b_exp_state";
+            this.b_exp_state.Size = new System.Drawing.Size(163, 32);
+            this.b_exp_state.TabIndex = 2;
+            this.b_exp_state.Text = "Show current state";
+            this.b_exp_state.UseVisualStyleBackColor = false;
+            this.b_exp_state.Click += new System.EventHandler(this.b_State_click);
+            // 
+            // t_BasisCount
+            // 
+            this.t_BasisCount.BackColor = System.Drawing.Color.Gainsboro;
+            this.t_BasisCount.Controls.Add(this.b_loadParams);
+            this.t_BasisCount.Controls.Add(this.dgv_LParams);
+            this.t_BasisCount.Controls.Add(this.dgv_BC_Params);
+            this.t_BasisCount.Controls.Add(this.l_BC_Params);
+            this.t_BasisCount.Controls.Add(this.cb_BC_Autoreload);
+            this.t_BasisCount.Controls.Add(this.tb_BC_Interval);
+            this.t_BasisCount.Controls.Add(this.b_BC_Set);
+            this.t_BasisCount.Controls.Add(this.b_BC_Load);
+            this.t_BasisCount.Controls.Add(this.dgv_BC_settings);
+            this.t_BasisCount.Location = new System.Drawing.Point(4, 31);
+            this.t_BasisCount.Name = "t_BasisCount";
+            this.t_BasisCount.Size = new System.Drawing.Size(1525, 425);
+            this.t_BasisCount.TabIndex = 2;
+            this.t_BasisCount.Text = "Basis Count";
+            this.t_BasisCount.Enter += new System.EventHandler(this.BC_Enter);
+            // 
+            // b_loadParams
+            // 
+            this.b_loadParams.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.b_loadParams.Location = new System.Drawing.Point(691, 212);
+            this.b_loadParams.Name = "b_loadParams";
+            this.b_loadParams.Size = new System.Drawing.Size(111, 23);
+            this.b_loadParams.TabIndex = 8;
+            this.b_loadParams.Text = "Load Parameters";
+            this.b_loadParams.UseVisualStyleBackColor = false;
+            this.b_loadParams.Click += new System.EventHandler(this.b_loadParams_Click);
+            // 
+            // dgv_LParams
+            // 
+            this.dgv_LParams.AllowUserToAddRows = false;
+            this.dgv_LParams.AllowUserToDeleteRows = false;
+            this.dgv_LParams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_LParams.Location = new System.Drawing.Point(691, 241);
+            this.dgv_LParams.Name = "dgv_LParams";
+            this.dgv_LParams.RowHeadersWidth = 5;
+            this.dgv_LParams.Size = new System.Drawing.Size(826, 181);
+            this.dgv_LParams.TabIndex = 7;
+            // 
+            // dgv_BC_Params
+            // 
+            this.dgv_BC_Params.AllowUserToAddRows = false;
+            this.dgv_BC_Params.AllowUserToDeleteRows = false;
+            this.dgv_BC_Params.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_BC_Params.Cursor = System.Windows.Forms.Cursors.No;
+            this.dgv_BC_Params.GridColor = System.Drawing.SystemColors.ControlLight;
+            this.dgv_BC_Params.Location = new System.Drawing.Point(11, 241);
+            this.dgv_BC_Params.Name = "dgv_BC_Params";
+            this.dgv_BC_Params.RowHeadersWidth = 5;
+            this.dgv_BC_Params.Size = new System.Drawing.Size(659, 181);
+            this.dgv_BC_Params.TabIndex = 6;
+            this.dgv_BC_Params.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.BC_EndEdit);
+            // 
+            // l_BC_Params
+            // 
+            this.l_BC_Params.AutoSize = true;
+            this.l_BC_Params.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_BC_Params.Location = new System.Drawing.Point(8, 215);
+            this.l_BC_Params.Name = "l_BC_Params";
+            this.l_BC_Params.Size = new System.Drawing.Size(174, 16);
+            this.l_BC_Params.TabIndex = 5;
+            this.l_BC_Params.Text = "Basis Count Parameters";
+            // 
+            // cb_BC_Autoreload
+            // 
+            this.cb_BC_Autoreload.AutoSize = true;
+            this.cb_BC_Autoreload.Location = new System.Drawing.Point(1247, 18);
+            this.cb_BC_Autoreload.Name = "cb_BC_Autoreload";
+            this.cb_BC_Autoreload.Size = new System.Drawing.Size(173, 17);
+            this.cb_BC_Autoreload.TabIndex = 4;
+            this.cb_BC_Autoreload.Text = "Autoreload.   Interval (seconds)";
+            this.cb_BC_Autoreload.UseVisualStyleBackColor = true;
+            this.cb_BC_Autoreload.CheckStateChanged += new System.EventHandler(this.BC_Autoreload_check);
+            // 
+            // tb_BC_Interval
+            // 
+            this.tb_BC_Interval.Location = new System.Drawing.Point(1427, 16);
+            this.tb_BC_Interval.Name = "tb_BC_Interval";
+            this.tb_BC_Interval.Size = new System.Drawing.Size(90, 20);
+            this.tb_BC_Interval.TabIndex = 3;
+            this.tb_BC_Interval.Text = "60";
+            // 
+            // b_BC_Set
+            // 
+            this.b_BC_Set.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.b_BC_Set.Location = new System.Drawing.Point(159, 13);
+            this.b_BC_Set.Name = "b_BC_Set";
+            this.b_BC_Set.Size = new System.Drawing.Size(108, 23);
+            this.b_BC_Set.TabIndex = 2;
+            this.b_BC_Set.Text = "Count and Set";
+            this.b_BC_Set.UseVisualStyleBackColor = false;
+            this.b_BC_Set.Click += new System.EventHandler(this.BC_Set_Click);
+            // 
+            // b_BC_Load
+            // 
+            this.b_BC_Load.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.b_BC_Load.Location = new System.Drawing.Point(9, 13);
+            this.b_BC_Load.Name = "b_BC_Load";
+            this.b_BC_Load.Size = new System.Drawing.Size(108, 23);
+            this.b_BC_Load.TabIndex = 1;
+            this.b_BC_Load.Text = "Count";
+            this.b_BC_Load.UseVisualStyleBackColor = false;
+            this.b_BC_Load.Click += new System.EventHandler(this.BC_Count_Click);
+            // 
+            // dgv_BC_settings
+            // 
+            this.dgv_BC_settings.AllowDrop = true;
+            this.dgv_BC_settings.AllowUserToAddRows = false;
+            this.dgv_BC_settings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgv_BC_settings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_BC_settings.Location = new System.Drawing.Point(8, 42);
+            this.dgv_BC_settings.Name = "dgv_BC_settings";
+            this.dgv_BC_settings.RowHeadersWidth = 5;
+            this.dgv_BC_settings.Size = new System.Drawing.Size(1509, 160);
+            this.dgv_BC_settings.TabIndex = 0;
+            // 
+            // t_FinresHistory
+            // 
+            this.t_FinresHistory.BackColor = System.Drawing.Color.LightGray;
+            this.t_FinresHistory.Controls.Add(this.dgv_AssetMove);
+            this.t_FinresHistory.Controls.Add(this.pan_AssetMoves);
+            this.t_FinresHistory.Controls.Add(this.pan_FinresHist);
+            this.t_FinresHistory.Controls.Add(this.dgvFRH);
+            this.t_FinresHistory.Location = new System.Drawing.Point(4, 31);
+            this.t_FinresHistory.Margin = new System.Windows.Forms.Padding(2);
+            this.t_FinresHistory.Name = "t_FinresHistory";
+            this.t_FinresHistory.Padding = new System.Windows.Forms.Padding(2);
+            this.t_FinresHistory.Size = new System.Drawing.Size(1525, 425);
+            this.t_FinresHistory.TabIndex = 3;
+            this.t_FinresHistory.Text = "Finres History and Moves";
+            // 
+            // dgv_AssetMove
+            // 
+            this.dgv_AssetMove.AllowUserToAddRows = false;
+            this.dgv_AssetMove.AllowUserToDeleteRows = false;
+            this.dgv_AssetMove.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgv_AssetMove.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_AssetMove.Location = new System.Drawing.Point(1002, 112);
+            this.dgv_AssetMove.Name = "dgv_AssetMove";
+            this.dgv_AssetMove.ReadOnly = true;
+            this.dgv_AssetMove.RowHeadersWidth = 5;
+            this.dgv_AssetMove.Size = new System.Drawing.Size(515, 308);
+            this.dgv_AssetMove.TabIndex = 0;
+            this.dgv_AssetMove.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.ce_am);
+            this.dgv_AssetMove.KeyDown += new System.Windows.Forms.KeyEventHandler(this.kd_am_delete);
+            // 
+            // pan_AssetMoves
+            // 
+            this.pan_AssetMoves.BackColor = System.Drawing.Color.Silver;
+            this.pan_AssetMoves.Controls.Add(this.cb_CommentsVar);
+            this.pan_AssetMoves.Controls.Add(this.b_Add);
+            this.pan_AssetMoves.Controls.Add(this.dtp_MoveDate);
+            this.pan_AssetMoves.Controls.Add(this.l_AssetMove);
+            this.pan_AssetMoves.Controls.Add(this.l_Date);
+            this.pan_AssetMoves.Controls.Add(this.l_Comment);
+            this.pan_AssetMoves.Controls.Add(this.l_Value);
+            this.pan_AssetMoves.Controls.Add(this.tb_Value);
+            this.pan_AssetMoves.Location = new System.Drawing.Point(1002, 6);
+            this.pan_AssetMoves.Name = "pan_AssetMoves";
+            this.pan_AssetMoves.Size = new System.Drawing.Size(515, 100);
+            this.pan_AssetMoves.TabIndex = 9;
+            // 
+            // cb_CommentsVar
+            // 
+            this.cb_CommentsVar.FormattingEnabled = true;
+            this.cb_CommentsVar.Items.AddRange(new object[] {
+            "Комиссия FORTS",
+            "Комиссия ММВБ",
+            "Дивиденды "});
+            this.cb_CommentsVar.Location = new System.Drawing.Point(82, 60);
+            this.cb_CommentsVar.Name = "cb_CommentsVar";
+            this.cb_CommentsVar.Size = new System.Drawing.Size(320, 21);
+            this.cb_CommentsVar.TabIndex = 9;
+            // 
+            // b_Add
+            // 
+            this.b_Add.BackColor = System.Drawing.Color.LightGray;
+            this.b_Add.Location = new System.Drawing.Point(424, 63);
+            this.b_Add.Name = "b_Add";
+            this.b_Add.Size = new System.Drawing.Size(75, 27);
+            this.b_Add.TabIndex = 8;
+            this.b_Add.Text = "Add";
+            this.b_Add.UseVisualStyleBackColor = false;
+            this.b_Add.Click += new System.EventHandler(this.b_AddClick);
+            // 
+            // dtp_MoveDate
+            // 
+            this.dtp_MoveDate.Location = new System.Drawing.Point(82, 32);
+            this.dtp_MoveDate.Name = "dtp_MoveDate";
+            this.dtp_MoveDate.Size = new System.Drawing.Size(149, 20);
+            this.dtp_MoveDate.TabIndex = 2;
+            // 
+            // l_AssetMove
+            // 
+            this.l_AssetMove.AutoSize = true;
+            this.l_AssetMove.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_AssetMove.Location = new System.Drawing.Point(8, 7);
+            this.l_AssetMove.Name = "l_AssetMove";
+            this.l_AssetMove.Size = new System.Drawing.Size(120, 16);
+            this.l_AssetMove.TabIndex = 1;
+            this.l_AssetMove.Text = "Add asset move";
+            // 
+            // l_Date
+            // 
+            this.l_Date.AutoSize = true;
+            this.l_Date.Location = new System.Drawing.Point(10, 32);
+            this.l_Date.Name = "l_Date";
+            this.l_Date.Size = new System.Drawing.Size(30, 13);
+            this.l_Date.TabIndex = 3;
+            this.l_Date.Text = "Date";
+            // 
+            // l_Comment
+            // 
+            this.l_Comment.AutoSize = true;
+            this.l_Comment.Location = new System.Drawing.Point(10, 63);
+            this.l_Comment.Name = "l_Comment";
+            this.l_Comment.Size = new System.Drawing.Size(51, 13);
+            this.l_Comment.TabIndex = 6;
+            this.l_Comment.Text = "Comment";
+            // 
+            // l_Value
+            // 
+            this.l_Value.AutoSize = true;
+            this.l_Value.Location = new System.Drawing.Point(290, 39);
+            this.l_Value.Name = "l_Value";
+            this.l_Value.Size = new System.Drawing.Size(34, 13);
+            this.l_Value.TabIndex = 4;
+            this.l_Value.Text = "Value";
+            // 
+            // tb_Value
+            // 
+            this.tb_Value.Location = new System.Drawing.Point(330, 34);
+            this.tb_Value.Name = "tb_Value";
+            this.tb_Value.Size = new System.Drawing.Size(169, 20);
+            this.tb_Value.TabIndex = 5;
+            // 
+            // pan_FinresHist
+            // 
+            this.pan_FinresHist.BackColor = System.Drawing.Color.Silver;
+            this.pan_FinresHist.Controls.Add(this.lFRH_TP);
+            this.pan_FinresHist.Controls.Add(this.bFRH_Show);
+            this.pan_FinresHist.Controls.Add(this.cbFRH_TP);
+            this.pan_FinresHist.Location = new System.Drawing.Point(9, 6);
+            this.pan_FinresHist.Name = "pan_FinresHist";
+            this.pan_FinresHist.Size = new System.Drawing.Size(920, 29);
+            this.pan_FinresHist.TabIndex = 9;
+            // 
+            // lFRH_TP
+            // 
+            this.lFRH_TP.AutoSize = true;
+            this.lFRH_TP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFRH_TP.Location = new System.Drawing.Point(6, 5);
+            this.lFRH_TP.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lFRH_TP.Name = "lFRH_TP";
+            this.lFRH_TP.Size = new System.Drawing.Size(70, 17);
+            this.lFRH_TP.TabIndex = 6;
+            this.lFRH_TP.Text = "Tradepair";
+            // 
+            // bFRH_Show
+            // 
+            this.bFRH_Show.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.bFRH_Show.Location = new System.Drawing.Point(346, 3);
+            this.bFRH_Show.Margin = new System.Windows.Forms.Padding(2);
+            this.bFRH_Show.Name = "bFRH_Show";
+            this.bFRH_Show.Size = new System.Drawing.Size(189, 24);
+            this.bFRH_Show.TabIndex = 8;
+            this.bFRH_Show.Text = "Show History";
+            this.bFRH_Show.UseVisualStyleBackColor = false;
+            this.bFRH_Show.Click += new System.EventHandler(this.Show_FRH);
+            // 
+            // cbFRH_TP
+            // 
+            this.cbFRH_TP.FormattingEnabled = true;
+            this.cbFRH_TP.Location = new System.Drawing.Point(78, 4);
+            this.cbFRH_TP.Margin = new System.Windows.Forms.Padding(2);
+            this.cbFRH_TP.Name = "cbFRH_TP";
+            this.cbFRH_TP.Size = new System.Drawing.Size(264, 21);
+            this.cbFRH_TP.TabIndex = 5;
+            // 
+            // dgvFRH
+            // 
+            this.dgvFRH.AllowUserToAddRows = false;
+            this.dgvFRH.AllowUserToDeleteRows = false;
+            this.dgvFRH.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvFRH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFRH.Location = new System.Drawing.Point(9, 39);
+            this.dgvFRH.Margin = new System.Windows.Forms.Padding(1);
+            this.dgvFRH.Name = "dgvFRH";
+            this.dgvFRH.RowHeadersWidth = 5;
+            this.dgvFRH.RowTemplate.Height = 24;
+            this.dgvFRH.Size = new System.Drawing.Size(920, 383);
+            this.dgvFRH.TabIndex = 7;
             // 
             // t_Finres
             // 
@@ -570,382 +851,264 @@
             this.dtpFR_date.Size = new System.Drawing.Size(190, 21);
             this.dtpFR_date.TabIndex = 0;
             // 
-            // t_FinresHistory
-            // 
-            this.t_FinresHistory.BackColor = System.Drawing.Color.LightGray;
-            this.t_FinresHistory.Controls.Add(this.bFRH_Show);
-            this.t_FinresHistory.Controls.Add(this.dgvFRH);
-            this.t_FinresHistory.Controls.Add(this.lFRH_TP);
-            this.t_FinresHistory.Controls.Add(this.cbFRH_TP);
-            this.t_FinresHistory.Location = new System.Drawing.Point(4, 31);
-            this.t_FinresHistory.Margin = new System.Windows.Forms.Padding(2);
-            this.t_FinresHistory.Name = "t_FinresHistory";
-            this.t_FinresHistory.Padding = new System.Windows.Forms.Padding(2);
-            this.t_FinresHistory.Size = new System.Drawing.Size(1525, 425);
-            this.t_FinresHistory.TabIndex = 3;
-            this.t_FinresHistory.Text = "Finres History";
-            // 
-            // bFRH_Show
-            // 
-            this.bFRH_Show.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.bFRH_Show.Location = new System.Drawing.Point(86, 44);
-            this.bFRH_Show.Margin = new System.Windows.Forms.Padding(2);
-            this.bFRH_Show.Name = "bFRH_Show";
-            this.bFRH_Show.Size = new System.Drawing.Size(189, 24);
-            this.bFRH_Show.TabIndex = 8;
-            this.bFRH_Show.Text = "Show History";
-            this.bFRH_Show.UseVisualStyleBackColor = false;
-            this.bFRH_Show.Click += new System.EventHandler(this.Show_FRH);
-            // 
-            // dgvFRH
-            // 
-            this.dgvFRH.AllowUserToAddRows = false;
-            this.dgvFRH.AllowUserToDeleteRows = false;
-            this.dgvFRH.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvFRH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFRH.Location = new System.Drawing.Point(296, 12);
-            this.dgvFRH.Margin = new System.Windows.Forms.Padding(1);
-            this.dgvFRH.Name = "dgvFRH";
-            this.dgvFRH.RowHeadersWidth = 5;
-            this.dgvFRH.RowTemplate.Height = 24;
-            this.dgvFRH.Size = new System.Drawing.Size(1222, 398);
-            this.dgvFRH.TabIndex = 7;
-            // 
-            // lFRH_TP
-            // 
-            this.lFRH_TP.AutoSize = true;
-            this.lFRH_TP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lFRH_TP.Location = new System.Drawing.Point(14, 15);
-            this.lFRH_TP.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lFRH_TP.Name = "lFRH_TP";
-            this.lFRH_TP.Size = new System.Drawing.Size(70, 17);
-            this.lFRH_TP.TabIndex = 6;
-            this.lFRH_TP.Text = "Tradepair";
-            // 
-            // cbFRH_TP
-            // 
-            this.cbFRH_TP.FormattingEnabled = true;
-            this.cbFRH_TP.Location = new System.Drawing.Point(86, 12);
-            this.cbFRH_TP.Margin = new System.Windows.Forms.Padding(2);
-            this.cbFRH_TP.Name = "cbFRH_TP";
-            this.cbFRH_TP.Size = new System.Drawing.Size(190, 21);
-            this.cbFRH_TP.TabIndex = 5;
-            // 
-            // t_AssetMove
-            // 
-            this.t_AssetMove.BackColor = System.Drawing.Color.Gainsboro;
-            this.t_AssetMove.Controls.Add(this.panel2);
-            this.t_AssetMove.Controls.Add(this.dgv_AssetMove);
-            this.t_AssetMove.Location = new System.Drawing.Point(4, 31);
-            this.t_AssetMove.Name = "t_AssetMove";
-            this.t_AssetMove.Size = new System.Drawing.Size(1525, 425);
-            this.t_AssetMove.TabIndex = 4;
-            this.t_AssetMove.Text = "Asset Moves";
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.LightGray;
-            this.panel2.Controls.Add(this.cb_CommentsVar);
-            this.panel2.Controls.Add(this.b_Add);
-            this.panel2.Controls.Add(this.dtp_MoveDate);
-            this.panel2.Controls.Add(this.l_AssetMove);
-            this.panel2.Controls.Add(this.l_Date);
-            this.panel2.Controls.Add(this.l_Comment);
-            this.panel2.Controls.Add(this.l_Value);
-            this.panel2.Controls.Add(this.tb_Value);
-            this.panel2.Location = new System.Drawing.Point(1089, 15);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(428, 169);
-            this.panel2.TabIndex = 9;
-            // 
-            // cb_CommentsVar
-            // 
-            this.cb_CommentsVar.FormattingEnabled = true;
-            this.cb_CommentsVar.Items.AddRange(new object[] {
-            "Комиссия FORTS",
-            "Комиссия ММВБ",
-            "Дивиденды "});
-            this.cb_CommentsVar.Location = new System.Drawing.Point(92, 100);
-            this.cb_CommentsVar.Name = "cb_CommentsVar";
-            this.cb_CommentsVar.Size = new System.Drawing.Size(320, 21);
-            this.cb_CommentsVar.TabIndex = 9;
-            // 
-            // b_Add
-            // 
-            this.b_Add.BackColor = System.Drawing.Color.Silver;
-            this.b_Add.Location = new System.Drawing.Point(23, 127);
-            this.b_Add.Name = "b_Add";
-            this.b_Add.Size = new System.Drawing.Size(75, 27);
-            this.b_Add.TabIndex = 8;
-            this.b_Add.Text = "Add";
-            this.b_Add.UseVisualStyleBackColor = false;
-            this.b_Add.Click += new System.EventHandler(this.b_AddClick);
-            // 
-            // dtp_MoveDate
-            // 
-            this.dtp_MoveDate.Location = new System.Drawing.Point(92, 47);
-            this.dtp_MoveDate.Name = "dtp_MoveDate";
-            this.dtp_MoveDate.Size = new System.Drawing.Size(149, 20);
-            this.dtp_MoveDate.TabIndex = 2;
-            // 
-            // l_AssetMove
-            // 
-            this.l_AssetMove.AutoSize = true;
-            this.l_AssetMove.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.l_AssetMove.Location = new System.Drawing.Point(20, 11);
-            this.l_AssetMove.Name = "l_AssetMove";
-            this.l_AssetMove.Size = new System.Drawing.Size(120, 16);
-            this.l_AssetMove.TabIndex = 1;
-            this.l_AssetMove.Text = "Add asset move";
-            // 
-            // l_Date
-            // 
-            this.l_Date.AutoSize = true;
-            this.l_Date.Location = new System.Drawing.Point(20, 47);
-            this.l_Date.Name = "l_Date";
-            this.l_Date.Size = new System.Drawing.Size(30, 13);
-            this.l_Date.TabIndex = 3;
-            this.l_Date.Text = "Date";
-            // 
-            // l_Comment
-            // 
-            this.l_Comment.AutoSize = true;
-            this.l_Comment.Location = new System.Drawing.Point(20, 103);
-            this.l_Comment.Name = "l_Comment";
-            this.l_Comment.Size = new System.Drawing.Size(51, 13);
-            this.l_Comment.TabIndex = 6;
-            this.l_Comment.Text = "Comment";
-            // 
-            // l_Value
-            // 
-            this.l_Value.AutoSize = true;
-            this.l_Value.Location = new System.Drawing.Point(20, 76);
-            this.l_Value.Name = "l_Value";
-            this.l_Value.Size = new System.Drawing.Size(34, 13);
-            this.l_Value.TabIndex = 4;
-            this.l_Value.Text = "Value";
-            // 
-            // tb_Value
-            // 
-            this.tb_Value.Location = new System.Drawing.Point(92, 73);
-            this.tb_Value.Name = "tb_Value";
-            this.tb_Value.Size = new System.Drawing.Size(149, 20);
-            this.tb_Value.TabIndex = 5;
-            // 
-            // dgv_AssetMove
-            // 
-            this.dgv_AssetMove.AllowUserToAddRows = false;
-            this.dgv_AssetMove.AllowUserToDeleteRows = false;
-            this.dgv_AssetMove.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgv_AssetMove.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_AssetMove.Location = new System.Drawing.Point(8, 15);
-            this.dgv_AssetMove.Name = "dgv_AssetMove";
-            this.dgv_AssetMove.ReadOnly = true;
-            this.dgv_AssetMove.RowHeadersWidth = 5;
-            this.dgv_AssetMove.Size = new System.Drawing.Size(1075, 407);
-            this.dgv_AssetMove.TabIndex = 0;
-            this.dgv_AssetMove.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.ce_am);
-            this.dgv_AssetMove.KeyDown += new System.Windows.Forms.KeyEventHandler(this.kd_am_delete);
-            // 
-            // t_BasisCount
-            // 
-            this.t_BasisCount.BackColor = System.Drawing.Color.Gainsboro;
-            this.t_BasisCount.Controls.Add(this.b_loadParams);
-            this.t_BasisCount.Controls.Add(this.dgv_LParams);
-            this.t_BasisCount.Controls.Add(this.dgv_BC_Params);
-            this.t_BasisCount.Controls.Add(this.l_BC_Params);
-            this.t_BasisCount.Controls.Add(this.cb_BC_Autoreload);
-            this.t_BasisCount.Controls.Add(this.tb_BC_Interval);
-            this.t_BasisCount.Controls.Add(this.b_BC_Set);
-            this.t_BasisCount.Controls.Add(this.b_BC_Load);
-            this.t_BasisCount.Controls.Add(this.dgv_BC_settings);
-            this.t_BasisCount.Location = new System.Drawing.Point(4, 31);
-            this.t_BasisCount.Name = "t_BasisCount";
-            this.t_BasisCount.Size = new System.Drawing.Size(1525, 425);
-            this.t_BasisCount.TabIndex = 2;
-            this.t_BasisCount.Text = "Basis Count";
-            this.t_BasisCount.Enter += new System.EventHandler(this.BC_Enter);
-            // 
-            // b_loadParams
-            // 
-            this.b_loadParams.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.b_loadParams.Location = new System.Drawing.Point(691, 212);
-            this.b_loadParams.Name = "b_loadParams";
-            this.b_loadParams.Size = new System.Drawing.Size(111, 23);
-            this.b_loadParams.TabIndex = 8;
-            this.b_loadParams.Text = "Load Parameters";
-            this.b_loadParams.UseVisualStyleBackColor = false;
-            this.b_loadParams.Click += new System.EventHandler(this.b_loadParams_Click);
-            // 
-            // dgv_LParams
-            // 
-            this.dgv_LParams.AllowUserToAddRows = false;
-            this.dgv_LParams.AllowUserToDeleteRows = false;
-            this.dgv_LParams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_LParams.Location = new System.Drawing.Point(691, 241);
-            this.dgv_LParams.Name = "dgv_LParams";
-            this.dgv_LParams.RowHeadersWidth = 5;
-            this.dgv_LParams.Size = new System.Drawing.Size(826, 181);
-            this.dgv_LParams.TabIndex = 7;
-            // 
-            // dgv_BC_Params
-            // 
-            this.dgv_BC_Params.AllowUserToAddRows = false;
-            this.dgv_BC_Params.AllowUserToDeleteRows = false;
-            this.dgv_BC_Params.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_BC_Params.Cursor = System.Windows.Forms.Cursors.No;
-            this.dgv_BC_Params.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dgv_BC_Params.Location = new System.Drawing.Point(11, 241);
-            this.dgv_BC_Params.Name = "dgv_BC_Params";
-            this.dgv_BC_Params.RowHeadersWidth = 5;
-            this.dgv_BC_Params.Size = new System.Drawing.Size(659, 181);
-            this.dgv_BC_Params.TabIndex = 6;
-            this.dgv_BC_Params.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.BC_EndEdit);
-            // 
-            // l_BC_Params
-            // 
-            this.l_BC_Params.AutoSize = true;
-            this.l_BC_Params.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.l_BC_Params.Location = new System.Drawing.Point(8, 215);
-            this.l_BC_Params.Name = "l_BC_Params";
-            this.l_BC_Params.Size = new System.Drawing.Size(174, 16);
-            this.l_BC_Params.TabIndex = 5;
-            this.l_BC_Params.Text = "Basis Count Parameters";
-            // 
-            // cb_BC_Autoreload
-            // 
-            this.cb_BC_Autoreload.AutoSize = true;
-            this.cb_BC_Autoreload.Location = new System.Drawing.Point(1247, 18);
-            this.cb_BC_Autoreload.Name = "cb_BC_Autoreload";
-            this.cb_BC_Autoreload.Size = new System.Drawing.Size(173, 17);
-            this.cb_BC_Autoreload.TabIndex = 4;
-            this.cb_BC_Autoreload.Text = "Autoreload.   Interval (seconds)";
-            this.cb_BC_Autoreload.UseVisualStyleBackColor = true;
-            this.cb_BC_Autoreload.CheckStateChanged += new System.EventHandler(this.BC_Autoreload_check);
-            // 
-            // tb_BC_Interval
-            // 
-            this.tb_BC_Interval.Location = new System.Drawing.Point(1427, 16);
-            this.tb_BC_Interval.Name = "tb_BC_Interval";
-            this.tb_BC_Interval.Size = new System.Drawing.Size(90, 20);
-            this.tb_BC_Interval.TabIndex = 3;
-            this.tb_BC_Interval.Text = "60";
-            // 
-            // b_BC_Set
-            // 
-            this.b_BC_Set.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.b_BC_Set.Location = new System.Drawing.Point(159, 13);
-            this.b_BC_Set.Name = "b_BC_Set";
-            this.b_BC_Set.Size = new System.Drawing.Size(108, 23);
-            this.b_BC_Set.TabIndex = 2;
-            this.b_BC_Set.Text = "Count and Set";
-            this.b_BC_Set.UseVisualStyleBackColor = false;
-            this.b_BC_Set.Click += new System.EventHandler(this.BC_Set_Click);
-            // 
-            // b_BC_Load
-            // 
-            this.b_BC_Load.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.b_BC_Load.Location = new System.Drawing.Point(9, 13);
-            this.b_BC_Load.Name = "b_BC_Load";
-            this.b_BC_Load.Size = new System.Drawing.Size(108, 23);
-            this.b_BC_Load.TabIndex = 1;
-            this.b_BC_Load.Text = "Count";
-            this.b_BC_Load.UseVisualStyleBackColor = false;
-            this.b_BC_Load.Click += new System.EventHandler(this.BC_Count_Click);
-            // 
-            // dgv_BC_settings
-            // 
-            this.dgv_BC_settings.AllowDrop = true;
-            this.dgv_BC_settings.AllowUserToAddRows = false;
-            this.dgv_BC_settings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgv_BC_settings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_BC_settings.Location = new System.Drawing.Point(8, 42);
-            this.dgv_BC_settings.Name = "dgv_BC_settings";
-            this.dgv_BC_settings.RowHeadersWidth = 5;
-            this.dgv_BC_settings.Size = new System.Drawing.Size(1509, 160);
-            this.dgv_BC_settings.TabIndex = 0;
-            // 
-            // t_Expiration
-            // 
-            this.t_Expiration.BackColor = System.Drawing.Color.Gainsboro;
-            this.t_Expiration.Controls.Add(this.panel3);
-            this.t_Expiration.Controls.Add(this.dgv_Exp_Robotsett);
-            this.t_Expiration.Controls.Add(this.b_exp_state);
-            this.t_Expiration.Location = new System.Drawing.Point(4, 31);
-            this.t_Expiration.Name = "t_Expiration";
-            this.t_Expiration.Size = new System.Drawing.Size(1525, 425);
-            this.t_Expiration.TabIndex = 5;
-            this.t_Expiration.Text = "Expiration";
-            // 
-            // dgv_Exp_Robotsett
-            // 
-            this.dgv_Exp_Robotsett.AllowUserToAddRows = false;
-            this.dgv_Exp_Robotsett.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgv_Exp_Robotsett.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Exp_Robotsett.Location = new System.Drawing.Point(8, 55);
-            this.dgv_Exp_Robotsett.Name = "dgv_Exp_Robotsett";
-            this.dgv_Exp_Robotsett.RowHeadersWidth = 5;
-            this.dgv_Exp_Robotsett.Size = new System.Drawing.Size(1059, 306);
-            this.dgv_Exp_Robotsett.TabIndex = 3;
-            // 
-            // b_exp_state
-            // 
-            this.b_exp_state.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.b_exp_state.Location = new System.Drawing.Point(8, 13);
-            this.b_exp_state.Name = "b_exp_state";
-            this.b_exp_state.Size = new System.Drawing.Size(163, 32);
-            this.b_exp_state.TabIndex = 2;
-            this.b_exp_state.Text = "Show current state";
-            this.b_exp_state.UseVisualStyleBackColor = false;
-            this.b_exp_state.Click += new System.EventHandler(this.b_State_click);
-            // 
-            // timer_BC
-            // 
-            this.timer_BC.Interval = 60000;
-            this.timer_BC.Tick += new System.EventHandler(this.BC_Timer_Work);
-            // 
-            // timer_keepconn
-            // 
-            this.timer_keepconn.Interval = 300000;
-            this.timer_keepconn.Tick += new System.EventHandler(this.KeepConnect);
-            // 
-            // b_exp_itteration
-            // 
-            this.b_exp_itteration.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.b_exp_itteration.Location = new System.Drawing.Point(12, 8);
-            this.b_exp_itteration.Name = "b_exp_itteration";
-            this.b_exp_itteration.Size = new System.Drawing.Size(182, 32);
-            this.b_exp_itteration.TabIndex = 4;
-            this.b_exp_itteration.Text = "Next itteration";
-            this.b_exp_itteration.UseVisualStyleBackColor = false;
-            this.b_exp_itteration.Click += new System.EventHandler(this.b_itteration_click);
-            // 
-            // timer_exprobot
-            // 
-            this.timer_exprobot.Interval = 2000;
-            this.timer_exprobot.Tick += new System.EventHandler(this.timer_ExpRobot);
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Red;
-            this.panel3.Controls.Add(this.cb_AutoExp);
-            this.panel3.Controls.Add(this.b_exp_itteration);
-            this.panel3.Location = new System.Drawing.Point(418, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(649, 46);
-            this.panel3.TabIndex = 5;
-            // 
-            // cb_AutoExp
-            // 
-            this.cb_AutoExp.AutoSize = true;
-            this.cb_AutoExp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cb_AutoExp.Location = new System.Drawing.Point(404, 16);
-            this.cb_AutoExp.Name = "cb_AutoExp";
-            this.cb_AutoExp.Size = new System.Drawing.Size(196, 19);
-            this.cb_AutoExp.TabIndex = 5;
-            this.cb_AutoExp.Text = "Automatic Balance change";
-            this.cb_AutoExp.UseVisualStyleBackColor = true;
-            this.cb_AutoExp.CheckedChanged += new System.EventHandler(this.cb_Exp_CchekChange);
+            // t_CurrPos
+            // 
+            this.t_CurrPos.BackColor = System.Drawing.Color.Gainsboro;
+            this.t_CurrPos.Controls.Add(this.l_OrdersDelays);
+            this.t_CurrPos.Controls.Add(this.dgvDelays);
+            this.t_CurrPos.Controls.Add(this.b_FullBall);
+            this.t_CurrPos.Controls.Add(this.dgvFullBalance);
+            this.t_CurrPos.Controls.Add(this.l_TP_Balance);
+            this.t_CurrPos.Controls.Add(this.dgvTPBalances);
+            this.t_CurrPos.Controls.Add(this.b_CurrPos);
+            this.t_CurrPos.Location = new System.Drawing.Point(4, 31);
+            this.t_CurrPos.Margin = new System.Windows.Forms.Padding(2);
+            this.t_CurrPos.Name = "t_CurrPos";
+            this.t_CurrPos.Padding = new System.Windows.Forms.Padding(2);
+            this.t_CurrPos.Size = new System.Drawing.Size(1525, 425);
+            this.t_CurrPos.TabIndex = 0;
+            this.t_CurrPos.Text = "Current Positions";
+            // 
+            // l_OrdersDelays
+            // 
+            this.l_OrdersDelays.AutoSize = true;
+            this.l_OrdersDelays.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_OrdersDelays.Location = new System.Drawing.Point(6, 276);
+            this.l_OrdersDelays.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.l_OrdersDelays.Name = "l_OrdersDelays";
+            this.l_OrdersDelays.Size = new System.Drawing.Size(99, 17);
+            this.l_OrdersDelays.TabIndex = 7;
+            this.l_OrdersDelays.Text = "Orders Delays";
+            // 
+            // dgvDelays
+            // 
+            this.dgvDelays.AllowUserToAddRows = false;
+            this.dgvDelays.AllowUserToDeleteRows = false;
+            this.dgvDelays.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDelays.Location = new System.Drawing.Point(6, 300);
+            this.dgvDelays.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvDelays.Name = "dgvDelays";
+            this.dgvDelays.RowHeadersWidth = 5;
+            this.dgvDelays.RowTemplate.Height = 24;
+            this.dgvDelays.Size = new System.Drawing.Size(569, 122);
+            this.dgvDelays.TabIndex = 6;
+            // 
+            // b_FullBall
+            // 
+            this.b_FullBall.BackColor = System.Drawing.Color.White;
+            this.b_FullBall.Location = new System.Drawing.Point(1406, 9);
+            this.b_FullBall.Margin = new System.Windows.Forms.Padding(2);
+            this.b_FullBall.Name = "b_FullBall";
+            this.b_FullBall.Size = new System.Drawing.Size(112, 28);
+            this.b_FullBall.TabIndex = 5;
+            this.b_FullBall.Text = "Full Balance";
+            this.b_FullBall.UseVisualStyleBackColor = false;
+            this.b_FullBall.Click += new System.EventHandler(this.ClickFullBalance);
+            // 
+            // dgvFullBalance
+            // 
+            this.dgvFullBalance.AllowUserToAddRows = false;
+            this.dgvFullBalance.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvFullBalance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFullBalance.Location = new System.Drawing.Point(598, 41);
+            this.dgvFullBalance.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvFullBalance.Name = "dgvFullBalance";
+            this.dgvFullBalance.RowHeadersWidth = 4;
+            this.dgvFullBalance.RowTemplate.Height = 24;
+            this.dgvFullBalance.Size = new System.Drawing.Size(923, 384);
+            this.dgvFullBalance.TabIndex = 4;
+            // 
+            // l_TP_Balance
+            // 
+            this.l_TP_Balance.AutoSize = true;
+            this.l_TP_Balance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_TP_Balance.Location = new System.Drawing.Point(594, 20);
+            this.l_TP_Balance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.l_TP_Balance.Name = "l_TP_Balance";
+            this.l_TP_Balance.Size = new System.Drawing.Size(85, 17);
+            this.l_TP_Balance.TabIndex = 3;
+            this.l_TP_Balance.Text = "Full Balance";
+            // 
+            // dgvTPBalances
+            // 
+            this.dgvTPBalances.AllowUserToAddRows = false;
+            this.dgvTPBalances.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvTPBalances.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTPBalances.Location = new System.Drawing.Point(6, 38);
+            this.dgvTPBalances.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvTPBalances.Name = "dgvTPBalances";
+            this.dgvTPBalances.RowHeadersWidth = 4;
+            this.dgvTPBalances.RowTemplate.Height = 24;
+            this.dgvTPBalances.Size = new System.Drawing.Size(569, 225);
+            this.dgvTPBalances.TabIndex = 2;
+            this.dgvTPBalances.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Click_TP_Balance);
+            // 
+            // b_CurrPos
+            // 
+            this.b_CurrPos.BackColor = System.Drawing.Color.White;
+            this.b_CurrPos.Location = new System.Drawing.Point(6, 5);
+            this.b_CurrPos.Margin = new System.Windows.Forms.Padding(2);
+            this.b_CurrPos.Name = "b_CurrPos";
+            this.b_CurrPos.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.b_CurrPos.Size = new System.Drawing.Size(112, 28);
+            this.b_CurrPos.TabIndex = 1;
+            this.b_CurrPos.Text = "Current Position";
+            this.b_CurrPos.UseVisualStyleBackColor = false;
+            this.b_CurrPos.Click += new System.EventHandler(this.b_CurrPos_Click);
+            // 
+            // tabControl_Main
+            // 
+            this.tabControl_Main.Controls.Add(this.t_CurrPos);
+            this.tabControl_Main.Controls.Add(this.t_Finres);
+            this.tabControl_Main.Controls.Add(this.t_FinresHistory);
+            this.tabControl_Main.Controls.Add(this.t_BasisCount);
+            this.tabControl_Main.Controls.Add(this.t_TPStruct);
+            this.tabControl_Main.Controls.Add(this.t_Expiration);
+            this.tabControl_Main.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl_Main.Enabled = false;
+            this.tabControl_Main.ItemSize = new System.Drawing.Size(150, 27);
+            this.tabControl_Main.Location = new System.Drawing.Point(0, 262);
+            this.tabControl_Main.Margin = new System.Windows.Forms.Padding(2);
+            this.tabControl_Main.Name = "tabControl_Main";
+            this.tabControl_Main.SelectedIndex = 0;
+            this.tabControl_Main.Size = new System.Drawing.Size(1533, 460);
+            this.tabControl_Main.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControl_Main.TabIndex = 7;
+            // 
+            // t_TPStruct
+            // 
+            this.t_TPStruct.BackColor = System.Drawing.Color.Gainsboro;
+            this.t_TPStruct.Controls.Add(this.panel1);
+            this.t_TPStruct.Controls.Add(this.dgv_tps_list);
+            this.t_TPStruct.Location = new System.Drawing.Point(4, 31);
+            this.t_TPStruct.Name = "t_TPStruct";
+            this.t_TPStruct.Size = new System.Drawing.Size(1525, 425);
+            this.t_TPStruct.TabIndex = 6;
+            this.t_TPStruct.Text = "Tradepairs Structure";
+            this.t_TPStruct.Enter += new System.EventHandler(this.TPStructEnter);
+            // 
+            // cb_tps_struct
+            // 
+            this.cb_tps_struct.AutoSize = true;
+            this.cb_tps_struct.Location = new System.Drawing.Point(223, 67);
+            this.cb_tps_struct.Name = "cb_tps_struct";
+            this.cb_tps_struct.Size = new System.Drawing.Size(69, 17);
+            this.cb_tps_struct.TabIndex = 11;
+            this.cb_tps_struct.TabStop = false;
+            this.cb_tps_struct.Text = "Structure";
+            this.cb_tps_struct.UseVisualStyleBackColor = true;
+            // 
+            // cb_tps_params
+            // 
+            this.cb_tps_params.AutoSize = true;
+            this.cb_tps_params.Location = new System.Drawing.Point(223, 50);
+            this.cb_tps_params.Name = "cb_tps_params";
+            this.cb_tps_params.Size = new System.Drawing.Size(61, 17);
+            this.cb_tps_params.TabIndex = 10;
+            this.cb_tps_params.Text = "Params";
+            this.cb_tps_params.UseVisualStyleBackColor = true;
+            // 
+            // cb_tps_copyfrom
+            // 
+            this.cb_tps_copyfrom.FormattingEnabled = true;
+            this.cb_tps_copyfrom.Location = new System.Drawing.Point(42, 56);
+            this.cb_tps_copyfrom.Name = "cb_tps_copyfrom";
+            this.cb_tps_copyfrom.Size = new System.Drawing.Size(172, 21);
+            this.cb_tps_copyfrom.TabIndex = 9;
+            // 
+            // l_tps_copy
+            // 
+            this.l_tps_copy.AutoSize = true;
+            this.l_tps_copy.Location = new System.Drawing.Point(6, 59);
+            this.l_tps_copy.Name = "l_tps_copy";
+            this.l_tps_copy.Size = new System.Drawing.Size(30, 13);
+            this.l_tps_copy.TabIndex = 8;
+            this.l_tps_copy.Text = "From";
+            // 
+            // b_tps_savetp
+            // 
+            this.b_tps_savetp.BackColor = System.Drawing.Color.Silver;
+            this.b_tps_savetp.Location = new System.Drawing.Point(6, 83);
+            this.b_tps_savetp.Name = "b_tps_savetp";
+            this.b_tps_savetp.Size = new System.Drawing.Size(125, 26);
+            this.b_tps_savetp.TabIndex = 7;
+            this.b_tps_savetp.Text = "Add";
+            this.b_tps_savetp.UseVisualStyleBackColor = false;
+            this.b_tps_savetp.Click += new System.EventHandler(this.b_tps_savetp_Click);
+            // 
+            // cb_tps_active
+            // 
+            this.cb_tps_active.AutoSize = true;
+            this.cb_tps_active.Location = new System.Drawing.Point(232, 7);
+            this.cb_tps_active.Name = "cb_tps_active";
+            this.cb_tps_active.Size = new System.Drawing.Size(64, 17);
+            this.cb_tps_active.TabIndex = 6;
+            this.cb_tps_active.Text = "IsActive";
+            this.cb_tps_active.UseVisualStyleBackColor = true;
+            // 
+            // tb_tps_name
+            // 
+            this.tb_tps_name.Location = new System.Drawing.Point(42, 30);
+            this.tb_tps_name.Name = "tb_tps_name";
+            this.tb_tps_name.Size = new System.Drawing.Size(172, 20);
+            this.tb_tps_name.TabIndex = 5;
+            // 
+            // l_tps_name
+            // 
+            this.l_tps_name.AutoSize = true;
+            this.l_tps_name.Location = new System.Drawing.Point(6, 32);
+            this.l_tps_name.Name = "l_tps_name";
+            this.l_tps_name.Size = new System.Drawing.Size(35, 13);
+            this.l_tps_name.TabIndex = 4;
+            this.l_tps_name.Text = "Name";
+            // 
+            // tb_tps_id
+            // 
+            this.tb_tps_id.Location = new System.Drawing.Point(146, 4);
+            this.tb_tps_id.Name = "tb_tps_id";
+            this.tb_tps_id.Size = new System.Drawing.Size(68, 20);
+            this.tb_tps_id.TabIndex = 3;
+            // 
+            // l_tps_addedit
+            // 
+            this.l_tps_addedit.AutoSize = true;
+            this.l_tps_addedit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_tps_addedit.Location = new System.Drawing.Point(3, 5);
+            this.l_tps_addedit.Name = "l_tps_addedit";
+            this.l_tps_addedit.Size = new System.Drawing.Size(142, 16);
+            this.l_tps_addedit.TabIndex = 1;
+            this.l_tps_addedit.Text = "Add Tradepair Id = ";
+            // 
+            // dgv_tps_list
+            // 
+            this.dgv_tps_list.AllowUserToAddRows = false;
+            this.dgv_tps_list.AllowUserToDeleteRows = false;
+            this.dgv_tps_list.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgv_tps_list.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_tps_list.Location = new System.Drawing.Point(5, 8);
+            this.dgv_tps_list.Name = "dgv_tps_list";
+            this.dgv_tps_list.RowHeadersWidth = 5;
+            this.dgv_tps_list.Size = new System.Drawing.Size(299, 292);
+            this.dgv_tps_list.TabIndex = 0;
+            this.dgv_tps_list.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.tps_tp_endedit);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.l_tps_addedit);
+            this.panel1.Controls.Add(this.cb_tps_struct);
+            this.panel1.Controls.Add(this.cb_tps_params);
+            this.panel1.Controls.Add(this.tb_tps_id);
+            this.panel1.Controls.Add(this.cb_tps_copyfrom);
+            this.panel1.Controls.Add(this.l_tps_name);
+            this.panel1.Controls.Add(this.l_tps_copy);
+            this.panel1.Controls.Add(this.tb_tps_name);
+            this.panel1.Controls.Add(this.b_tps_savetp);
+            this.panel1.Controls.Add(this.cb_tps_active);
+            this.panel1.Location = new System.Drawing.Point(5, 306);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(299, 116);
+            this.panel1.TabIndex = 12;
             // 
             // Form1
             // 
@@ -953,39 +1116,45 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1533, 794);
             this.Controls.Add(this.tabControl_Main);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pan_top);
             this.Controls.Add(this.tbLog);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "monitor3lx";
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.tabControl_Main.ResumeLayout(false);
-            this.t_CurrPos.ResumeLayout(false);
-            this.t_CurrPos.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDelays)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFullBalance)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTPBalances)).EndInit();
-            this.t_Finres.ResumeLayout(false);
-            this.t_Finres.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFR_Reval)).EndInit();
-            this.t_FinresHistory.ResumeLayout(false);
-            this.t_FinresHistory.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFRH)).EndInit();
-            this.t_AssetMove.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_AssetMove)).EndInit();
+            this.pan_top.ResumeLayout(false);
+            this.pan_top.PerformLayout();
+            this.pan_Connect.ResumeLayout(false);
+            this.pan_Connect.PerformLayout();
+            this.t_Expiration.ResumeLayout(false);
+            this.pan_ExpRed.ResumeLayout(false);
+            this.pan_ExpRed.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Exp_Robotsett)).EndInit();
             this.t_BasisCount.ResumeLayout(false);
             this.t_BasisCount.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_LParams)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_Params)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).EndInit();
-            this.t_Expiration.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Exp_Robotsett)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.t_FinresHistory.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_AssetMove)).EndInit();
+            this.pan_AssetMoves.ResumeLayout(false);
+            this.pan_AssetMoves.PerformLayout();
+            this.pan_FinresHist.ResumeLayout(false);
+            this.pan_FinresHist.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFRH)).EndInit();
+            this.t_Finres.ResumeLayout(false);
+            this.t_Finres.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFR_Reval)).EndInit();
+            this.t_CurrPos.ResumeLayout(false);
+            this.t_CurrPos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDelays)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFullBalance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTPBalances)).EndInit();
+            this.tabControl_Main.ResumeLayout(false);
+            this.t_TPStruct.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_list)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -998,72 +1167,86 @@
         private System.Windows.Forms.DataGridView dgvTP;
         private System.Windows.Forms.Button bUpdateTP;
         private System.Windows.Forms.Button b_Apply;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TabControl tabControl_Main;
-        private System.Windows.Forms.TabPage t_CurrPos;
-        private System.Windows.Forms.TabPage t_Finres;
-        private System.Windows.Forms.Button b_CurrPos;
-        private System.Windows.Forms.DataGridView dgvTPBalances;
-        private System.Windows.Forms.DataGridView dgvFullBalance;
-        private System.Windows.Forms.Label l_TP_Balance;
-        private System.Windows.Forms.Button b_FullBall;
-        private System.Windows.Forms.Label l_OrdersDelays;
-        private System.Windows.Forms.DataGridView dgvDelays;
-        private System.Windows.Forms.DateTimePicker dtpFR_date;
-        private System.Windows.Forms.Label lFR_Date;
-        private System.Windows.Forms.Button bFR_Count;
-        private System.Windows.Forms.Label lFR_TP;
-        private System.Windows.Forms.ComboBox cbFR_TP;
-        private System.Windows.Forms.DataGridView dgvFR_Reval;
-        private System.Windows.Forms.Label lFR_FullResult;
-        private System.Windows.Forms.Label lFR_Result;
-        private System.Windows.Forms.TabPage t_BasisCount;
-        private System.Windows.Forms.DataGridView dgv_BC_settings;
-        private System.Windows.Forms.Button b_BC_Load;
-        private System.Windows.Forms.Button b_BC_Set;
-        private System.Windows.Forms.CheckBox cb_BC_Autoreload;
-        private System.Windows.Forms.TextBox tb_BC_Interval;
+        private System.Windows.Forms.Panel pan_top;
         private System.Windows.Forms.Timer timer_BC;
         private System.Windows.Forms.Label l_Kfs_with_TP;
         private System.Windows.Forms.Button b_Up_;
         private System.Windows.Forms.Button b_down_;
         private System.Windows.Forms.Button b_down_inv;
         private System.Windows.Forms.Button b_up_inv;
-        private System.Windows.Forms.TabPage t_FinresHistory;
-        private System.Windows.Forms.Label lFRH_TP;
-        private System.Windows.Forms.ComboBox cbFRH_TP;
-        private System.Windows.Forms.Button bFRH_Show;
-        private System.Windows.Forms.DataGridView dgvFRH;
         private System.Windows.Forms.Timer timer_keepconn;
-        private System.Windows.Forms.TabPage t_AssetMove;
-        private System.Windows.Forms.DataGridView dgv_AssetMove;
-        private System.Windows.Forms.Button b_Add;
-        private System.Windows.Forms.Label l_Comment;
-        private System.Windows.Forms.TextBox tb_Value;
-        private System.Windows.Forms.Label l_Value;
-        private System.Windows.Forms.Label l_Date;
-        private System.Windows.Forms.DateTimePicker dtp_MoveDate;
-        private System.Windows.Forms.Label l_AssetMove;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox cb_CommentsVar;
-        private System.Windows.Forms.DataGridView dgv_BC_Params;
-        private System.Windows.Forms.Label l_BC_Params;
         private System.Windows.Forms.TextBox tb_kfp;
         private System.Windows.Forms.Label l_kfp;
+        private System.Windows.Forms.Timer timer_exprobot;
+        private System.Windows.Forms.Panel pan_Connect;
+        private System.Windows.Forms.TabPage t_Expiration;
+        private System.Windows.Forms.Panel pan_ExpRed;
+        private System.Windows.Forms.CheckBox cb_AutoExp;
+        private System.Windows.Forms.Button b_exp_itteration;
+        private System.Windows.Forms.DataGridView dgv_Exp_Robotsett;
+        private System.Windows.Forms.Button b_exp_state;
+        private System.Windows.Forms.TabPage t_BasisCount;
         private System.Windows.Forms.Button b_loadParams;
         private System.Windows.Forms.DataGridView dgv_LParams;
-        private System.Windows.Forms.Label lFR_Addition;
-        private System.Windows.Forms.TextBox tbFR_Addition;
+        private System.Windows.Forms.DataGridView dgv_BC_Params;
+        private System.Windows.Forms.Label l_BC_Params;
+        private System.Windows.Forms.CheckBox cb_BC_Autoreload;
+        private System.Windows.Forms.TextBox tb_BC_Interval;
+        private System.Windows.Forms.Button b_BC_Set;
+        private System.Windows.Forms.Button b_BC_Load;
+        private System.Windows.Forms.DataGridView dgv_BC_settings;
+        private System.Windows.Forms.TabPage t_FinresHistory;
+        private System.Windows.Forms.DataGridView dgv_AssetMove;
+        private System.Windows.Forms.Panel pan_AssetMoves;
+        private System.Windows.Forms.ComboBox cb_CommentsVar;
+        private System.Windows.Forms.Button b_Add;
+        private System.Windows.Forms.DateTimePicker dtp_MoveDate;
+        private System.Windows.Forms.Label l_AssetMove;
+        private System.Windows.Forms.Label l_Date;
+        private System.Windows.Forms.Label l_Comment;
+        private System.Windows.Forms.Label l_Value;
+        private System.Windows.Forms.TextBox tb_Value;
+        private System.Windows.Forms.Panel pan_FinresHist;
+        private System.Windows.Forms.Label lFRH_TP;
+        private System.Windows.Forms.Button bFRH_Show;
+        private System.Windows.Forms.ComboBox cbFRH_TP;
+        private System.Windows.Forms.DataGridView dgvFRH;
+        private System.Windows.Forms.TabPage t_Finres;
+        private System.Windows.Forms.Button bFR_AddSave;
         private System.Windows.Forms.Label lFR_AddFull;
         private System.Windows.Forms.Label lFR_WithAdd;
-        private System.Windows.Forms.Button bFR_AddSave;
-        private System.Windows.Forms.TabPage t_Expiration;
-        private System.Windows.Forms.Button b_exp_state;
-        private System.Windows.Forms.DataGridView dgv_Exp_Robotsett;
-        private System.Windows.Forms.Button b_exp_itteration;
-        private System.Windows.Forms.Timer timer_exprobot;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.CheckBox cb_AutoExp;
+        private System.Windows.Forms.Label lFR_Addition;
+        private System.Windows.Forms.TextBox tbFR_Addition;
+        private System.Windows.Forms.Label lFR_Result;
+        private System.Windows.Forms.Label lFR_FullResult;
+        private System.Windows.Forms.DataGridView dgvFR_Reval;
+        private System.Windows.Forms.Label lFR_TP;
+        private System.Windows.Forms.ComboBox cbFR_TP;
+        private System.Windows.Forms.Button bFR_Count;
+        private System.Windows.Forms.Label lFR_Date;
+        private System.Windows.Forms.DateTimePicker dtpFR_date;
+        private System.Windows.Forms.TabPage t_CurrPos;
+        private System.Windows.Forms.Label l_OrdersDelays;
+        private System.Windows.Forms.DataGridView dgvDelays;
+        private System.Windows.Forms.Button b_FullBall;
+        private System.Windows.Forms.DataGridView dgvFullBalance;
+        private System.Windows.Forms.Label l_TP_Balance;
+        private System.Windows.Forms.DataGridView dgvTPBalances;
+        private System.Windows.Forms.Button b_CurrPos;
+        private System.Windows.Forms.TabControl tabControl_Main;
+        private System.Windows.Forms.TabPage t_TPStruct;
+        private System.Windows.Forms.DataGridView dgv_tps_list;
+        private System.Windows.Forms.Button b_tps_savetp;
+        private System.Windows.Forms.CheckBox cb_tps_active;
+        private System.Windows.Forms.TextBox tb_tps_name;
+        private System.Windows.Forms.Label l_tps_name;
+        private System.Windows.Forms.TextBox tb_tps_id;
+        private System.Windows.Forms.Label l_tps_addedit;
+        private System.Windows.Forms.CheckBox cb_tps_struct;
+        private System.Windows.Forms.CheckBox cb_tps_params;
+        private System.Windows.Forms.ComboBox cb_tps_copyfrom;
+        private System.Windows.Forms.Label l_tps_copy;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

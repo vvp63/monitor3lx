@@ -213,11 +213,8 @@ namespace monitor3lx
 
         private void getBalancesTable()
         {
-            TextLog("gbt 1");
             FillDGVByQuery(dgvTPBalances, "SELECT * FROM public.\"TP_Balances_2\"");
-            TextLog("gbt 2");
             FillDGVByQuery(dgvDelays, "SELECT * FROM public.\"Delays_ByStock\"");
-            TextLog("gbt 3");
         }
 
         private void b_CurrPos_Click(object sender, EventArgs e)
@@ -387,8 +384,6 @@ namespace monitor3lx
             float.TryParse(tbFR_Addition.Text, out vAdd);
             lFR_AddFull.Text = String.Format("{0:C}", (vFr + vAdd));
         }
-
-
 
 
         private void FR_ShowAddition()
@@ -613,7 +608,7 @@ namespace monitor3lx
 
 
 
-        //  Expiration
+        //  -------------------------------   Expiration robot -----------------------
 
         private void b_State_click(object sender, EventArgs e)
         {
@@ -682,6 +677,66 @@ namespace monitor3lx
         }
 
 
+
+
+
+        // -------------------- TP  Structure ------------------------------------------
+
+        private void TPStructEnter(object sender, EventArgs e)
+        {
+            TPListShow();
+        }
+
+        private void TPListShow()
+        {
+            FillDGVByQuery(dgv_tps_list, "SELECT tpid, name, isactive FROM tp");
+            FillCBByQuery(cb_tps_copyfrom, "SELECT tpid, name FROM tp", "tpid", "name");
+            dgv_tps_list.Columns[0].ReadOnly = true;
+        }
+
+        private void tps_tp_endedit(object sender, DataGridViewCellEventArgs e)
+        {
+            //
+            string vQuery = String.Format("UPDATE tp SET name = '{0}', isactive = {1} WHERE tpid = {2}", dgv_tps_list.Rows[e.RowIndex].Cells[1].Value.ToString(), 
+                        (dgv_tps_list.Rows[e.RowIndex].Cells[2].Value.ToString() == "True") ? "B'1'" : "B'0'", dgv_tps_list.Rows[e.RowIndex].Cells[0].Value.ToString() );
+            if (gConn.State == ConnectionState.Open)
+            {
+                NpgsqlCommand vComm = new NpgsqlCommand(vQuery, gConn);
+                vComm.ExecuteNonQuery();
+            }
+            else TextLog("No connection");
+        }
+
+        private void b_tps_savetp_Click(object sender, EventArgs e)
+        {
+            //  TO copy
+            /*
+            INSERT INTO tp_sec(tp_id, sec_id, accountid, sec_type, hedge_kf, pd_kf, pdtosecid, p2p_kf)
+            (
+                SELECT 20205 AS "tp_id", sec_id, accountid, sec_type, hedge_kf, pd_kf, pdtosecid, p2p_kf from tp_sec WHERE tp_id = 20105
+            )
+            */
+
+            int vtpid = 0;
+            int.TryParse(tb_tps_id.Text, out vtpid);
+            if (vtpid > 0)
+            {
+                string vQuery = String.Format("select tps_add_tp({0}, '{1}', {2}, {3}, {4})", vtpid, tb_tps_name.Text, (cb_tps_active.Checked ? "B'1'" : "B'0'"), 
+                                    (cb_tps_params.Checked ? cb_tps_copyfrom.SelectedValue : 0), (cb_tps_struct.Checked ? cb_tps_copyfrom.SelectedValue : 0));
+                TextLog("{0}", vQuery);
+                if (gConn.State == ConnectionState.Open)
+                {
+                    NpgsqlCommand vComm = new NpgsqlCommand(vQuery, gConn);
+                    vComm.ExecuteNonQuery();
+                }
+                else TextLog("No connection");
+                TPListShow();
+            }
+            else
+            {
+                TextLog("TP Id incorrect");
+            }
+        }
     }
 
 
