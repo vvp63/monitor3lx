@@ -121,7 +121,7 @@ namespace monitor3lx.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("15432")]
+        [global::System.Configuration.DefaultSettingValueAttribute("15435")]
         public int PGlocalport {
             get {
                 return ((int)(this["PGlocalport"]));

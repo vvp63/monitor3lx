@@ -27,7 +27,7 @@
       <Value Profile="(Default)">5432</Value>
     </Setting>
     <Setting Name="PGlocalport" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">15432</Value>
+      <Value Profile="(Default)">15435</Value>
     </Setting>
     <Setting Name="ApplyCommand" Type="System.String" Scope="User">
       <Value Profile="(Default)">SELECT public.addmessage('monitor', 'mts3', 'i')</Value>

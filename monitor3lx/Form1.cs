@@ -709,21 +709,12 @@ namespace monitor3lx
 
         private void b_tps_savetp_Click(object sender, EventArgs e)
         {
-            //  TO copy
-            /*
-            INSERT INTO tp_sec(tp_id, sec_id, accountid, sec_type, hedge_kf, pd_kf, pdtosecid, p2p_kf)
-            (
-                SELECT 20205 AS "tp_id", sec_id, accountid, sec_type, hedge_kf, pd_kf, pdtosecid, p2p_kf from tp_sec WHERE tp_id = 20105
-            )
-            */
-
             int vtpid = 0;
             int.TryParse(tb_tps_id.Text, out vtpid);
             if (vtpid > 0)
             {
                 string vQuery = String.Format("select tps_add_tp({0}, '{1}', {2}, {3}, {4})", vtpid, tb_tps_name.Text, (cb_tps_active.Checked ? "B'1'" : "B'0'"), 
                                     (cb_tps_params.Checked ? cb_tps_copyfrom.SelectedValue : 0), (cb_tps_struct.Checked ? cb_tps_copyfrom.SelectedValue : 0));
-                TextLog("{0}", vQuery);
                 if (gConn.State == ConnectionState.Open)
                 {
                     NpgsqlCommand vComm = new NpgsqlCommand(vQuery, gConn);
@@ -737,8 +728,122 @@ namespace monitor3lx
                 TextLog("TP Id incorrect");
             }
         }
-    }
 
+        private void tps_tp_enter(object sender, DataGridViewCellEventArgs e)
+        {
+            l_tps_tpid.Text = dgv_tps_list.Rows[e.RowIndex].Cells[0].Value.ToString();
+            string vTpid = dgv_tps_list.Rows[e.RowIndex].Cells[0].Value.ToString();
+            tps_tpsec_reload(vTpid);
+        }
+
+        private void tps_tpsec_reload(string aTpid)
+        {
+            FillDGVByQuery(dgv_tps_tpsec,
+                String.Format("SELECT sec_id, code, accountid, sec_type, hedge_kf, pd_kf, pdcode, p2p_kf FROM public.\"tps_tpsec\" WHERE tp_id = {0}", aTpid));
+            for (int i = 0; i < dgv_tps_tpsec.RowCount; i++)
+            {
+                if (dgv_tps_tpsec.Rows[i].Cells[3].Value.ToString() == "B") dgv_tps_tpsec.Rows[i].DefaultCellStyle.BackColor = Color.LawnGreen;
+                if (dgv_tps_tpsec.Rows[i].Cells[3].Value.ToString() == "P") dgv_tps_tpsec.Rows[i].DefaultCellStyle.BackColor = Color.LightSalmon;
+                if (dgv_tps_tpsec.Rows[i].Cells[3].Value.ToString() == "E") dgv_tps_tpsec.Rows[i].DefaultCellStyle.BackColor = Color.LightSkyBlue;
+            }
+
+            FillCBByQuery(cb_tps_code, "SELECT securityid, code FROM securities ORDER BY code", "securityid", "code");
+            FillCBByQuery(cb_tps_sectype, "SELECT code, type FROM tps_sectypes ORDER BY code", "code", "type");
+            FillCBByQuery(cb_tps_acc, "SELECT id, acc FROM tps_accs ORDER BY id", "id", "acc");
+            FillCBByQuery(cb_tps_pdfor, String.Format("SELECT sec_id, code FROM public.\"tps_tpsec\" WHERE tp_id = {0}", aTpid), "sec_id", "code");
+        }
+
+        private void tps_tpsec_enter(object sender, DataGridViewCellEventArgs e)
+        {
+            cb_tps_code.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[0].Value.ToString();
+            cb_tps_acc.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[2].Value.ToString();
+            cb_tps_sectype.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[3].Value.ToString();
+            cb_tps_pdfor.SelectedItem = dgv_tps_tpsec.Rows[e.RowIndex].Cells[6].Value.ToString();
+
+            tb_tps_hedgekf.Text = dgv_tps_tpsec.Rows[e.RowIndex].Cells[4].Value.ToString();
+            tb_tps_pdkf.Text = dgv_tps_tpsec.Rows[e.RowIndex].Cells[5].Value.ToString();
+            tb_tps_p2pkf.Text = dgv_tps_tpsec.Rows[e.RowIndex].Cells[7].Value.ToString();
+        }
+
+        private void tps_activate_pd(object sender, EventArgs e)
+        {
+            cb_tps_pdfor.Enabled = (cb_tps_sectype.SelectedValue.ToString() == "P");
+        }
+
+        private void b_tps_addupdate_click(object sender, EventArgs e)
+        {
+            int vTpId = 0; int.TryParse(l_tps_tpid.Text, out vTpId);
+            int vSecId = 0; int.TryParse(cb_tps_code.SelectedValue.ToString(), out vSecId);
+            int vAccId = 0; int.TryParse(cb_tps_acc.SelectedValue.ToString(), out vAccId);
+            int vPdtosecid = 0; if (cb_tps_pdfor.Enabled) int.TryParse(cb_tps_pdfor.SelectedValue.ToString(), out vPdtosecid);
+            float vHedgeKf = 0; float.TryParse(tb_tps_hedgekf.Text, out vHedgeKf);
+            float vPdKf = 0; float.TryParse(tb_tps_pdkf.Text, out vPdKf);
+            float vP2pKf = 0; float.TryParse(tb_tps_p2pkf.Text, out vP2pKf);
+
+            bool vAct = true;
+            if (cb_tps_sectype.SelectedValue.ToString() == "B")
+            {
+                DialogResult dialogResult = MessageBox.Show("Only one Base security allowed! All others will be replaced!", "Are You sure?", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes) vAct = false;
+            }
+            if (cb_tps_sectype.SelectedValue.ToString() == "E")
+            {
+                DialogResult dialogResult = MessageBox.Show("Only one Etalon security allowed! All others will be replaced!", "Are You sure?", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes) vAct = false;
+            }
+            if (cb_tps_sectype.SelectedValue.ToString() == "P")
+            {
+                DialogResult dialogResult = MessageBox.Show(String.Format("Only one Pricedriver for security {0} allowed! All others will be replaced!", vPdtosecid), "Are You sure?", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes) vAct = false;
+            }
+
+            if (vAct) {
+                if ((vTpId > 0) && (vSecId > 0) && (vAccId > 0))
+                {
+                    string vQuery = String.Format("select tps_addupdate_tpsec({0}, {1}, {2}, '{3}', {4}, {5}, {6}, {7})",
+                                            vTpId, vSecId, vAccId, cb_tps_sectype.SelectedValue.ToString(),
+                                            vHedgeKf.ToString().Replace(',', '.'), vPdKf.ToString().Replace(',', '.'), vPdtosecid, vP2pKf.ToString().Replace(',', '.'));
+                    if (gConn.State == ConnectionState.Open)
+                    {
+                        NpgsqlCommand vComm = new NpgsqlCommand(vQuery, gConn);
+                        vComm.ExecuteNonQuery();
+                        tps_tpsec_reload(l_tps_tpid.Text);
+                    }
+                    else TextLog("No connection");
+                }
+                else
+                {
+                    TextLog("TP, security or account undefined");
+                }
+                tps_tpsec_reload(l_tps_tpid.Text);
+            }
+
+        }
+
+
+        private void b_tps_delete_click(object sender, EventArgs e)
+        {
+            int vTpId = 0; int.TryParse(l_tps_tpid.Text, out vTpId);
+            int vSecId = 0; int.TryParse(cb_tps_code.SelectedValue.ToString(), out vSecId);
+            int vAccId = 0; int.TryParse(cb_tps_acc.SelectedValue.ToString(), out vAccId);
+            DialogResult dialogResult = MessageBox.Show(String.Format("Deleting {0} ({1}) from {2}", cb_tps_code.Text, vAccId, vTpId),
+                                                        "Delete security from tradepair?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                string vQuery = String.Format("select tps_addupdate_tpsec({0}, {1}, {2}, 'D', 0, 0, 0, 0)", vTpId, vSecId, vAccId);
+                if (gConn.State == ConnectionState.Open)
+                {
+                    NpgsqlCommand vComm = new NpgsqlCommand(vQuery, gConn);
+                    vComm.ExecuteNonQuery();
+                    tps_tpsec_reload(l_tps_tpid.Text);
+                }
+                else TextLog("No connection");
+            }           
+        }
+
+
+
+    }
 
 
 
