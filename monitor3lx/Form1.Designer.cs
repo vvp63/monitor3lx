@@ -102,7 +102,17 @@
             this.b_CurrPos = new System.Windows.Forms.Button();
             this.tabControl_Main = new System.Windows.Forms.TabControl();
             this.t_TPStruct = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.l_tps_upload = new System.Windows.Forms.Label();
+            this.cb_tps_acc1 = new System.Windows.Forms.ComboBox();
+            this.l_tps_acc1 = new System.Windows.Forms.Label();
+            this.l_tps_tpid1 = new System.Windows.Forms.Label();
+            this.l_tps_tmp2 = new System.Windows.Forms.Label();
+            this.dgv_tps_hedgekf = new System.Windows.Forms.DataGridView();
+            this.Column_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_hedgekf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p_tps_sec = new System.Windows.Forms.Panel();
+            this.b_tps_delete = new System.Windows.Forms.Button();
             this.b_tps_addupdate = new System.Windows.Forms.Button();
             this.tb_tps_p2pkf = new System.Windows.Forms.TextBox();
             this.l_tps_p2pkf = new System.Windows.Forms.Label();
@@ -133,7 +143,7 @@
             this.b_tps_savetp = new System.Windows.Forms.Button();
             this.cb_tps_active = new System.Windows.Forms.CheckBox();
             this.dgv_tps_list = new System.Windows.Forms.DataGridView();
-            this.b_tps_delete = new System.Windows.Forms.Button();
+            this.b_tps_import = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.pan_top.SuspendLayout();
             this.pan_Connect.SuspendLayout();
@@ -157,6 +167,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTPBalances)).BeginInit();
             this.tabControl_Main.SuspendLayout();
             this.t_TPStruct.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_hedgekf)).BeginInit();
             this.p_tps_sec.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_tpsec)).BeginInit();
             this.p_tps_tp.SuspendLayout();
@@ -1000,6 +1012,8 @@
             // t_TPStruct
             // 
             this.t_TPStruct.BackColor = System.Drawing.Color.Gainsboro;
+            this.t_TPStruct.Controls.Add(this.panel1);
+            this.t_TPStruct.Controls.Add(this.dgv_tps_hedgekf);
             this.t_TPStruct.Controls.Add(this.p_tps_sec);
             this.t_TPStruct.Controls.Add(this.dgv_tps_tpsec);
             this.t_TPStruct.Controls.Add(this.p_tps_tp);
@@ -1010,6 +1024,92 @@
             this.t_TPStruct.TabIndex = 6;
             this.t_TPStruct.Text = "Tradepairs Structure";
             this.t_TPStruct.Enter += new System.EventHandler(this.TPStructEnter);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.b_tps_import);
+            this.panel1.Controls.Add(this.l_tps_upload);
+            this.panel1.Controls.Add(this.cb_tps_acc1);
+            this.panel1.Controls.Add(this.l_tps_acc1);
+            this.panel1.Controls.Add(this.l_tps_tpid1);
+            this.panel1.Controls.Add(this.l_tps_tmp2);
+            this.panel1.Location = new System.Drawing.Point(1005, 373);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(298, 118);
+            this.panel1.TabIndex = 17;
+            // 
+            // l_tps_upload
+            // 
+            this.l_tps_upload.AutoSize = true;
+            this.l_tps_upload.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_tps_upload.ForeColor = System.Drawing.Color.Maroon;
+            this.l_tps_upload.Location = new System.Drawing.Point(12, 8);
+            this.l_tps_upload.Name = "l_tps_upload";
+            this.l_tps_upload.Size = new System.Drawing.Size(168, 16);
+            this.l_tps_upload.TabIndex = 19;
+            this.l_tps_upload.Text = "Upload hedge portfolio";
+            // 
+            // cb_tps_acc1
+            // 
+            this.cb_tps_acc1.FormattingEnabled = true;
+            this.cb_tps_acc1.Location = new System.Drawing.Point(157, 55);
+            this.cb_tps_acc1.Name = "cb_tps_acc1";
+            this.cb_tps_acc1.Size = new System.Drawing.Size(121, 21);
+            this.cb_tps_acc1.TabIndex = 18;
+            // 
+            // l_tps_acc1
+            // 
+            this.l_tps_acc1.AutoSize = true;
+            this.l_tps_acc1.Location = new System.Drawing.Point(9, 59);
+            this.l_tps_acc1.Name = "l_tps_acc1";
+            this.l_tps_acc1.Size = new System.Drawing.Size(142, 13);
+            this.l_tps_acc1.TabIndex = 17;
+            this.l_tps_acc1.Text = "Account for hedge securities";
+            // 
+            // l_tps_tpid1
+            // 
+            this.l_tps_tpid1.AutoSize = true;
+            this.l_tps_tpid1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_tps_tpid1.Location = new System.Drawing.Point(95, 37);
+            this.l_tps_tpid1.Name = "l_tps_tpid1";
+            this.l_tps_tpid1.Size = new System.Drawing.Size(14, 13);
+            this.l_tps_tpid1.TabIndex = 18;
+            this.l_tps_tpid1.Text = "0";
+            // 
+            // l_tps_tmp2
+            // 
+            this.l_tps_tmp2.AutoSize = true;
+            this.l_tps_tmp2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_tps_tmp2.Location = new System.Drawing.Point(9, 38);
+            this.l_tps_tmp2.Name = "l_tps_tmp2";
+            this.l_tps_tmp2.Size = new System.Drawing.Size(76, 13);
+            this.l_tps_tmp2.TabIndex = 17;
+            this.l_tps_tmp2.Text = "Tradepair Id";
+            // 
+            // dgv_tps_hedgekf
+            // 
+            this.dgv_tps_hedgekf.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            this.dgv_tps_hedgekf.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_tps_hedgekf.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column_code,
+            this.Column_hedgekf});
+            this.dgv_tps_hedgekf.Location = new System.Drawing.Point(1005, 8);
+            this.dgv_tps_hedgekf.Name = "dgv_tps_hedgekf";
+            this.dgv_tps_hedgekf.RowHeadersWidth = 20;
+            this.dgv_tps_hedgekf.Size = new System.Drawing.Size(298, 359);
+            this.dgv_tps_hedgekf.TabIndex = 16;
+            this.dgv_tps_hedgekf.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tps_buffer_insert);
+            // 
+            // Column_code
+            // 
+            this.Column_code.HeaderText = "Code";
+            this.Column_code.Name = "Column_code";
+            // 
+            // Column_hedgekf
+            // 
+            this.Column_hedgekf.HeaderText = "HedgeKf";
+            this.Column_hedgekf.Name = "Column_hedgekf";
             // 
             // p_tps_sec
             // 
@@ -1036,6 +1136,17 @@
             this.p_tps_sec.Name = "p_tps_sec";
             this.p_tps_sec.Size = new System.Drawing.Size(609, 116);
             this.p_tps_sec.TabIndex = 15;
+            // 
+            // b_tps_delete
+            // 
+            this.b_tps_delete.BackColor = System.Drawing.Color.Silver;
+            this.b_tps_delete.Location = new System.Drawing.Point(461, 82);
+            this.b_tps_delete.Name = "b_tps_delete";
+            this.b_tps_delete.Size = new System.Drawing.Size(122, 26);
+            this.b_tps_delete.TabIndex = 16;
+            this.b_tps_delete.Text = "Delete";
+            this.b_tps_delete.UseVisualStyleBackColor = false;
+            this.b_tps_delete.Click += new System.EventHandler(this.b_tps_delete_click);
             // 
             // b_tps_addupdate
             // 
@@ -1322,16 +1433,16 @@
             this.dgv_tps_list.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.tps_tp_endedit);
             this.dgv_tps_list.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.tps_tp_enter);
             // 
-            // b_tps_delete
+            // b_tps_import
             // 
-            this.b_tps_delete.BackColor = System.Drawing.Color.Silver;
-            this.b_tps_delete.Location = new System.Drawing.Point(461, 82);
-            this.b_tps_delete.Name = "b_tps_delete";
-            this.b_tps_delete.Size = new System.Drawing.Size(122, 26);
-            this.b_tps_delete.TabIndex = 16;
-            this.b_tps_delete.Text = "Delete";
-            this.b_tps_delete.UseVisualStyleBackColor = false;
-            this.b_tps_delete.Click += new System.EventHandler(this.b_tps_delete_click);
+            this.b_tps_import.BackColor = System.Drawing.Color.Silver;
+            this.b_tps_import.Location = new System.Drawing.Point(12, 82);
+            this.b_tps_import.Name = "b_tps_import";
+            this.b_tps_import.Size = new System.Drawing.Size(122, 26);
+            this.b_tps_import.TabIndex = 17;
+            this.b_tps_import.Text = "<< Import";
+            this.b_tps_import.UseVisualStyleBackColor = false;
+            this.b_tps_import.Click += new System.EventHandler(this.tps_import_click);
             // 
             // Form1
             // 
@@ -1375,6 +1486,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTPBalances)).EndInit();
             this.tabControl_Main.ResumeLayout(false);
             this.t_TPStruct.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_hedgekf)).EndInit();
             this.p_tps_sec.ResumeLayout(false);
             this.p_tps_sec.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_tpsec)).EndInit();
@@ -1493,6 +1607,16 @@
         private System.Windows.Forms.TextBox tb_tps_hedgekf;
         private System.Windows.Forms.Label l_tps_hedgekf;
         private System.Windows.Forms.Button b_tps_delete;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label l_tps_upload;
+        private System.Windows.Forms.ComboBox cb_tps_acc1;
+        private System.Windows.Forms.Label l_tps_acc1;
+        private System.Windows.Forms.Label l_tps_tpid1;
+        private System.Windows.Forms.Label l_tps_tmp2;
+        private System.Windows.Forms.DataGridView dgv_tps_hedgekf;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_code;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_hedgekf;
+        private System.Windows.Forms.Button b_tps_import;
     }
 }
 

@@ -732,6 +732,7 @@ namespace monitor3lx
         private void tps_tp_enter(object sender, DataGridViewCellEventArgs e)
         {
             l_tps_tpid.Text = dgv_tps_list.Rows[e.RowIndex].Cells[0].Value.ToString();
+            l_tps_tpid1.Text = dgv_tps_list.Rows[e.RowIndex].Cells[0].Value.ToString();
             string vTpid = dgv_tps_list.Rows[e.RowIndex].Cells[0].Value.ToString();
             tps_tpsec_reload(vTpid);
         }
@@ -750,6 +751,7 @@ namespace monitor3lx
             FillCBByQuery(cb_tps_code, "SELECT securityid, code FROM securities ORDER BY code", "securityid", "code");
             FillCBByQuery(cb_tps_sectype, "SELECT code, type FROM tps_sectypes ORDER BY code", "code", "type");
             FillCBByQuery(cb_tps_acc, "SELECT id, acc FROM tps_accs ORDER BY id", "id", "acc");
+            FillCBByQuery(cb_tps_acc1, "SELECT id, acc FROM tps_accs ORDER BY id", "id", "acc");
             FillCBByQuery(cb_tps_pdfor, String.Format("SELECT sec_id, code FROM public.\"tps_tpsec\" WHERE tp_id = {0}", aTpid), "sec_id", "code");
         }
 
@@ -840,6 +842,71 @@ namespace monitor3lx
                 else TextLog("No connection");
             }           
         }
+
+        private void tps_buffer_insert(object sender, KeyEventArgs e)
+        {
+            if ((e.Control) && (e.KeyCode == Keys.V))
+            {
+                int vStartRI = dgv_tps_hedgekf.SelectedCells[0].RowIndex;
+                int vStartCI = dgv_tps_hedgekf.SelectedCells[0].ColumnIndex;
+                TextLog("Ctrl-V pos [{0} {1}]", vStartRI, vStartCI);
+                String[] vCbLines = Clipboard.GetText().Split('\n');
+                dgv_tps_hedgekf.RowCount = vStartRI + vCbLines.Length;
+                for (int i = 0; i < vCbLines.Length; i++)
+                {
+                    String[] vCbItems = vCbLines[i].Split('\t');
+                    for (int j = 0; j < vCbItems.Length; j++)
+                    {
+                        TextLog("Clipboard item [{0} {1}] {2}", i, j, vCbItems[j]);
+                        int vCurrRI = vStartRI + i;
+                        int vCurrCI = vStartCI + j;
+                        if ((vCurrRI < dgv_tps_hedgekf.RowCount) && (vCurrCI < dgv_tps_hedgekf.ColumnCount))
+                            dgv_tps_hedgekf.Rows[vCurrRI].Cells[vCurrCI].Value = vCbItems[j];
+                    }
+                }
+            }              
+        }
+
+        private void tps_import_click(object sender, EventArgs e)
+        {
+            int vTpId = 0; int.TryParse(l_tps_tpid1.Text, out vTpId);
+            int vAccId = 0; int.TryParse(cb_tps_acc1.SelectedValue.ToString(), out vAccId);
+            DialogResult dialogResult = MessageBox.Show(String.Format("This will delete all hedge securities from traidpair {0}", vTpId),
+                                                        "Import securities?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (gConn.State == ConnectionState.Open)
+                {
+
+                    NpgsqlCommand vComm = new NpgsqlCommand(String.Format("select tps_backup_tpsec({0})", vTpId), gConn);
+                    vComm.ExecuteNonQuery();
+                    for (int i = 0; i < dgv_tps_hedgekf.RowCount; i++)
+                    {
+                        string vcode = dgv_tps_hedgekf.Rows[i].Cells[0].Value.ToString();
+                        if (vcode.Length > 0)
+                        {
+                            float vHedgeKf = 0; float.TryParse(dgv_tps_hedgekf.Rows[i].Cells[1].Value.ToString(), out vHedgeKf);
+                            string vQuery = String.Format("select tps_import_security({0}, {1}, '{2}', {3})", vTpId, vAccId, vcode, vHedgeKf.ToString().Replace(',', '.'));
+                            TextLog(vQuery);
+                            string vQres = "";
+                            NpgsqlCommand vCommSec = new NpgsqlCommand(vQuery, gConn);
+                            NpgsqlDataReader vReader = vCommSec.ExecuteReader();
+                            while (vReader.Read())
+                            {
+                                vQres = vReader[0].ToString();
+                            }
+                            vReader.Close();
+                            if (vQres != "0") dgv_tps_hedgekf.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
+                            else dgv_tps_hedgekf.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                        }
+                    }
+                }
+                else TextLog("No connection");
+                tps_tpsec_reload(vTpId.ToString());
+            }
+
+        }
+
 
 
 
