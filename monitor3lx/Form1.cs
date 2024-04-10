@@ -880,7 +880,7 @@ namespace monitor3lx
 
                     NpgsqlCommand vComm = new NpgsqlCommand(String.Format("select tps_backup_tpsec({0})", vTpId), gConn);
                     vComm.ExecuteNonQuery();
-                    for (int i = 0; i < dgv_tps_hedgekf.RowCount; i++)
+                    for (int i = 0; i < dgv_tps_hedgekf.RowCount - 1; i++)
                     {
                         string vcode = dgv_tps_hedgekf.Rows[i].Cells[0].Value.ToString();
                         if (vcode.Length > 0)
@@ -907,8 +907,35 @@ namespace monitor3lx
 
         }
 
+        private void tps_restore_click(object sender, EventArgs e)
+        {
+            int vTpId = 0; int.TryParse(l_tps_tpid1.Text, out vTpId);
+            DialogResult dialogResult = MessageBox.Show(String.Format("This will restore hedge securities in traidpair {0}", vTpId),
+                                            "Restore?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (gConn.State == ConnectionState.Open)
+                {
+                    NpgsqlCommand vComm = new NpgsqlCommand(String.Format("select tps_restore_tpsec({0})", vTpId), gConn);
+                    vComm.ExecuteNonQuery();
+                }
+                else TextLog("No connection");
+                tps_tpsec_reload(vTpId.ToString());
+            }
+        }
 
-
+        private void mess_send(object sender, EventArgs e)
+        {
+            if (gConn.State == ConnectionState.Open)
+            {
+                string vMessage = (sender as Button).Text;
+                TextLog("Sending {0} message", vMessage);
+                string vQuery = monitor3lx.Properties.Settings.Default.ApplyCommand.Replace("'i'", String.Format("'{0}'", vMessage));
+                NpgsqlCommand vComm = new NpgsqlCommand(monitor3lx.Properties.Settings.Default.ApplyCommand, gConn);
+                vComm.ExecuteNonQuery();
+            }
+            else TextLog("No connection");         
+        }
 
     }
 

@@ -103,6 +103,7 @@
             this.tabControl_Main = new System.Windows.Forms.TabControl();
             this.t_TPStruct = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.b_tps_import = new System.Windows.Forms.Button();
             this.l_tps_upload = new System.Windows.Forms.Label();
             this.cb_tps_acc1 = new System.Windows.Forms.ComboBox();
             this.l_tps_acc1 = new System.Windows.Forms.Label();
@@ -143,7 +144,13 @@
             this.b_tps_savetp = new System.Windows.Forms.Button();
             this.cb_tps_active = new System.Windows.Forms.CheckBox();
             this.dgv_tps_list = new System.Windows.Forms.DataGridView();
-            this.b_tps_import = new System.Windows.Forms.Button();
+            this.b_tps_restore = new System.Windows.Forms.Button();
+            this.p_Commands = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.b_mess_start = new System.Windows.Forms.Button();
+            this.b_mess_stop = new System.Windows.Forms.Button();
+            this.b_mess_stophedge = new System.Windows.Forms.Button();
+            this.b_mess_starthedge = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.pan_top.SuspendLayout();
             this.pan_Connect.SuspendLayout();
@@ -173,6 +180,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_tpsec)).BeginInit();
             this.p_tps_tp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_list)).BeginInit();
+            this.p_Commands.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbLog
@@ -888,6 +896,7 @@
             // t_CurrPos
             // 
             this.t_CurrPos.BackColor = System.Drawing.Color.Gainsboro;
+            this.t_CurrPos.Controls.Add(this.p_Commands);
             this.t_CurrPos.Controls.Add(this.l_OrdersDelays);
             this.t_CurrPos.Controls.Add(this.dgvDelays);
             this.t_CurrPos.Controls.Add(this.b_FullBall);
@@ -907,7 +916,7 @@
             // 
             this.l_OrdersDelays.AutoSize = true;
             this.l_OrdersDelays.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.l_OrdersDelays.Location = new System.Drawing.Point(6, 342);
+            this.l_OrdersDelays.Location = new System.Drawing.Point(5, 344);
             this.l_OrdersDelays.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_OrdersDelays.Name = "l_OrdersDelays";
             this.l_OrdersDelays.Size = new System.Drawing.Size(99, 17);
@@ -924,13 +933,13 @@
             this.dgvDelays.Name = "dgvDelays";
             this.dgvDelays.RowHeadersWidth = 5;
             this.dgvDelays.RowTemplate.Height = 24;
-            this.dgvDelays.Size = new System.Drawing.Size(569, 122);
+            this.dgvDelays.Size = new System.Drawing.Size(470, 122);
             this.dgvDelays.TabIndex = 6;
             // 
             // b_FullBall
             // 
             this.b_FullBall.BackColor = System.Drawing.Color.White;
-            this.b_FullBall.Location = new System.Drawing.Point(1406, 9);
+            this.b_FullBall.Location = new System.Drawing.Point(1105, 6);
             this.b_FullBall.Margin = new System.Windows.Forms.Padding(2);
             this.b_FullBall.Name = "b_FullBall";
             this.b_FullBall.Size = new System.Drawing.Size(112, 28);
@@ -944,22 +953,22 @@
             this.dgvFullBalance.AllowUserToAddRows = false;
             this.dgvFullBalance.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvFullBalance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFullBalance.Location = new System.Drawing.Point(598, 41);
+            this.dgvFullBalance.Location = new System.Drawing.Point(495, 38);
             this.dgvFullBalance.Margin = new System.Windows.Forms.Padding(2);
             this.dgvFullBalance.Name = "dgvFullBalance";
             this.dgvFullBalance.RowHeadersWidth = 4;
             this.dgvFullBalance.RowTemplate.Height = 24;
-            this.dgvFullBalance.Size = new System.Drawing.Size(923, 447);
+            this.dgvFullBalance.Size = new System.Drawing.Size(722, 447);
             this.dgvFullBalance.TabIndex = 4;
             // 
             // l_TP_Balance
             // 
             this.l_TP_Balance.AutoSize = true;
-            this.l_TP_Balance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.l_TP_Balance.Location = new System.Drawing.Point(594, 20);
+            this.l_TP_Balance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_TP_Balance.Location = new System.Drawing.Point(492, 15);
             this.l_TP_Balance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.l_TP_Balance.Name = "l_TP_Balance";
-            this.l_TP_Balance.Size = new System.Drawing.Size(85, 17);
+            this.l_TP_Balance.Size = new System.Drawing.Size(94, 16);
             this.l_TP_Balance.TabIndex = 3;
             this.l_TP_Balance.Text = "Full Balance";
             // 
@@ -973,7 +982,7 @@
             this.dgvTPBalances.Name = "dgvTPBalances";
             this.dgvTPBalances.RowHeadersWidth = 4;
             this.dgvTPBalances.RowTemplate.Height = 24;
-            this.dgvTPBalances.Size = new System.Drawing.Size(569, 302);
+            this.dgvTPBalances.Size = new System.Drawing.Size(470, 302);
             this.dgvTPBalances.TabIndex = 2;
             this.dgvTPBalances.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Click_TP_Balance);
             // 
@@ -1028,16 +1037,28 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.b_tps_restore);
             this.panel1.Controls.Add(this.b_tps_import);
             this.panel1.Controls.Add(this.l_tps_upload);
             this.panel1.Controls.Add(this.cb_tps_acc1);
             this.panel1.Controls.Add(this.l_tps_acc1);
             this.panel1.Controls.Add(this.l_tps_tpid1);
             this.panel1.Controls.Add(this.l_tps_tmp2);
-            this.panel1.Location = new System.Drawing.Point(1005, 373);
+            this.panel1.Location = new System.Drawing.Point(1013, 373);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(298, 118);
             this.panel1.TabIndex = 17;
+            // 
+            // b_tps_import
+            // 
+            this.b_tps_import.BackColor = System.Drawing.Color.Silver;
+            this.b_tps_import.Location = new System.Drawing.Point(12, 82);
+            this.b_tps_import.Name = "b_tps_import";
+            this.b_tps_import.Size = new System.Drawing.Size(122, 26);
+            this.b_tps_import.TabIndex = 17;
+            this.b_tps_import.Text = "<< Import";
+            this.b_tps_import.UseVisualStyleBackColor = false;
+            this.b_tps_import.Click += new System.EventHandler(this.tps_import_click);
             // 
             // l_tps_upload
             // 
@@ -1094,7 +1115,7 @@
             this.dgv_tps_hedgekf.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column_code,
             this.Column_hedgekf});
-            this.dgv_tps_hedgekf.Location = new System.Drawing.Point(1005, 8);
+            this.dgv_tps_hedgekf.Location = new System.Drawing.Point(1013, 8);
             this.dgv_tps_hedgekf.Name = "dgv_tps_hedgekf";
             this.dgv_tps_hedgekf.RowHeadersWidth = 20;
             this.dgv_tps_hedgekf.Size = new System.Drawing.Size(298, 359);
@@ -1132,7 +1153,7 @@
             this.p_tps_sec.Controls.Add(this.l_tps_code);
             this.p_tps_sec.Controls.Add(this.l_tps_tpid);
             this.p_tps_sec.Controls.Add(this.l_tps_tmp1);
-            this.p_tps_sec.Location = new System.Drawing.Point(323, 373);
+            this.p_tps_sec.Location = new System.Drawing.Point(386, 373);
             this.p_tps_sec.Name = "p_tps_sec";
             this.p_tps_sec.Size = new System.Drawing.Size(609, 116);
             this.p_tps_sec.TabIndex = 15;
@@ -1161,7 +1182,7 @@
             // 
             // tb_tps_p2pkf
             // 
-            this.tb_tps_p2pkf.Location = new System.Drawing.Point(346, 57);
+            this.tb_tps_p2pkf.Location = new System.Drawing.Point(346, 56);
             this.tb_tps_p2pkf.Name = "tb_tps_p2pkf";
             this.tb_tps_p2pkf.Size = new System.Drawing.Size(83, 20);
             this.tb_tps_p2pkf.TabIndex = 15;
@@ -1212,7 +1233,7 @@
             this.cb_tps_acc.FormattingEnabled = true;
             this.cb_tps_acc.Location = new System.Drawing.Point(193, 29);
             this.cb_tps_acc.Name = "cb_tps_acc";
-            this.cb_tps_acc.Size = new System.Drawing.Size(121, 21);
+            this.cb_tps_acc.Size = new System.Drawing.Size(124, 21);
             this.cb_tps_acc.TabIndex = 9;
             // 
             // l_tps_acc
@@ -1227,7 +1248,7 @@
             // cb_tps_pdfor
             // 
             this.cb_tps_pdfor.FormattingEnabled = true;
-            this.cb_tps_pdfor.Location = new System.Drawing.Point(461, 29);
+            this.cb_tps_pdfor.Location = new System.Drawing.Point(477, 29);
             this.cb_tps_pdfor.Name = "cb_tps_pdfor";
             this.cb_tps_pdfor.Size = new System.Drawing.Size(122, 21);
             this.cb_tps_pdfor.TabIndex = 7;
@@ -1235,7 +1256,7 @@
             // l_tps_pdto
             // 
             this.l_tps_pdto.AutoSize = true;
-            this.l_tps_pdto.Location = new System.Drawing.Point(423, 33);
+            this.l_tps_pdto.Location = new System.Drawing.Point(434, 33);
             this.l_tps_pdto.Name = "l_tps_pdto";
             this.l_tps_pdto.Size = new System.Drawing.Size(37, 13);
             this.l_tps_pdto.TabIndex = 6;
@@ -1244,7 +1265,7 @@
             // cb_tps_sectype
             // 
             this.cb_tps_sectype.FormattingEnabled = true;
-            this.cb_tps_sectype.Location = new System.Drawing.Point(346, 30);
+            this.cb_tps_sectype.Location = new System.Drawing.Point(356, 30);
             this.cb_tps_sectype.Name = "cb_tps_sectype";
             this.cb_tps_sectype.Size = new System.Drawing.Size(74, 21);
             this.cb_tps_sectype.TabIndex = 5;
@@ -1253,7 +1274,7 @@
             // l_tps_sectype
             // 
             this.l_tps_sectype.AutoSize = true;
-            this.l_tps_sectype.Location = new System.Drawing.Point(314, 32);
+            this.l_tps_sectype.Location = new System.Drawing.Point(323, 32);
             this.l_tps_sectype.Name = "l_tps_sectype";
             this.l_tps_sectype.Size = new System.Drawing.Size(31, 13);
             this.l_tps_sectype.TabIndex = 4;
@@ -1302,7 +1323,7 @@
             this.dgv_tps_tpsec.AllowUserToDeleteRows = false;
             this.dgv_tps_tpsec.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgv_tps_tpsec.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_tps_tpsec.Location = new System.Drawing.Point(323, 8);
+            this.dgv_tps_tpsec.Location = new System.Drawing.Point(386, 8);
             this.dgv_tps_tpsec.Name = "dgv_tps_tpsec";
             this.dgv_tps_tpsec.RowHeadersWidth = 5;
             this.dgv_tps_tpsec.Size = new System.Drawing.Size(609, 359);
@@ -1324,7 +1345,7 @@
             this.p_tps_tp.Controls.Add(this.cb_tps_active);
             this.p_tps_tp.Location = new System.Drawing.Point(5, 373);
             this.p_tps_tp.Name = "p_tps_tp";
-            this.p_tps_tp.Size = new System.Drawing.Size(299, 116);
+            this.p_tps_tp.Size = new System.Drawing.Size(375, 116);
             this.p_tps_tp.TabIndex = 12;
             // 
             // l_tps_addedit
@@ -1340,7 +1361,7 @@
             // cb_tps_struct
             // 
             this.cb_tps_struct.AutoSize = true;
-            this.cb_tps_struct.Location = new System.Drawing.Point(223, 67);
+            this.cb_tps_struct.Location = new System.Drawing.Point(300, 59);
             this.cb_tps_struct.Name = "cb_tps_struct";
             this.cb_tps_struct.Size = new System.Drawing.Size(69, 17);
             this.cb_tps_struct.TabIndex = 11;
@@ -1351,7 +1372,7 @@
             // cb_tps_params
             // 
             this.cb_tps_params.AutoSize = true;
-            this.cb_tps_params.Location = new System.Drawing.Point(223, 50);
+            this.cb_tps_params.Location = new System.Drawing.Point(240, 59);
             this.cb_tps_params.Name = "cb_tps_params";
             this.cb_tps_params.Size = new System.Drawing.Size(61, 17);
             this.cb_tps_params.TabIndex = 10;
@@ -1362,13 +1383,13 @@
             // 
             this.tb_tps_id.Location = new System.Drawing.Point(146, 4);
             this.tb_tps_id.Name = "tb_tps_id";
-            this.tb_tps_id.Size = new System.Drawing.Size(68, 20);
+            this.tb_tps_id.Size = new System.Drawing.Size(111, 20);
             this.tb_tps_id.TabIndex = 3;
             // 
             // cb_tps_copyfrom
             // 
             this.cb_tps_copyfrom.FormattingEnabled = true;
-            this.cb_tps_copyfrom.Location = new System.Drawing.Point(42, 56);
+            this.cb_tps_copyfrom.Location = new System.Drawing.Point(62, 56);
             this.cb_tps_copyfrom.Name = "cb_tps_copyfrom";
             this.cb_tps_copyfrom.Size = new System.Drawing.Size(172, 21);
             this.cb_tps_copyfrom.TabIndex = 9;
@@ -1387,15 +1408,15 @@
             this.l_tps_copy.AutoSize = true;
             this.l_tps_copy.Location = new System.Drawing.Point(6, 59);
             this.l_tps_copy.Name = "l_tps_copy";
-            this.l_tps_copy.Size = new System.Drawing.Size(31, 13);
+            this.l_tps_copy.Size = new System.Drawing.Size(54, 13);
             this.l_tps_copy.TabIndex = 8;
-            this.l_tps_copy.Text = "Copy";
+            this.l_tps_copy.Text = "Copy from";
             // 
             // tb_tps_name
             // 
             this.tb_tps_name.Location = new System.Drawing.Point(42, 30);
             this.tb_tps_name.Name = "tb_tps_name";
-            this.tb_tps_name.Size = new System.Drawing.Size(172, 20);
+            this.tb_tps_name.Size = new System.Drawing.Size(327, 20);
             this.tb_tps_name.TabIndex = 5;
             // 
             // b_tps_savetp
@@ -1412,7 +1433,7 @@
             // cb_tps_active
             // 
             this.cb_tps_active.AutoSize = true;
-            this.cb_tps_active.Location = new System.Drawing.Point(223, 7);
+            this.cb_tps_active.Location = new System.Drawing.Point(300, 7);
             this.cb_tps_active.Name = "cb_tps_active";
             this.cb_tps_active.Size = new System.Drawing.Size(64, 17);
             this.cb_tps_active.TabIndex = 6;
@@ -1428,21 +1449,85 @@
             this.dgv_tps_list.Location = new System.Drawing.Point(5, 8);
             this.dgv_tps_list.Name = "dgv_tps_list";
             this.dgv_tps_list.RowHeadersWidth = 5;
-            this.dgv_tps_list.Size = new System.Drawing.Size(299, 359);
+            this.dgv_tps_list.Size = new System.Drawing.Size(375, 359);
             this.dgv_tps_list.TabIndex = 0;
             this.dgv_tps_list.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.tps_tp_endedit);
             this.dgv_tps_list.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.tps_tp_enter);
             // 
-            // b_tps_import
+            // b_tps_restore
             // 
-            this.b_tps_import.BackColor = System.Drawing.Color.Silver;
-            this.b_tps_import.Location = new System.Drawing.Point(12, 82);
-            this.b_tps_import.Name = "b_tps_import";
-            this.b_tps_import.Size = new System.Drawing.Size(122, 26);
-            this.b_tps_import.TabIndex = 17;
-            this.b_tps_import.Text = "<< Import";
-            this.b_tps_import.UseVisualStyleBackColor = false;
-            this.b_tps_import.Click += new System.EventHandler(this.tps_import_click);
+            this.b_tps_restore.BackColor = System.Drawing.Color.Silver;
+            this.b_tps_restore.Location = new System.Drawing.Point(157, 82);
+            this.b_tps_restore.Name = "b_tps_restore";
+            this.b_tps_restore.Size = new System.Drawing.Size(122, 26);
+            this.b_tps_restore.TabIndex = 20;
+            this.b_tps_restore.Text = "Restore >>";
+            this.b_tps_restore.UseVisualStyleBackColor = false;
+            this.b_tps_restore.Click += new System.EventHandler(this.tps_restore_click);
+            // 
+            // p_Commands
+            // 
+            this.p_Commands.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.p_Commands.Controls.Add(this.b_mess_stophedge);
+            this.p_Commands.Controls.Add(this.b_mess_starthedge);
+            this.p_Commands.Controls.Add(this.b_mess_stop);
+            this.p_Commands.Controls.Add(this.b_mess_start);
+            this.p_Commands.Controls.Add(this.label1);
+            this.p_Commands.Location = new System.Drawing.Point(1238, 6);
+            this.p_Commands.Name = "p_Commands";
+            this.p_Commands.Size = new System.Drawing.Size(280, 480);
+            this.p_Commands.TabIndex = 8;
+            this.p_Commands.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(63, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(133, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Message to MTS3";
+            // 
+            // b_mess_start
+            // 
+            this.b_mess_start.Location = new System.Drawing.Point(10, 37);
+            this.b_mess_start.Name = "b_mess_start";
+            this.b_mess_start.Size = new System.Drawing.Size(125, 23);
+            this.b_mess_start.TabIndex = 1;
+            this.b_mess_start.Text = "start";
+            this.b_mess_start.UseVisualStyleBackColor = true;
+            this.b_mess_start.Click += new System.EventHandler(this.mess_send);
+            // 
+            // b_mess_stop
+            // 
+            this.b_mess_stop.Location = new System.Drawing.Point(145, 37);
+            this.b_mess_stop.Name = "b_mess_stop";
+            this.b_mess_stop.Size = new System.Drawing.Size(125, 23);
+            this.b_mess_stop.TabIndex = 2;
+            this.b_mess_stop.Text = "stop";
+            this.b_mess_stop.UseVisualStyleBackColor = true;
+            this.b_mess_stop.Click += new System.EventHandler(this.mess_send);
+            // 
+            // b_mess_stophedge
+            // 
+            this.b_mess_stophedge.Location = new System.Drawing.Point(145, 75);
+            this.b_mess_stophedge.Name = "b_mess_stophedge";
+            this.b_mess_stophedge.Size = new System.Drawing.Size(125, 23);
+            this.b_mess_stophedge.TabIndex = 4;
+            this.b_mess_stophedge.Text = "stophedge";
+            this.b_mess_stophedge.UseVisualStyleBackColor = true;
+            this.b_mess_stophedge.Click += new System.EventHandler(this.mess_send);
+            // 
+            // b_mess_starthedge
+            // 
+            this.b_mess_starthedge.Location = new System.Drawing.Point(10, 75);
+            this.b_mess_starthedge.Name = "b_mess_starthedge";
+            this.b_mess_starthedge.Size = new System.Drawing.Size(125, 23);
+            this.b_mess_starthedge.TabIndex = 3;
+            this.b_mess_starthedge.Text = "starthedge";
+            this.b_mess_starthedge.UseVisualStyleBackColor = true;
+            this.b_mess_starthedge.Click += new System.EventHandler(this.mess_send);
             // 
             // Form1
             // 
@@ -1495,6 +1580,8 @@
             this.p_tps_tp.ResumeLayout(false);
             this.p_tps_tp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_list)).EndInit();
+            this.p_Commands.ResumeLayout(false);
+            this.p_Commands.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1617,6 +1704,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_code;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_hedgekf;
         private System.Windows.Forms.Button b_tps_import;
+        private System.Windows.Forms.Button b_tps_restore;
+        private System.Windows.Forms.Panel p_Commands;
+        private System.Windows.Forms.Button b_mess_start;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button b_mess_stophedge;
+        private System.Windows.Forms.Button b_mess_starthedge;
+        private System.Windows.Forms.Button b_mess_stop;
     }
 }
 
