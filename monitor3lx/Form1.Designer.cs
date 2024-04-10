@@ -93,6 +93,12 @@
             this.lFR_Date = new System.Windows.Forms.Label();
             this.dtpFR_date = new System.Windows.Forms.DateTimePicker();
             this.t_CurrPos = new System.Windows.Forms.TabPage();
+            this.p_Commands = new System.Windows.Forms.Panel();
+            this.b_mess_stophedge = new System.Windows.Forms.Button();
+            this.b_mess_starthedge = new System.Windows.Forms.Button();
+            this.b_mess_stop = new System.Windows.Forms.Button();
+            this.b_mess_start = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.l_OrdersDelays = new System.Windows.Forms.Label();
             this.dgvDelays = new System.Windows.Forms.DataGridView();
             this.b_FullBall = new System.Windows.Forms.Button();
@@ -103,6 +109,7 @@
             this.tabControl_Main = new System.Windows.Forms.TabControl();
             this.t_TPStruct = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.b_tps_restore = new System.Windows.Forms.Button();
             this.b_tps_import = new System.Windows.Forms.Button();
             this.l_tps_upload = new System.Windows.Forms.Label();
             this.cb_tps_acc1 = new System.Windows.Forms.ComboBox();
@@ -144,13 +151,6 @@
             this.b_tps_savetp = new System.Windows.Forms.Button();
             this.cb_tps_active = new System.Windows.Forms.CheckBox();
             this.dgv_tps_list = new System.Windows.Forms.DataGridView();
-            this.b_tps_restore = new System.Windows.Forms.Button();
-            this.p_Commands = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.b_mess_start = new System.Windows.Forms.Button();
-            this.b_mess_stop = new System.Windows.Forms.Button();
-            this.b_mess_stophedge = new System.Windows.Forms.Button();
-            this.b_mess_starthedge = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.pan_top.SuspendLayout();
             this.pan_Connect.SuspendLayout();
@@ -169,6 +169,7 @@
             this.t_Finres.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFR_Reval)).BeginInit();
             this.t_CurrPos.SuspendLayout();
+            this.p_Commands.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDelays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFullBalance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTPBalances)).BeginInit();
@@ -180,7 +181,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_tpsec)).BeginInit();
             this.p_tps_tp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_list)).BeginInit();
-            this.p_Commands.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbLog
@@ -912,6 +912,70 @@
             this.t_CurrPos.TabIndex = 0;
             this.t_CurrPos.Text = "Current Positions";
             // 
+            // p_Commands
+            // 
+            this.p_Commands.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.p_Commands.Controls.Add(this.b_mess_stophedge);
+            this.p_Commands.Controls.Add(this.b_mess_starthedge);
+            this.p_Commands.Controls.Add(this.b_mess_stop);
+            this.p_Commands.Controls.Add(this.b_mess_start);
+            this.p_Commands.Controls.Add(this.label1);
+            this.p_Commands.Location = new System.Drawing.Point(1238, 6);
+            this.p_Commands.Name = "p_Commands";
+            this.p_Commands.Size = new System.Drawing.Size(280, 480);
+            this.p_Commands.TabIndex = 8;
+            this.p_Commands.Visible = false;
+            // 
+            // b_mess_stophedge
+            // 
+            this.b_mess_stophedge.Location = new System.Drawing.Point(145, 75);
+            this.b_mess_stophedge.Name = "b_mess_stophedge";
+            this.b_mess_stophedge.Size = new System.Drawing.Size(125, 23);
+            this.b_mess_stophedge.TabIndex = 4;
+            this.b_mess_stophedge.Text = "stophedge";
+            this.b_mess_stophedge.UseVisualStyleBackColor = true;
+            this.b_mess_stophedge.Click += new System.EventHandler(this.mess_send);
+            // 
+            // b_mess_starthedge
+            // 
+            this.b_mess_starthedge.Location = new System.Drawing.Point(10, 75);
+            this.b_mess_starthedge.Name = "b_mess_starthedge";
+            this.b_mess_starthedge.Size = new System.Drawing.Size(125, 23);
+            this.b_mess_starthedge.TabIndex = 3;
+            this.b_mess_starthedge.Text = "starthedge";
+            this.b_mess_starthedge.UseVisualStyleBackColor = true;
+            this.b_mess_starthedge.Click += new System.EventHandler(this.mess_send);
+            // 
+            // b_mess_stop
+            // 
+            this.b_mess_stop.Location = new System.Drawing.Point(145, 37);
+            this.b_mess_stop.Name = "b_mess_stop";
+            this.b_mess_stop.Size = new System.Drawing.Size(125, 23);
+            this.b_mess_stop.TabIndex = 2;
+            this.b_mess_stop.Text = "stop";
+            this.b_mess_stop.UseVisualStyleBackColor = true;
+            this.b_mess_stop.Click += new System.EventHandler(this.mess_send);
+            // 
+            // b_mess_start
+            // 
+            this.b_mess_start.Location = new System.Drawing.Point(10, 37);
+            this.b_mess_start.Name = "b_mess_start";
+            this.b_mess_start.Size = new System.Drawing.Size(125, 23);
+            this.b_mess_start.TabIndex = 1;
+            this.b_mess_start.Text = "start";
+            this.b_mess_start.UseVisualStyleBackColor = true;
+            this.b_mess_start.Click += new System.EventHandler(this.mess_send);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(63, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(133, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Message to MTS3";
+            // 
             // l_OrdersDelays
             // 
             this.l_OrdersDelays.AutoSize = true;
@@ -1044,10 +1108,21 @@
             this.panel1.Controls.Add(this.l_tps_acc1);
             this.panel1.Controls.Add(this.l_tps_tpid1);
             this.panel1.Controls.Add(this.l_tps_tmp2);
-            this.panel1.Location = new System.Drawing.Point(1013, 373);
+            this.panel1.Location = new System.Drawing.Point(1113, 373);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(298, 118);
             this.panel1.TabIndex = 17;
+            // 
+            // b_tps_restore
+            // 
+            this.b_tps_restore.BackColor = System.Drawing.Color.Silver;
+            this.b_tps_restore.Location = new System.Drawing.Point(157, 82);
+            this.b_tps_restore.Name = "b_tps_restore";
+            this.b_tps_restore.Size = new System.Drawing.Size(122, 26);
+            this.b_tps_restore.TabIndex = 20;
+            this.b_tps_restore.Text = "Restore >>";
+            this.b_tps_restore.UseVisualStyleBackColor = false;
+            this.b_tps_restore.Click += new System.EventHandler(this.tps_restore_click);
             // 
             // b_tps_import
             // 
@@ -1115,7 +1190,7 @@
             this.dgv_tps_hedgekf.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column_code,
             this.Column_hedgekf});
-            this.dgv_tps_hedgekf.Location = new System.Drawing.Point(1013, 8);
+            this.dgv_tps_hedgekf.Location = new System.Drawing.Point(1113, 8);
             this.dgv_tps_hedgekf.Name = "dgv_tps_hedgekf";
             this.dgv_tps_hedgekf.RowHeadersWidth = 20;
             this.dgv_tps_hedgekf.Size = new System.Drawing.Size(298, 359);
@@ -1155,13 +1230,13 @@
             this.p_tps_sec.Controls.Add(this.l_tps_tmp1);
             this.p_tps_sec.Location = new System.Drawing.Point(386, 373);
             this.p_tps_sec.Name = "p_tps_sec";
-            this.p_tps_sec.Size = new System.Drawing.Size(609, 116);
+            this.p_tps_sec.Size = new System.Drawing.Size(699, 116);
             this.p_tps_sec.TabIndex = 15;
             // 
             // b_tps_delete
             // 
             this.b_tps_delete.BackColor = System.Drawing.Color.Silver;
-            this.b_tps_delete.Location = new System.Drawing.Point(461, 82);
+            this.b_tps_delete.Location = new System.Drawing.Point(565, 82);
             this.b_tps_delete.Name = "b_tps_delete";
             this.b_tps_delete.Size = new System.Drawing.Size(122, 26);
             this.b_tps_delete.TabIndex = 16;
@@ -1182,15 +1257,15 @@
             // 
             // tb_tps_p2pkf
             // 
-            this.tb_tps_p2pkf.Location = new System.Drawing.Point(346, 56);
+            this.tb_tps_p2pkf.Location = new System.Drawing.Point(404, 55);
             this.tb_tps_p2pkf.Name = "tb_tps_p2pkf";
-            this.tb_tps_p2pkf.Size = new System.Drawing.Size(83, 20);
+            this.tb_tps_p2pkf.Size = new System.Drawing.Size(95, 20);
             this.tb_tps_p2pkf.TabIndex = 15;
             // 
             // l_tps_p2pkf
             // 
             this.l_tps_p2pkf.AutoSize = true;
-            this.l_tps_p2pkf.Location = new System.Drawing.Point(304, 60);
+            this.l_tps_p2pkf.Location = new System.Drawing.Point(362, 59);
             this.l_tps_p2pkf.Name = "l_tps_p2pkf";
             this.l_tps_p2pkf.Size = new System.Drawing.Size(40, 13);
             this.l_tps_p2pkf.TabIndex = 14;
@@ -1198,15 +1273,15 @@
             // 
             // tb_tps_pdkf
             // 
-            this.tb_tps_pdkf.Location = new System.Drawing.Point(194, 56);
+            this.tb_tps_pdkf.Location = new System.Drawing.Point(217, 55);
             this.tb_tps_pdkf.Name = "tb_tps_pdkf";
-            this.tb_tps_pdkf.Size = new System.Drawing.Size(83, 20);
+            this.tb_tps_pdkf.Size = new System.Drawing.Size(103, 20);
             this.tb_tps_pdkf.TabIndex = 13;
             // 
             // l_tps_pfkf
             // 
             this.l_tps_pfkf.AutoSize = true;
-            this.l_tps_pfkf.Location = new System.Drawing.Point(157, 59);
+            this.l_tps_pfkf.Location = new System.Drawing.Point(180, 58);
             this.l_tps_pfkf.Name = "l_tps_pfkf";
             this.l_tps_pfkf.Size = new System.Drawing.Size(35, 13);
             this.l_tps_pfkf.TabIndex = 12;
@@ -1216,7 +1291,7 @@
             // 
             this.tb_tps_hedgekf.Location = new System.Drawing.Point(61, 56);
             this.tb_tps_hedgekf.Name = "tb_tps_hedgekf";
-            this.tb_tps_hedgekf.Size = new System.Drawing.Size(83, 20);
+            this.tb_tps_hedgekf.Size = new System.Drawing.Size(101, 20);
             this.tb_tps_hedgekf.TabIndex = 11;
             // 
             // l_tps_hedgekf
@@ -1231,15 +1306,15 @@
             // cb_tps_acc
             // 
             this.cb_tps_acc.FormattingEnabled = true;
-            this.cb_tps_acc.Location = new System.Drawing.Point(193, 29);
+            this.cb_tps_acc.Location = new System.Drawing.Point(217, 29);
             this.cb_tps_acc.Name = "cb_tps_acc";
-            this.cb_tps_acc.Size = new System.Drawing.Size(124, 21);
+            this.cb_tps_acc.Size = new System.Drawing.Size(145, 21);
             this.cb_tps_acc.TabIndex = 9;
             // 
             // l_tps_acc
             // 
             this.l_tps_acc.AutoSize = true;
-            this.l_tps_acc.Location = new System.Drawing.Point(146, 33);
+            this.l_tps_acc.Location = new System.Drawing.Point(168, 33);
             this.l_tps_acc.Name = "l_tps_acc";
             this.l_tps_acc.Size = new System.Drawing.Size(47, 13);
             this.l_tps_acc.TabIndex = 8;
@@ -1248,15 +1323,15 @@
             // cb_tps_pdfor
             // 
             this.cb_tps_pdfor.FormattingEnabled = true;
-            this.cb_tps_pdfor.Location = new System.Drawing.Point(477, 29);
+            this.cb_tps_pdfor.Location = new System.Drawing.Point(548, 30);
             this.cb_tps_pdfor.Name = "cb_tps_pdfor";
-            this.cb_tps_pdfor.Size = new System.Drawing.Size(122, 21);
+            this.cb_tps_pdfor.Size = new System.Drawing.Size(139, 21);
             this.cb_tps_pdfor.TabIndex = 7;
             // 
             // l_tps_pdto
             // 
             this.l_tps_pdto.AutoSize = true;
-            this.l_tps_pdto.Location = new System.Drawing.Point(434, 33);
+            this.l_tps_pdto.Location = new System.Drawing.Point(506, 33);
             this.l_tps_pdto.Name = "l_tps_pdto";
             this.l_tps_pdto.Size = new System.Drawing.Size(37, 13);
             this.l_tps_pdto.TabIndex = 6;
@@ -1265,16 +1340,16 @@
             // cb_tps_sectype
             // 
             this.cb_tps_sectype.FormattingEnabled = true;
-            this.cb_tps_sectype.Location = new System.Drawing.Point(356, 30);
+            this.cb_tps_sectype.Location = new System.Drawing.Point(404, 30);
             this.cb_tps_sectype.Name = "cb_tps_sectype";
-            this.cb_tps_sectype.Size = new System.Drawing.Size(74, 21);
+            this.cb_tps_sectype.Size = new System.Drawing.Size(95, 21);
             this.cb_tps_sectype.TabIndex = 5;
             this.cb_tps_sectype.SelectedValueChanged += new System.EventHandler(this.tps_activate_pd);
             // 
             // l_tps_sectype
             // 
             this.l_tps_sectype.AutoSize = true;
-            this.l_tps_sectype.Location = new System.Drawing.Point(323, 32);
+            this.l_tps_sectype.Location = new System.Drawing.Point(368, 32);
             this.l_tps_sectype.Name = "l_tps_sectype";
             this.l_tps_sectype.Size = new System.Drawing.Size(31, 13);
             this.l_tps_sectype.TabIndex = 4;
@@ -1285,7 +1360,7 @@
             this.cb_tps_code.FormattingEnabled = true;
             this.cb_tps_code.Location = new System.Drawing.Point(37, 29);
             this.cb_tps_code.Name = "cb_tps_code";
-            this.cb_tps_code.Size = new System.Drawing.Size(107, 21);
+            this.cb_tps_code.Size = new System.Drawing.Size(125, 21);
             this.cb_tps_code.TabIndex = 3;
             // 
             // l_tps_code
@@ -1326,7 +1401,7 @@
             this.dgv_tps_tpsec.Location = new System.Drawing.Point(386, 8);
             this.dgv_tps_tpsec.Name = "dgv_tps_tpsec";
             this.dgv_tps_tpsec.RowHeadersWidth = 5;
-            this.dgv_tps_tpsec.Size = new System.Drawing.Size(609, 359);
+            this.dgv_tps_tpsec.Size = new System.Drawing.Size(699, 359);
             this.dgv_tps_tpsec.TabIndex = 13;
             this.dgv_tps_tpsec.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tps_tpsec_enter);
             // 
@@ -1454,81 +1529,6 @@
             this.dgv_tps_list.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.tps_tp_endedit);
             this.dgv_tps_list.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.tps_tp_enter);
             // 
-            // b_tps_restore
-            // 
-            this.b_tps_restore.BackColor = System.Drawing.Color.Silver;
-            this.b_tps_restore.Location = new System.Drawing.Point(157, 82);
-            this.b_tps_restore.Name = "b_tps_restore";
-            this.b_tps_restore.Size = new System.Drawing.Size(122, 26);
-            this.b_tps_restore.TabIndex = 20;
-            this.b_tps_restore.Text = "Restore >>";
-            this.b_tps_restore.UseVisualStyleBackColor = false;
-            this.b_tps_restore.Click += new System.EventHandler(this.tps_restore_click);
-            // 
-            // p_Commands
-            // 
-            this.p_Commands.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.p_Commands.Controls.Add(this.b_mess_stophedge);
-            this.p_Commands.Controls.Add(this.b_mess_starthedge);
-            this.p_Commands.Controls.Add(this.b_mess_stop);
-            this.p_Commands.Controls.Add(this.b_mess_start);
-            this.p_Commands.Controls.Add(this.label1);
-            this.p_Commands.Location = new System.Drawing.Point(1238, 6);
-            this.p_Commands.Name = "p_Commands";
-            this.p_Commands.Size = new System.Drawing.Size(280, 480);
-            this.p_Commands.TabIndex = 8;
-            this.p_Commands.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(63, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Message to MTS3";
-            // 
-            // b_mess_start
-            // 
-            this.b_mess_start.Location = new System.Drawing.Point(10, 37);
-            this.b_mess_start.Name = "b_mess_start";
-            this.b_mess_start.Size = new System.Drawing.Size(125, 23);
-            this.b_mess_start.TabIndex = 1;
-            this.b_mess_start.Text = "start";
-            this.b_mess_start.UseVisualStyleBackColor = true;
-            this.b_mess_start.Click += new System.EventHandler(this.mess_send);
-            // 
-            // b_mess_stop
-            // 
-            this.b_mess_stop.Location = new System.Drawing.Point(145, 37);
-            this.b_mess_stop.Name = "b_mess_stop";
-            this.b_mess_stop.Size = new System.Drawing.Size(125, 23);
-            this.b_mess_stop.TabIndex = 2;
-            this.b_mess_stop.Text = "stop";
-            this.b_mess_stop.UseVisualStyleBackColor = true;
-            this.b_mess_stop.Click += new System.EventHandler(this.mess_send);
-            // 
-            // b_mess_stophedge
-            // 
-            this.b_mess_stophedge.Location = new System.Drawing.Point(145, 75);
-            this.b_mess_stophedge.Name = "b_mess_stophedge";
-            this.b_mess_stophedge.Size = new System.Drawing.Size(125, 23);
-            this.b_mess_stophedge.TabIndex = 4;
-            this.b_mess_stophedge.Text = "stophedge";
-            this.b_mess_stophedge.UseVisualStyleBackColor = true;
-            this.b_mess_stophedge.Click += new System.EventHandler(this.mess_send);
-            // 
-            // b_mess_starthedge
-            // 
-            this.b_mess_starthedge.Location = new System.Drawing.Point(10, 75);
-            this.b_mess_starthedge.Name = "b_mess_starthedge";
-            this.b_mess_starthedge.Size = new System.Drawing.Size(125, 23);
-            this.b_mess_starthedge.TabIndex = 3;
-            this.b_mess_starthedge.Text = "starthedge";
-            this.b_mess_starthedge.UseVisualStyleBackColor = true;
-            this.b_mess_starthedge.Click += new System.EventHandler(this.mess_send);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1566,6 +1566,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvFR_Reval)).EndInit();
             this.t_CurrPos.ResumeLayout(false);
             this.t_CurrPos.PerformLayout();
+            this.p_Commands.ResumeLayout(false);
+            this.p_Commands.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDelays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFullBalance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTPBalances)).EndInit();
@@ -1580,8 +1582,6 @@
             this.p_tps_tp.ResumeLayout(false);
             this.p_tps_tp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_list)).EndInit();
-            this.p_Commands.ResumeLayout(false);
-            this.p_Commands.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
