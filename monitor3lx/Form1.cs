@@ -102,11 +102,30 @@ namespace monitor3lx
                     b_BC_Set.Enabled = false;
                     cb_BC_Autoreload.Enabled = false;
                     tb_BC_Interval.Enabled = false;
+                    b_BC_newcountset.Enabled = false;
+                    cb_CB_newautoreload.Enabled = false;
+                    tb_BC_intervalnew.Enabled = false;
                     b_Add.Enabled = false;
                     tbFR_Addition.Enabled = false;
                     bFR_AddSave.Enabled = false;
                     b_exp_itteration.Enabled = false;
+                    pan_ExpRed.Visible = false;
                     cb_AutoExp.Enabled = false;
+                    p_Commands.Visible = false;
+                    b_tps_savetp.Enabled = false;
+                    b_tps_addupdate.Enabled = false;
+                    b_tps_delete.Enabled = false;
+                    b_copysec.Enabled = false;
+                    b_tps_import.Enabled = false;
+                    b_tps_restore.Enabled = false;
+                    p_tps_copysec.Visible = false;
+                    p_tps_import.Visible = false;
+                    p_tps_sec.Visible = false;
+                    p_tps_tp.Visible = false;
+                    dgv_tps_list.ReadOnly = true;
+                    dgv_tps_tpsec.Enabled = false;
+                    dgv_tps_hedgekf.Enabled = false;
+                    b_copysec.Enabled = false;
                 }
 
             }
@@ -487,6 +506,78 @@ namespace monitor3lx
             Apply_proc();
         }
 
+        // 
+
+        //      --------------------------  New BasisCounter    ------------------------------------------  //
+
+        private void BC_countnew_click(object sender, EventArgs e)
+        {
+            BC_Count_new();
+        }
+
+
+        private void b_countsetnew_click(object sender, EventArgs e)
+        {
+            BC_Count_new();
+            BC_Set_new();
+            Apply_proc();
+        }
+
+        private void BC_Count_new()
+        {
+            FillDGVByQuery(dgv_BC_new, "SELECT * FROM \"public\".\"Basis_Count_New\"");
+        }
+
+
+        private void BC_Set_new()
+        {
+            for (int j = 0; j < dgv_BC_new.Rows.Count; j++)
+            {
+                string vTpid = dgv_BC_new.Rows[j].Cells[0].Value.ToString();
+                string vBdir = dgv_BC_new.Rows[j].Cells[10].Value.ToString();
+                string vBinv = dgv_BC_new.Rows[j].Cells[10].Value.ToString();
+                string vQuoteStr = dgv_BC_new.Rows[j].Cells[3].Value.ToString();
+                float vQuote = 0;
+                float.TryParse(vQuoteStr, out vQuote);
+                TextLog("{0}   dir={1} inv={2}  quote = {3}", vTpid, vBdir, vBinv, vQuote);
+                if (vQuote > 0)
+                {
+                    for (int i = 0; i < dgvTP.Rows.Count; i++)
+                    {
+                        if (dgvTP.Rows[i].Cells[0].Value.ToString() == vTpid)
+                        {
+                            dgvTP.Rows[i].Cells[5].Value = vBdir;
+                            dgvTP.Rows[i].Cells[6].Value = vBinv;
+                        }
+                        SaveTPLine(i);
+                    }
+                }
+                else dgv_BC_new.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
+            }
+        }
+
+
+        private void BC_Autoreload_checknew(object sender, EventArgs e)
+        {
+            //
+            tb_BC_intervalnew.Enabled = !cb_CB_newautoreload.Checked;
+            int vInterval = 60;
+            int.TryParse(tb_BC_intervalnew.Text, out vInterval);
+            timer_BC_new.Interval = vInterval * 1000;
+            timer_BC_new.Enabled = cb_CB_newautoreload.Checked;
+        }
+
+        private void BC_Timer_New_Work(object sender, EventArgs e)
+        {
+            BC_Count_new();
+            BC_Set_new();
+            Apply_proc();
+        }
+
+
+        // 
+        //      --------------------------  Basis counter params    ------------------------------------------  //
+
         private void BC_Enter(object sender, EventArgs e)
         {
             FillDGVByQuery(dgv_BC_Params, "SELECT \"TPId\", \"RepoPerc\", \"DivSumm\", \"Spread\" FROM \"public\".\"tp_basis_count\" WHERE \"IsActive\" = B'1' ORDER BY \"TPId\"");
@@ -685,13 +776,20 @@ namespace monitor3lx
         private void TPStructEnter(object sender, EventArgs e)
         {
             TPListShow();
+            SecToCopyShow();
         }
 
         private void TPListShow()
         {
             FillDGVByQuery(dgv_tps_list, "SELECT tpid, name, isactive FROM tp");
             FillCBByQuery(cb_tps_copyfrom, "SELECT tpid, name FROM tp", "tpid", "name");
-            dgv_tps_list.Columns[0].ReadOnly = true;
+            dgv_tps_list.Columns[0].ReadOnly = true;   
+        }
+
+        private void SecToCopyShow()
+        {
+            FillCBByQuery(cb_sec_to_copy, "SELECT securityid, '('|| securityid::text || ') ' || code AS fullname FROM securities ORDER BY securityid", "securityid", "fullname");
+           // FillCBByQuery(cb_sec_to_copy, "SELECT securityid, code FROM securities ORDER BY code", "securityid", "code");
         }
 
         private void tps_tp_endedit(object sender, DataGridViewCellEventArgs e)
@@ -924,6 +1022,62 @@ namespace monitor3lx
             }
         }
 
+
+
+        private void cb_tps_sectocopy_changed(object sender, EventArgs e)
+        {
+            // 
+            string[] vidcode = cb_sec_to_copy.Text.Split(' ');
+            if  (vidcode.Length > 1)
+            {
+                tb_newid.Text = vidcode[0].Substring(1, vidcode[0].Length - 2);
+                tb_new_code.Text = vidcode[1];
+            }
+
+        }
+
+        private void b_tps_copysec_click(object sender, EventArgs e)
+        {
+            int vsecid = 0;
+            int.TryParse(tb_newid.Text, out vsecid);
+            if (vsecid > 0)
+            {
+                if (gConn.State == ConnectionState.Open)
+                {
+                    int vseccount = 1;
+                    string vQuery = String.Format("SELECT count(*) FROM securities WHERE securityid = {0} OR code ='{1}'", vsecid, tb_new_code.Text);
+                    NpgsqlCommand vComm = new NpgsqlCommand(vQuery, gConn);
+                    NpgsqlDataReader vReader = vComm.ExecuteReader();
+                    while (vReader.Read())
+                    {
+                        int.TryParse(vReader[0].ToString(), out vseccount);
+                    }
+                    vReader.Close();
+                    if (vseccount > 0)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("SecurityId or code already exists!", "Security copy error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        string vCopyQuery = String.Format("SELECT copysecurity({0}, {1}, '{2}')", cb_sec_to_copy.SelectedValue.ToString(), vsecid, tb_new_code.Text);
+                        TextLog(vCopyQuery);
+                        NpgsqlCommand vCopyComm = new NpgsqlCommand(vCopyQuery, gConn);
+                        vCopyComm.ExecuteNonQuery();
+                        DialogResult dialogResult = MessageBox.Show(String.Format("Security {0} {1} added", vsecid, tb_new_code.Text), "Security copy ok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        SecToCopyShow();
+                    }
+                }
+            }
+            else {
+                DialogResult dialogResult = MessageBox.Show("Security id is incorrect", "SecurityId error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
+        // -------------------- Messages ------------------------------------------
+
         private void mess_send(object sender, EventArgs e)
         {
             if (gConn.State == ConnectionState.Open)
@@ -931,15 +1085,17 @@ namespace monitor3lx
                 string vMessage = (sender as Button).Text;
                 TextLog("Sending {0} message", vMessage);
                 string vQuery = monitor3lx.Properties.Settings.Default.ApplyCommand.Replace("'i'", String.Format("'{0}'", vMessage));
-                NpgsqlCommand vComm = new NpgsqlCommand(monitor3lx.Properties.Settings.Default.ApplyCommand, gConn);
+                NpgsqlCommand vComm = new NpgsqlCommand(vQuery, gConn);
                 vComm.ExecuteNonQuery();
             }
             else TextLog("No connection");         
         }
 
+
+
+
+
     }
-
-
 
 
 

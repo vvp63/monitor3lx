@@ -53,6 +53,15 @@
             this.dgv_Exp_Robotsett = new System.Windows.Forms.DataGridView();
             this.b_exp_state = new System.Windows.Forms.Button();
             this.t_BasisCount = new System.Windows.Forms.TabPage();
+            this.l_ar_secnew = new System.Windows.Forms.Label();
+            this.tb_BC_intervalnew = new System.Windows.Forms.TextBox();
+            this.cb_CB_newautoreload = new System.Windows.Forms.CheckBox();
+            this.b_BC_newcountset = new System.Windows.Forms.Button();
+            this.l_BC_oldcounter = new System.Windows.Forms.Label();
+            this.b_BC_newcount = new System.Windows.Forms.Button();
+            this.l_BC_new = new System.Windows.Forms.Label();
+            this.dgv_BC_new = new System.Windows.Forms.DataGridView();
+            this.l_ar_sec = new System.Windows.Forms.Label();
             this.b_loadParams = new System.Windows.Forms.Button();
             this.dgv_LParams = new System.Windows.Forms.DataGridView();
             this.dgv_BC_Params = new System.Windows.Forms.DataGridView();
@@ -108,7 +117,15 @@
             this.b_CurrPos = new System.Windows.Forms.Button();
             this.tabControl_Main = new System.Windows.Forms.TabControl();
             this.t_TPStruct = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.p_tps_copysec = new System.Windows.Forms.Panel();
+            this.b_copysec = new System.Windows.Forms.Button();
+            this.tb_new_code = new System.Windows.Forms.TextBox();
+            this.l_newcode = new System.Windows.Forms.Label();
+            this.tb_newid = new System.Windows.Forms.TextBox();
+            this.l_newid = new System.Windows.Forms.Label();
+            this.cb_sec_to_copy = new System.Windows.Forms.ComboBox();
+            this.l_copy_sec = new System.Windows.Forms.Label();
+            this.p_tps_import = new System.Windows.Forms.Panel();
             this.b_tps_restore = new System.Windows.Forms.Button();
             this.b_tps_import = new System.Windows.Forms.Button();
             this.l_tps_upload = new System.Windows.Forms.Label();
@@ -151,6 +168,7 @@
             this.b_tps_savetp = new System.Windows.Forms.Button();
             this.cb_tps_active = new System.Windows.Forms.CheckBox();
             this.dgv_tps_list = new System.Windows.Forms.DataGridView();
+            this.timer_BC_new = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.pan_top.SuspendLayout();
             this.pan_Connect.SuspendLayout();
@@ -158,6 +176,7 @@
             this.pan_ExpRed.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Exp_Robotsett)).BeginInit();
             this.t_BasisCount.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_new)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_LParams)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_Params)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).BeginInit();
@@ -175,7 +194,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTPBalances)).BeginInit();
             this.tabControl_Main.SuspendLayout();
             this.t_TPStruct.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.p_tps_copysec.SuspendLayout();
+            this.p_tps_import.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_hedgekf)).BeginInit();
             this.p_tps_sec.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_tpsec)).BeginInit();
@@ -436,6 +456,15 @@
             // t_BasisCount
             // 
             this.t_BasisCount.BackColor = System.Drawing.Color.Gainsboro;
+            this.t_BasisCount.Controls.Add(this.l_ar_secnew);
+            this.t_BasisCount.Controls.Add(this.tb_BC_intervalnew);
+            this.t_BasisCount.Controls.Add(this.cb_CB_newautoreload);
+            this.t_BasisCount.Controls.Add(this.b_BC_newcountset);
+            this.t_BasisCount.Controls.Add(this.l_BC_oldcounter);
+            this.t_BasisCount.Controls.Add(this.b_BC_newcount);
+            this.t_BasisCount.Controls.Add(this.l_BC_new);
+            this.t_BasisCount.Controls.Add(this.dgv_BC_new);
+            this.t_BasisCount.Controls.Add(this.l_ar_sec);
             this.t_BasisCount.Controls.Add(this.b_loadParams);
             this.t_BasisCount.Controls.Add(this.dgv_LParams);
             this.t_BasisCount.Controls.Add(this.dgv_BC_Params);
@@ -452,10 +481,101 @@
             this.t_BasisCount.Text = "Basis Count";
             this.t_BasisCount.Enter += new System.EventHandler(this.BC_Enter);
             // 
+            // l_ar_secnew
+            // 
+            this.l_ar_secnew.AutoSize = true;
+            this.l_ar_secnew.Location = new System.Drawing.Point(71, 274);
+            this.l_ar_secnew.Name = "l_ar_secnew";
+            this.l_ar_secnew.Size = new System.Drawing.Size(24, 13);
+            this.l_ar_secnew.TabIndex = 17;
+            this.l_ar_secnew.Text = "sec";
+            // 
+            // tb_BC_intervalnew
+            // 
+            this.tb_BC_intervalnew.Location = new System.Drawing.Point(11, 271);
+            this.tb_BC_intervalnew.Name = "tb_BC_intervalnew";
+            this.tb_BC_intervalnew.Size = new System.Drawing.Size(54, 20);
+            this.tb_BC_intervalnew.TabIndex = 16;
+            this.tb_BC_intervalnew.Text = "60";
+            // 
+            // cb_CB_newautoreload
+            // 
+            this.cb_CB_newautoreload.AutoSize = true;
+            this.cb_CB_newautoreload.Location = new System.Drawing.Point(11, 248);
+            this.cb_CB_newautoreload.Name = "cb_CB_newautoreload";
+            this.cb_CB_newautoreload.Size = new System.Drawing.Size(106, 17);
+            this.cb_CB_newautoreload.TabIndex = 15;
+            this.cb_CB_newautoreload.Text = "Autoreload every";
+            this.cb_CB_newautoreload.UseVisualStyleBackColor = true;
+            this.cb_CB_newautoreload.CheckStateChanged += new System.EventHandler(this.BC_Autoreload_checknew);
+            // 
+            // b_BC_newcountset
+            // 
+            this.b_BC_newcountset.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.b_BC_newcountset.Location = new System.Drawing.Point(9, 219);
+            this.b_BC_newcountset.Name = "b_BC_newcountset";
+            this.b_BC_newcountset.Size = new System.Drawing.Size(108, 23);
+            this.b_BC_newcountset.TabIndex = 14;
+            this.b_BC_newcountset.Text = "Count and Set";
+            this.b_BC_newcountset.UseVisualStyleBackColor = false;
+            this.b_BC_newcountset.Click += new System.EventHandler(this.b_countsetnew_click);
+            // 
+            // l_BC_oldcounter
+            // 
+            this.l_BC_oldcounter.AutoSize = true;
+            this.l_BC_oldcounter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_BC_oldcounter.Location = new System.Drawing.Point(11, 8);
+            this.l_BC_oldcounter.Name = "l_BC_oldcounter";
+            this.l_BC_oldcounter.Size = new System.Drawing.Size(99, 18);
+            this.l_BC_oldcounter.TabIndex = 13;
+            this.l_BC_oldcounter.Text = "Old Counter";
+            // 
+            // b_BC_newcount
+            // 
+            this.b_BC_newcount.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.b_BC_newcount.Location = new System.Drawing.Point(8, 190);
+            this.b_BC_newcount.Name = "b_BC_newcount";
+            this.b_BC_newcount.Size = new System.Drawing.Size(108, 23);
+            this.b_BC_newcount.TabIndex = 12;
+            this.b_BC_newcount.Text = "Count";
+            this.b_BC_newcount.UseVisualStyleBackColor = false;
+            this.b_BC_newcount.Click += new System.EventHandler(this.BC_countnew_click);
+            // 
+            // l_BC_new
+            // 
+            this.l_BC_new.AutoSize = true;
+            this.l_BC_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_BC_new.Location = new System.Drawing.Point(9, 167);
+            this.l_BC_new.Name = "l_BC_new";
+            this.l_BC_new.Size = new System.Drawing.Size(106, 18);
+            this.l_BC_new.TabIndex = 11;
+            this.l_BC_new.Text = "New Counter";
+            // 
+            // dgv_BC_new
+            // 
+            this.dgv_BC_new.AllowDrop = true;
+            this.dgv_BC_new.AllowUserToAddRows = false;
+            this.dgv_BC_new.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgv_BC_new.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_BC_new.Location = new System.Drawing.Point(125, 167);
+            this.dgv_BC_new.Name = "dgv_BC_new";
+            this.dgv_BC_new.RowHeadersWidth = 5;
+            this.dgv_BC_new.Size = new System.Drawing.Size(1392, 149);
+            this.dgv_BC_new.TabIndex = 10;
+            // 
+            // l_ar_sec
+            // 
+            this.l_ar_sec.AutoSize = true;
+            this.l_ar_sec.Location = new System.Drawing.Point(73, 124);
+            this.l_ar_sec.Name = "l_ar_sec";
+            this.l_ar_sec.Size = new System.Drawing.Size(24, 13);
+            this.l_ar_sec.TabIndex = 9;
+            this.l_ar_sec.Text = "sec";
+            // 
             // b_loadParams
             // 
             this.b_loadParams.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.b_loadParams.Location = new System.Drawing.Point(691, 212);
+            this.b_loadParams.Location = new System.Drawing.Point(691, 322);
             this.b_loadParams.Name = "b_loadParams";
             this.b_loadParams.Size = new System.Drawing.Size(111, 23);
             this.b_loadParams.TabIndex = 8;
@@ -468,10 +588,10 @@
             this.dgv_LParams.AllowUserToAddRows = false;
             this.dgv_LParams.AllowUserToDeleteRows = false;
             this.dgv_LParams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_LParams.Location = new System.Drawing.Point(691, 241);
+            this.dgv_LParams.Location = new System.Drawing.Point(691, 349);
             this.dgv_LParams.Name = "dgv_LParams";
             this.dgv_LParams.RowHeadersWidth = 5;
-            this.dgv_LParams.Size = new System.Drawing.Size(826, 181);
+            this.dgv_LParams.Size = new System.Drawing.Size(826, 140);
             this.dgv_LParams.TabIndex = 7;
             // 
             // dgv_BC_Params
@@ -481,10 +601,10 @@
             this.dgv_BC_Params.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_BC_Params.Cursor = System.Windows.Forms.Cursors.No;
             this.dgv_BC_Params.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dgv_BC_Params.Location = new System.Drawing.Point(11, 241);
+            this.dgv_BC_Params.Location = new System.Drawing.Point(6, 349);
             this.dgv_BC_Params.Name = "dgv_BC_Params";
             this.dgv_BC_Params.RowHeadersWidth = 5;
-            this.dgv_BC_Params.Size = new System.Drawing.Size(659, 181);
+            this.dgv_BC_Params.Size = new System.Drawing.Size(659, 140);
             this.dgv_BC_Params.TabIndex = 6;
             this.dgv_BC_Params.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.BC_EndEdit);
             // 
@@ -492,7 +612,7 @@
             // 
             this.l_BC_Params.AutoSize = true;
             this.l_BC_Params.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.l_BC_Params.Location = new System.Drawing.Point(8, 215);
+            this.l_BC_Params.Location = new System.Drawing.Point(3, 326);
             this.l_BC_Params.Name = "l_BC_Params";
             this.l_BC_Params.Size = new System.Drawing.Size(174, 16);
             this.l_BC_Params.TabIndex = 5;
@@ -501,26 +621,26 @@
             // cb_BC_Autoreload
             // 
             this.cb_BC_Autoreload.AutoSize = true;
-            this.cb_BC_Autoreload.Location = new System.Drawing.Point(1247, 18);
+            this.cb_BC_Autoreload.Location = new System.Drawing.Point(13, 98);
             this.cb_BC_Autoreload.Name = "cb_BC_Autoreload";
-            this.cb_BC_Autoreload.Size = new System.Drawing.Size(173, 17);
+            this.cb_BC_Autoreload.Size = new System.Drawing.Size(106, 17);
             this.cb_BC_Autoreload.TabIndex = 4;
-            this.cb_BC_Autoreload.Text = "Autoreload.   Interval (seconds)";
+            this.cb_BC_Autoreload.Text = "Autoreload every";
             this.cb_BC_Autoreload.UseVisualStyleBackColor = true;
             this.cb_BC_Autoreload.CheckStateChanged += new System.EventHandler(this.BC_Autoreload_check);
             // 
             // tb_BC_Interval
             // 
-            this.tb_BC_Interval.Location = new System.Drawing.Point(1427, 16);
+            this.tb_BC_Interval.Location = new System.Drawing.Point(13, 121);
             this.tb_BC_Interval.Name = "tb_BC_Interval";
-            this.tb_BC_Interval.Size = new System.Drawing.Size(90, 20);
+            this.tb_BC_Interval.Size = new System.Drawing.Size(54, 20);
             this.tb_BC_Interval.TabIndex = 3;
             this.tb_BC_Interval.Text = "60";
             // 
             // b_BC_Set
             // 
             this.b_BC_Set.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.b_BC_Set.Location = new System.Drawing.Point(159, 13);
+            this.b_BC_Set.Location = new System.Drawing.Point(9, 65);
             this.b_BC_Set.Name = "b_BC_Set";
             this.b_BC_Set.Size = new System.Drawing.Size(108, 23);
             this.b_BC_Set.TabIndex = 2;
@@ -531,7 +651,7 @@
             // b_BC_Load
             // 
             this.b_BC_Load.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.b_BC_Load.Location = new System.Drawing.Point(9, 13);
+            this.b_BC_Load.Location = new System.Drawing.Point(9, 36);
             this.b_BC_Load.Name = "b_BC_Load";
             this.b_BC_Load.Size = new System.Drawing.Size(108, 23);
             this.b_BC_Load.TabIndex = 1;
@@ -545,10 +665,10 @@
             this.dgv_BC_settings.AllowUserToAddRows = false;
             this.dgv_BC_settings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgv_BC_settings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_BC_settings.Location = new System.Drawing.Point(8, 42);
+            this.dgv_BC_settings.Location = new System.Drawing.Point(125, 8);
             this.dgv_BC_settings.Name = "dgv_BC_settings";
             this.dgv_BC_settings.RowHeadersWidth = 5;
-            this.dgv_BC_settings.Size = new System.Drawing.Size(1509, 160);
+            this.dgv_BC_settings.Size = new System.Drawing.Size(1392, 149);
             this.dgv_BC_settings.TabIndex = 0;
             // 
             // t_FinresHistory
@@ -924,7 +1044,6 @@
             this.p_Commands.Name = "p_Commands";
             this.p_Commands.Size = new System.Drawing.Size(280, 480);
             this.p_Commands.TabIndex = 8;
-            this.p_Commands.Visible = false;
             // 
             // b_mess_stophedge
             // 
@@ -1085,7 +1204,8 @@
             // t_TPStruct
             // 
             this.t_TPStruct.BackColor = System.Drawing.Color.Gainsboro;
-            this.t_TPStruct.Controls.Add(this.panel1);
+            this.t_TPStruct.Controls.Add(this.p_tps_copysec);
+            this.t_TPStruct.Controls.Add(this.p_tps_import);
             this.t_TPStruct.Controls.Add(this.dgv_tps_hedgekf);
             this.t_TPStruct.Controls.Add(this.p_tps_sec);
             this.t_TPStruct.Controls.Add(this.dgv_tps_tpsec);
@@ -1098,20 +1218,97 @@
             this.t_TPStruct.Text = "Tradepairs Structure";
             this.t_TPStruct.Enter += new System.EventHandler(this.TPStructEnter);
             // 
-            // panel1
+            // p_tps_copysec
             // 
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.b_tps_restore);
-            this.panel1.Controls.Add(this.b_tps_import);
-            this.panel1.Controls.Add(this.l_tps_upload);
-            this.panel1.Controls.Add(this.cb_tps_acc1);
-            this.panel1.Controls.Add(this.l_tps_acc1);
-            this.panel1.Controls.Add(this.l_tps_tpid1);
-            this.panel1.Controls.Add(this.l_tps_tmp2);
-            this.panel1.Location = new System.Drawing.Point(1113, 373);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(298, 118);
-            this.panel1.TabIndex = 17;
+            this.p_tps_copysec.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.p_tps_copysec.Controls.Add(this.b_copysec);
+            this.p_tps_copysec.Controls.Add(this.tb_new_code);
+            this.p_tps_copysec.Controls.Add(this.l_newcode);
+            this.p_tps_copysec.Controls.Add(this.tb_newid);
+            this.p_tps_copysec.Controls.Add(this.l_newid);
+            this.p_tps_copysec.Controls.Add(this.cb_sec_to_copy);
+            this.p_tps_copysec.Controls.Add(this.l_copy_sec);
+            this.p_tps_copysec.Location = new System.Drawing.Point(386, 463);
+            this.p_tps_copysec.Name = "p_tps_copysec";
+            this.p_tps_copysec.Size = new System.Drawing.Size(699, 26);
+            this.p_tps_copysec.TabIndex = 18;
+            // 
+            // b_copysec
+            // 
+            this.b_copysec.BackColor = System.Drawing.Color.Silver;
+            this.b_copysec.Location = new System.Drawing.Point(564, 2);
+            this.b_copysec.Name = "b_copysec";
+            this.b_copysec.Size = new System.Drawing.Size(122, 23);
+            this.b_copysec.TabIndex = 22;
+            this.b_copysec.Text = "Copy security";
+            this.b_copysec.UseVisualStyleBackColor = false;
+            this.b_copysec.Click += new System.EventHandler(this.b_tps_copysec_click);
+            // 
+            // tb_new_code
+            // 
+            this.tb_new_code.Location = new System.Drawing.Point(451, 3);
+            this.tb_new_code.Name = "tb_new_code";
+            this.tb_new_code.Size = new System.Drawing.Size(100, 20);
+            this.tb_new_code.TabIndex = 21;
+            // 
+            // l_newcode
+            // 
+            this.l_newcode.AutoSize = true;
+            this.l_newcode.Location = new System.Drawing.Point(394, 7);
+            this.l_newcode.Name = "l_newcode";
+            this.l_newcode.Size = new System.Drawing.Size(56, 13);
+            this.l_newcode.TabIndex = 20;
+            this.l_newcode.Text = "New code";
+            // 
+            // tb_newid
+            // 
+            this.tb_newid.Location = new System.Drawing.Point(328, 3);
+            this.tb_newid.Name = "tb_newid";
+            this.tb_newid.Size = new System.Drawing.Size(63, 20);
+            this.tb_newid.TabIndex = 19;
+            // 
+            // l_newid
+            // 
+            this.l_newid.AutoSize = true;
+            this.l_newid.Location = new System.Drawing.Point(285, 7);
+            this.l_newid.Name = "l_newid";
+            this.l_newid.Size = new System.Drawing.Size(40, 13);
+            this.l_newid.TabIndex = 18;
+            this.l_newid.Text = "New id";
+            // 
+            // cb_sec_to_copy
+            // 
+            this.cb_sec_to_copy.FormattingEnabled = true;
+            this.cb_sec_to_copy.Location = new System.Drawing.Point(101, 2);
+            this.cb_sec_to_copy.Name = "cb_sec_to_copy";
+            this.cb_sec_to_copy.Size = new System.Drawing.Size(178, 21);
+            this.cb_sec_to_copy.TabIndex = 17;
+            this.cb_sec_to_copy.SelectedValueChanged += new System.EventHandler(this.cb_tps_sectocopy_changed);
+            // 
+            // l_copy_sec
+            // 
+            this.l_copy_sec.AutoSize = true;
+            this.l_copy_sec.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_copy_sec.Location = new System.Drawing.Point(4, 5);
+            this.l_copy_sec.Name = "l_copy_sec";
+            this.l_copy_sec.Size = new System.Drawing.Size(91, 15);
+            this.l_copy_sec.TabIndex = 0;
+            this.l_copy_sec.Text = "Copy security";
+            // 
+            // p_tps_import
+            // 
+            this.p_tps_import.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.p_tps_import.Controls.Add(this.b_tps_restore);
+            this.p_tps_import.Controls.Add(this.b_tps_import);
+            this.p_tps_import.Controls.Add(this.l_tps_upload);
+            this.p_tps_import.Controls.Add(this.cb_tps_acc1);
+            this.p_tps_import.Controls.Add(this.l_tps_acc1);
+            this.p_tps_import.Controls.Add(this.l_tps_tpid1);
+            this.p_tps_import.Controls.Add(this.l_tps_tmp2);
+            this.p_tps_import.Location = new System.Drawing.Point(1113, 373);
+            this.p_tps_import.Name = "p_tps_import";
+            this.p_tps_import.Size = new System.Drawing.Size(298, 118);
+            this.p_tps_import.TabIndex = 17;
             // 
             // b_tps_restore
             // 
@@ -1230,13 +1427,13 @@
             this.p_tps_sec.Controls.Add(this.l_tps_tmp1);
             this.p_tps_sec.Location = new System.Drawing.Point(386, 373);
             this.p_tps_sec.Name = "p_tps_sec";
-            this.p_tps_sec.Size = new System.Drawing.Size(699, 116);
+            this.p_tps_sec.Size = new System.Drawing.Size(699, 84);
             this.p_tps_sec.TabIndex = 15;
             // 
             // b_tps_delete
             // 
             this.b_tps_delete.BackColor = System.Drawing.Color.Silver;
-            this.b_tps_delete.Location = new System.Drawing.Point(565, 82);
+            this.b_tps_delete.Location = new System.Drawing.Point(564, 56);
             this.b_tps_delete.Name = "b_tps_delete";
             this.b_tps_delete.Size = new System.Drawing.Size(122, 26);
             this.b_tps_delete.TabIndex = 16;
@@ -1247,7 +1444,7 @@
             // b_tps_addupdate
             // 
             this.b_tps_addupdate.BackColor = System.Drawing.Color.Silver;
-            this.b_tps_addupdate.Location = new System.Drawing.Point(6, 82);
+            this.b_tps_addupdate.Location = new System.Drawing.Point(9, 55);
             this.b_tps_addupdate.Name = "b_tps_addupdate";
             this.b_tps_addupdate.Size = new System.Drawing.Size(138, 26);
             this.b_tps_addupdate.TabIndex = 12;
@@ -1257,7 +1454,7 @@
             // 
             // tb_tps_p2pkf
             // 
-            this.tb_tps_p2pkf.Location = new System.Drawing.Point(404, 55);
+            this.tb_tps_p2pkf.Location = new System.Drawing.Point(591, 31);
             this.tb_tps_p2pkf.Name = "tb_tps_p2pkf";
             this.tb_tps_p2pkf.Size = new System.Drawing.Size(95, 20);
             this.tb_tps_p2pkf.TabIndex = 15;
@@ -1265,7 +1462,7 @@
             // l_tps_p2pkf
             // 
             this.l_tps_p2pkf.AutoSize = true;
-            this.l_tps_p2pkf.Location = new System.Drawing.Point(362, 59);
+            this.l_tps_p2pkf.Location = new System.Drawing.Point(549, 35);
             this.l_tps_p2pkf.Name = "l_tps_p2pkf";
             this.l_tps_p2pkf.Size = new System.Drawing.Size(40, 13);
             this.l_tps_p2pkf.TabIndex = 14;
@@ -1273,7 +1470,7 @@
             // 
             // tb_tps_pdkf
             // 
-            this.tb_tps_pdkf.Location = new System.Drawing.Point(217, 55);
+            this.tb_tps_pdkf.Location = new System.Drawing.Point(404, 31);
             this.tb_tps_pdkf.Name = "tb_tps_pdkf";
             this.tb_tps_pdkf.Size = new System.Drawing.Size(103, 20);
             this.tb_tps_pdkf.TabIndex = 13;
@@ -1281,7 +1478,7 @@
             // l_tps_pfkf
             // 
             this.l_tps_pfkf.AutoSize = true;
-            this.l_tps_pfkf.Location = new System.Drawing.Point(180, 58);
+            this.l_tps_pfkf.Location = new System.Drawing.Point(367, 34);
             this.l_tps_pfkf.Name = "l_tps_pfkf";
             this.l_tps_pfkf.Size = new System.Drawing.Size(35, 13);
             this.l_tps_pfkf.TabIndex = 12;
@@ -1289,7 +1486,7 @@
             // 
             // tb_tps_hedgekf
             // 
-            this.tb_tps_hedgekf.Location = new System.Drawing.Point(61, 56);
+            this.tb_tps_hedgekf.Location = new System.Drawing.Point(248, 32);
             this.tb_tps_hedgekf.Name = "tb_tps_hedgekf";
             this.tb_tps_hedgekf.Size = new System.Drawing.Size(101, 20);
             this.tb_tps_hedgekf.TabIndex = 11;
@@ -1297,7 +1494,7 @@
             // l_tps_hedgekf
             // 
             this.l_tps_hedgekf.AutoSize = true;
-            this.l_tps_hedgekf.Location = new System.Drawing.Point(3, 59);
+            this.l_tps_hedgekf.Location = new System.Drawing.Point(190, 35);
             this.l_tps_hedgekf.Name = "l_tps_hedgekf";
             this.l_tps_hedgekf.Size = new System.Drawing.Size(52, 13);
             this.l_tps_hedgekf.TabIndex = 10;
@@ -1306,7 +1503,7 @@
             // cb_tps_acc
             // 
             this.cb_tps_acc.FormattingEnabled = true;
-            this.cb_tps_acc.Location = new System.Drawing.Point(217, 29);
+            this.cb_tps_acc.Location = new System.Drawing.Point(404, 5);
             this.cb_tps_acc.Name = "cb_tps_acc";
             this.cb_tps_acc.Size = new System.Drawing.Size(145, 21);
             this.cb_tps_acc.TabIndex = 9;
@@ -1314,7 +1511,7 @@
             // l_tps_acc
             // 
             this.l_tps_acc.AutoSize = true;
-            this.l_tps_acc.Location = new System.Drawing.Point(168, 33);
+            this.l_tps_acc.Location = new System.Drawing.Point(355, 9);
             this.l_tps_acc.Name = "l_tps_acc";
             this.l_tps_acc.Size = new System.Drawing.Size(47, 13);
             this.l_tps_acc.TabIndex = 8;
@@ -1323,7 +1520,7 @@
             // cb_tps_pdfor
             // 
             this.cb_tps_pdfor.FormattingEnabled = true;
-            this.cb_tps_pdfor.Location = new System.Drawing.Point(548, 30);
+            this.cb_tps_pdfor.Location = new System.Drawing.Point(48, 31);
             this.cb_tps_pdfor.Name = "cb_tps_pdfor";
             this.cb_tps_pdfor.Size = new System.Drawing.Size(139, 21);
             this.cb_tps_pdfor.TabIndex = 7;
@@ -1331,7 +1528,7 @@
             // l_tps_pdto
             // 
             this.l_tps_pdto.AutoSize = true;
-            this.l_tps_pdto.Location = new System.Drawing.Point(506, 33);
+            this.l_tps_pdto.Location = new System.Drawing.Point(6, 34);
             this.l_tps_pdto.Name = "l_tps_pdto";
             this.l_tps_pdto.Size = new System.Drawing.Size(37, 13);
             this.l_tps_pdto.TabIndex = 6;
@@ -1340,7 +1537,7 @@
             // cb_tps_sectype
             // 
             this.cb_tps_sectype.FormattingEnabled = true;
-            this.cb_tps_sectype.Location = new System.Drawing.Point(404, 30);
+            this.cb_tps_sectype.Location = new System.Drawing.Point(591, 6);
             this.cb_tps_sectype.Name = "cb_tps_sectype";
             this.cb_tps_sectype.Size = new System.Drawing.Size(95, 21);
             this.cb_tps_sectype.TabIndex = 5;
@@ -1349,7 +1546,7 @@
             // l_tps_sectype
             // 
             this.l_tps_sectype.AutoSize = true;
-            this.l_tps_sectype.Location = new System.Drawing.Point(368, 32);
+            this.l_tps_sectype.Location = new System.Drawing.Point(555, 8);
             this.l_tps_sectype.Name = "l_tps_sectype";
             this.l_tps_sectype.Size = new System.Drawing.Size(31, 13);
             this.l_tps_sectype.TabIndex = 4;
@@ -1358,7 +1555,7 @@
             // cb_tps_code
             // 
             this.cb_tps_code.FormattingEnabled = true;
-            this.cb_tps_code.Location = new System.Drawing.Point(37, 29);
+            this.cb_tps_code.Location = new System.Drawing.Point(224, 5);
             this.cb_tps_code.Name = "cb_tps_code";
             this.cb_tps_code.Size = new System.Drawing.Size(125, 21);
             this.cb_tps_code.TabIndex = 3;
@@ -1366,7 +1563,7 @@
             // l_tps_code
             // 
             this.l_tps_code.AutoSize = true;
-            this.l_tps_code.Location = new System.Drawing.Point(3, 33);
+            this.l_tps_code.Location = new System.Drawing.Point(190, 9);
             this.l_tps_code.Name = "l_tps_code";
             this.l_tps_code.Size = new System.Drawing.Size(32, 13);
             this.l_tps_code.TabIndex = 2;
@@ -1529,6 +1726,11 @@
             this.dgv_tps_list.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.tps_tp_endedit);
             this.dgv_tps_list.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.tps_tp_enter);
             // 
+            // timer_BC_new
+            // 
+            this.timer_BC_new.Interval = 60000;
+            this.timer_BC_new.Tick += new System.EventHandler(this.BC_Timer_New_Work);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1551,6 +1753,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Exp_Robotsett)).EndInit();
             this.t_BasisCount.ResumeLayout(false);
             this.t_BasisCount.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_new)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_LParams)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_Params)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).EndInit();
@@ -1573,8 +1776,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTPBalances)).EndInit();
             this.tabControl_Main.ResumeLayout(false);
             this.t_TPStruct.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.p_tps_copysec.ResumeLayout(false);
+            this.p_tps_copysec.PerformLayout();
+            this.p_tps_import.ResumeLayout(false);
+            this.p_tps_import.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_hedgekf)).EndInit();
             this.p_tps_sec.ResumeLayout(false);
             this.p_tps_sec.PerformLayout();
@@ -1694,7 +1899,7 @@
         private System.Windows.Forms.TextBox tb_tps_hedgekf;
         private System.Windows.Forms.Label l_tps_hedgekf;
         private System.Windows.Forms.Button b_tps_delete;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel p_tps_import;
         private System.Windows.Forms.Label l_tps_upload;
         private System.Windows.Forms.ComboBox cb_tps_acc1;
         private System.Windows.Forms.Label l_tps_acc1;
@@ -1711,6 +1916,24 @@
         private System.Windows.Forms.Button b_mess_stophedge;
         private System.Windows.Forms.Button b_mess_starthedge;
         private System.Windows.Forms.Button b_mess_stop;
+        private System.Windows.Forms.Label l_ar_sec;
+        private System.Windows.Forms.Button b_BC_newcount;
+        private System.Windows.Forms.Label l_BC_new;
+        private System.Windows.Forms.DataGridView dgv_BC_new;
+        private System.Windows.Forms.Button b_BC_newcountset;
+        private System.Windows.Forms.Label l_BC_oldcounter;
+        private System.Windows.Forms.Label l_ar_secnew;
+        private System.Windows.Forms.TextBox tb_BC_intervalnew;
+        private System.Windows.Forms.CheckBox cb_CB_newautoreload;
+        private System.Windows.Forms.Timer timer_BC_new;
+        private System.Windows.Forms.Panel p_tps_copysec;
+        private System.Windows.Forms.Button b_copysec;
+        private System.Windows.Forms.TextBox tb_new_code;
+        private System.Windows.Forms.Label l_newcode;
+        private System.Windows.Forms.TextBox tb_newid;
+        private System.Windows.Forms.Label l_newid;
+        private System.Windows.Forms.ComboBox cb_sec_to_copy;
+        private System.Windows.Forms.Label l_copy_sec;
     }
 }
 
