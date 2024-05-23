@@ -247,7 +247,9 @@ namespace monitor3lx
             if (e.RowIndex >= 0)
             {
                 int.TryParse(dgvTPBalances.Rows[e.RowIndex].Cells[0].Value.ToString(), out gCurrTP_Balance);
-                l_TP_Balance.Text = String.Format("{0} (Id {1})", dgvTPBalances.Rows[e.RowIndex].Cells[1].Value.ToString(), gCurrTP_Balance);        
+                l_TP_Balance.Text = String.Format("{0} (Id {1})", dgvTPBalances.Rows[e.RowIndex].Cells[1].Value.ToString(), gCurrTP_Balance);
+                l_chb_tpid.Text = dgvTPBalances.Rows[e.RowIndex].Cells[0].Value.ToString();
+                l_chb_secid.Text = "0";
             }
             if (gCurrTP_Balance > 0)
             {
@@ -259,6 +261,14 @@ namespace monitor3lx
             }
         }
 
+
+
+        private void BalancesClick(object sender, DataGridViewCellEventArgs e)
+        {
+            l_chb_secid.Text = dgvFullBalance.Rows[e.RowIndex].Cells[0].Value.ToString();
+        }
+
+
         private void ClickFullBalance(object sender, EventArgs e)
         {
             FillFullBalance();
@@ -268,6 +278,8 @@ namespace monitor3lx
         {
             gCurrTP_Balance = 0;
             l_TP_Balance.Text = "Full Balance";
+            l_chb_tpid.Text = "0";
+            l_chb_secid.Text = "0";
             FillDGVByQuery(dgvFullBalance, "SELECT sec_id, code, SUM(qty) AS qty, SUM(qtyneed) AS qtyneed, SUM(\"Value\")::DECIMAL(16) AS \"Value\" " +
                     "FROM public.\"Full_Balances_2\" GROUP BY sec_id, code ORDER BY code"
              );
@@ -535,7 +547,7 @@ namespace monitor3lx
             {
                 string vTpid = dgv_BC_new.Rows[j].Cells[0].Value.ToString();
                 string vBdir = dgv_BC_new.Rows[j].Cells[10].Value.ToString();
-                string vBinv = dgv_BC_new.Rows[j].Cells[10].Value.ToString();
+                string vBinv = dgv_BC_new.Rows[j].Cells[11].Value.ToString();
                 string vQuoteStr = dgv_BC_new.Rows[j].Cells[3].Value.ToString();
                 float vQuote = 0;
                 float.TryParse(vQuoteStr, out vQuote);
@@ -830,6 +842,7 @@ namespace monitor3lx
         private void tps_tp_enter(object sender, DataGridViewCellEventArgs e)
         {
             l_tps_tpid.Text = dgv_tps_list.Rows[e.RowIndex].Cells[0].Value.ToString();
+            b_tps_deltp.Enabled = (dgv_tps_list.Rows[e.RowIndex].Cells[2].Value.ToString() != "True");
             l_tps_tpid1.Text = dgv_tps_list.Rows[e.RowIndex].Cells[0].Value.ToString();
             string vTpid = dgv_tps_list.Rows[e.RowIndex].Cells[0].Value.ToString();
             tps_tpsec_reload(vTpid);
@@ -838,7 +851,7 @@ namespace monitor3lx
         private void tps_tpsec_reload(string aTpid)
         {
             FillDGVByQuery(dgv_tps_tpsec,
-                String.Format("SELECT sec_id, code, accountid, sec_type, hedge_kf, pd_kf, pdcode, p2p_kf FROM public.\"tps_tpsec\" WHERE tp_id = {0}", aTpid));
+                String.Format("SELECT sec_id, code, accountid, sec_type, hedge_kf, pd_kf, pdtosecid, pdcode, p2p_kf FROM public.\"tps_tpsec\" WHERE tp_id = {0}", aTpid));
             for (int i = 0; i < dgv_tps_tpsec.RowCount; i++)
             {
                 if (dgv_tps_tpsec.Rows[i].Cells[3].Value.ToString() == "B") dgv_tps_tpsec.Rows[i].DefaultCellStyle.BackColor = Color.LawnGreen;
@@ -858,11 +871,11 @@ namespace monitor3lx
             cb_tps_code.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[0].Value.ToString();
             cb_tps_acc.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[2].Value.ToString();
             cb_tps_sectype.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[3].Value.ToString();
-            cb_tps_pdfor.SelectedItem = dgv_tps_tpsec.Rows[e.RowIndex].Cells[6].Value.ToString();
+            cb_tps_pdfor.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[6].Value.ToString();
 
             tb_tps_hedgekf.Text = dgv_tps_tpsec.Rows[e.RowIndex].Cells[4].Value.ToString();
             tb_tps_pdkf.Text = dgv_tps_tpsec.Rows[e.RowIndex].Cells[5].Value.ToString();
-            tb_tps_p2pkf.Text = dgv_tps_tpsec.Rows[e.RowIndex].Cells[7].Value.ToString();
+            tb_tps_p2pkf.Text = dgv_tps_tpsec.Rows[e.RowIndex].Cells[8].Value.ToString();
         }
 
         private void tps_activate_pd(object sender, EventArgs e)
@@ -881,20 +894,28 @@ namespace monitor3lx
             float vP2pKf = 0; float.TryParse(tb_tps_p2pkf.Text, out vP2pKf);
 
             bool vAct = true;
-            if (cb_tps_sectype.SelectedValue.ToString() == "B")
+
+            if (vSecId == vPdtosecid)
             {
-                DialogResult dialogResult = MessageBox.Show("Only one Base security allowed! All others will be replaced!", "Are You sure?", MessageBoxButtons.YesNo);
-                if (dialogResult != DialogResult.Yes) vAct = false;
+                vAct = false;
+                DialogResult dialogResult = MessageBox.Show("Security cannot be pricedriver to itself!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            if (cb_tps_sectype.SelectedValue.ToString() == "E")
-            {
-                DialogResult dialogResult = MessageBox.Show("Only one Etalon security allowed! All others will be replaced!", "Are You sure?", MessageBoxButtons.YesNo);
-                if (dialogResult != DialogResult.Yes) vAct = false;
-            }
-            if (cb_tps_sectype.SelectedValue.ToString() == "P")
-            {
-                DialogResult dialogResult = MessageBox.Show(String.Format("Only one Pricedriver for security {0} allowed! All others will be replaced!", vPdtosecid), "Are You sure?", MessageBoxButtons.YesNo);
-                if (dialogResult != DialogResult.Yes) vAct = false;
+            else {
+                if (cb_tps_sectype.SelectedValue.ToString() == "B")
+                {
+                    DialogResult dialogResult = MessageBox.Show("Only one Base security allowed! All others will be replaced!", "Are You sure?", MessageBoxButtons.YesNo);
+                    if (dialogResult != DialogResult.Yes) vAct = false;
+                }
+                if (cb_tps_sectype.SelectedValue.ToString() == "E")
+                {
+                    DialogResult dialogResult = MessageBox.Show("Only one Etalon security allowed! All others will be replaced!", "Are You sure?", MessageBoxButtons.YesNo);
+                    if (dialogResult != DialogResult.Yes) vAct = false;
+                }
+                if (cb_tps_sectype.SelectedValue.ToString() == "P")
+                {
+                    DialogResult dialogResult = MessageBox.Show(String.Format("Only one Pricedriver for security {0} allowed! All others will be replaced!", vPdtosecid), "Are You sure?", MessageBoxButtons.YesNo);
+                    if (dialogResult != DialogResult.Yes) vAct = false;
+                }
             }
 
             if (vAct) {
@@ -1075,6 +1096,23 @@ namespace monitor3lx
 
 
 
+        private void tps_deltp_click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show(String.Format("This will delete tp {0} and all it structure", l_tps_tpid.Text),
+                                "Are you shure?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                string vQuery = String.Format("select public.\"_User_DeleteTp\"({0})", l_tps_tpid.Text);
+                if (gConn.State == ConnectionState.Open)
+                {
+                    NpgsqlCommand vComm = new NpgsqlCommand(vQuery, gConn);
+                    vComm.ExecuteNonQuery();
+                    TPListShow();
+                }
+                else TextLog("No connection");
+            }
+        }
+
 
         // -------------------- Messages ------------------------------------------
 
@@ -1090,10 +1128,6 @@ namespace monitor3lx
             }
             else TextLog("No connection");         
         }
-
-
-
-
 
     }
 
