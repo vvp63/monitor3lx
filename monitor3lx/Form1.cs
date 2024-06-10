@@ -234,6 +234,7 @@ namespace monitor3lx
         {
             FillDGVByQuery(dgvTPBalances, "SELECT * FROM public.\"TP_Balances_2\"");
             FillDGVByQuery(dgvDelays, "SELECT * FROM public.\"Delays_ByStock\"");
+            l_chb_tpid.Text = "0";
         }
 
         private void b_CurrPos_Click(object sender, EventArgs e)
@@ -1128,6 +1129,50 @@ namespace monitor3lx
             }
             else TextLog("No connection");         
         }
+
+
+        // -------------------- Change balance ------------------------------------------
+
+        private void b_AddBalance_Click(object sender, EventArgs e)
+        {
+            int vtpid = 0;
+            int vsecid = 0;
+            int vqty = 0;
+            float vprice = 0;
+            float vvalue = 0;
+            int.TryParse(l_chb_tpid.Text, out vtpid);
+            int.TryParse(l_chb_secid.Text, out vsecid);
+            int.TryParse(tb_qty.Text, out vqty);
+            float.TryParse(tb_price.Text, out vprice);
+            float.TryParse(tb_val.Text, out vvalue);
+
+            if ( (vtpid > 0) && (vsecid > 0) && (vqty > 0) && (vprice > 1e-12) && (vvalue > 1e-12) )
+            {
+
+                DialogResult dialogResult = MessageBox.Show(String.Format("This will change balance in tp {0} security {1}", vtpid, vsecid),
+                                    "Are you shure?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    string vQuery = String.Format("select public.\"BalanceMove\"({0}, {1}, '{2}', {3}, {4}, {5})",
+                                                    vtpid, vsecid, cb_buysell.Text, vqty, vprice.ToString().Replace(',', '.'), vvalue.ToString().Replace(',', '.'));
+                    TextLog(vQuery);
+                    if (gConn.State == ConnectionState.Open)
+                    {
+                        NpgsqlCommand vComm = new NpgsqlCommand(vQuery, gConn);
+                        vComm.ExecuteNonQuery();
+                        TPListShow();
+                    }
+                    else TextLog("No connection");
+                }
+
+            } else
+            {
+                DialogResult dialogResult = MessageBox.Show("Some parameters are wrong. Check tp and security id and usage , or . in price and value",
+                                                                "Parameters error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+        }
+
 
     }
 

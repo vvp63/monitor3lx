@@ -103,6 +103,14 @@
             this.dtpFR_date = new System.Windows.Forms.DateTimePicker();
             this.t_CurrPos = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.b_add_balance = new System.Windows.Forms.Button();
+            this.tb_val = new System.Windows.Forms.TextBox();
+            this.l_val = new System.Windows.Forms.Label();
+            this.tb_price = new System.Windows.Forms.TextBox();
+            this.l_price = new System.Windows.Forms.Label();
+            this.tb_qty = new System.Windows.Forms.TextBox();
+            this.l_qty = new System.Windows.Forms.Label();
+            this.cb_buysell = new System.Windows.Forms.ComboBox();
             this.l_chb_secid = new System.Windows.Forms.Label();
             this.l_chb_secid_txt = new System.Windows.Forms.Label();
             this.l_chb_tpid = new System.Windows.Forms.Label();
@@ -215,7 +223,7 @@
             // 
             this.tbLog.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tbLog.Location = new System.Drawing.Point(0, 762);
-            this.tbLog.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbLog.Margin = new System.Windows.Forms.Padding(2);
             this.tbLog.Multiline = true;
             this.tbLog.Name = "tbLog";
             this.tbLog.Size = new System.Drawing.Size(1489, 49);
@@ -225,7 +233,7 @@
             // 
             this.bConn.BackColor = System.Drawing.Color.White;
             this.bConn.Location = new System.Drawing.Point(3, 4);
-            this.bConn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bConn.Margin = new System.Windows.Forms.Padding(2);
             this.bConn.Name = "bConn";
             this.bConn.Size = new System.Drawing.Size(112, 28);
             this.bConn.TabIndex = 1;
@@ -239,7 +247,7 @@
             this.dgvTP.AllowUserToAddRows = false;
             this.dgvTP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTP.Location = new System.Drawing.Point(4, 42);
-            this.dgvTP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvTP.Margin = new System.Windows.Forms.Padding(2);
             this.dgvTP.Name = "dgvTP";
             this.dgvTP.RowHeadersWidth = 5;
             this.dgvTP.RowTemplate.Height = 24;
@@ -254,7 +262,7 @@
             this.bUpdateTP.BackColor = System.Drawing.Color.White;
             this.bUpdateTP.Enabled = false;
             this.bUpdateTP.Location = new System.Drawing.Point(1368, 226);
-            this.bUpdateTP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bUpdateTP.Margin = new System.Windows.Forms.Padding(2);
             this.bUpdateTP.Name = "bUpdateTP";
             this.bUpdateTP.Size = new System.Drawing.Size(112, 28);
             this.bUpdateTP.TabIndex = 4;
@@ -267,7 +275,7 @@
             this.b_Apply.BackColor = System.Drawing.Color.White;
             this.b_Apply.Enabled = false;
             this.b_Apply.Location = new System.Drawing.Point(4, 222);
-            this.b_Apply.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_Apply.Margin = new System.Windows.Forms.Padding(2);
             this.b_Apply.Name = "b_Apply";
             this.b_Apply.Size = new System.Drawing.Size(112, 28);
             this.b_Apply.TabIndex = 5;
@@ -289,7 +297,7 @@
             this.pan_top.Controls.Add(this.bUpdateTP);
             this.pan_top.Dock = System.Windows.Forms.DockStyle.Top;
             this.pan_top.Location = new System.Drawing.Point(0, 0);
-            this.pan_top.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pan_top.Margin = new System.Windows.Forms.Padding(2);
             this.pan_top.Name = "pan_top";
             this.pan_top.Size = new System.Drawing.Size(1489, 262);
             this.pan_top.TabIndex = 6;
@@ -308,7 +316,7 @@
             // tb_kfp
             // 
             this.tb_kfp.Location = new System.Drawing.Point(239, 9);
-            this.tb_kfp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_kfp.Margin = new System.Windows.Forms.Padding(2);
             this.tb_kfp.Name = "tb_kfp";
             this.tb_kfp.PasswordChar = '*';
             this.tb_kfp.Size = new System.Drawing.Size(164, 20);
@@ -328,7 +336,7 @@
             // 
             this.b_down_inv.Image = global::monitor3lx.Properties.Resources.downInv;
             this.b_down_inv.Location = new System.Drawing.Point(609, 223);
-            this.b_down_inv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_down_inv.Margin = new System.Windows.Forms.Padding(2);
             this.b_down_inv.Name = "b_down_inv";
             this.b_down_inv.Size = new System.Drawing.Size(32, 34);
             this.b_down_inv.TabIndex = 10;
@@ -339,7 +347,7 @@
             // 
             this.b_up_inv.Image = global::monitor3lx.Properties.Resources.upInv;
             this.b_up_inv.Location = new System.Drawing.Point(573, 223);
-            this.b_up_inv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_up_inv.Margin = new System.Windows.Forms.Padding(2);
             this.b_up_inv.Name = "b_up_inv";
             this.b_up_inv.Size = new System.Drawing.Size(32, 34);
             this.b_up_inv.TabIndex = 9;
@@ -350,7 +358,7 @@
             // 
             this.b_down_.Image = global::monitor3lx.Properties.Resources.down;
             this.b_down_.Location = new System.Drawing.Point(499, 223);
-            this.b_down_.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_down_.Margin = new System.Windows.Forms.Padding(2);
             this.b_down_.Name = "b_down_";
             this.b_down_.Size = new System.Drawing.Size(32, 34);
             this.b_down_.TabIndex = 8;
@@ -361,7 +369,7 @@
             // 
             this.b_Up_.Image = global::monitor3lx.Properties.Resources.up;
             this.b_Up_.Location = new System.Drawing.Point(463, 223);
-            this.b_Up_.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_Up_.Margin = new System.Windows.Forms.Padding(2);
             this.b_Up_.Name = "b_Up_";
             this.b_Up_.Size = new System.Drawing.Size(32, 34);
             this.b_Up_.TabIndex = 7;
@@ -402,7 +410,7 @@
             this.t_Expiration.ForeColor = System.Drawing.SystemColors.MenuText;
             this.t_Expiration.Location = new System.Drawing.Point(4, 31);
             this.t_Expiration.Name = "t_Expiration";
-            this.t_Expiration.Size = new System.Drawing.Size(1435, 466);
+            this.t_Expiration.Size = new System.Drawing.Size(1481, 465);
             this.t_Expiration.TabIndex = 5;
             this.t_Expiration.Text = "Expiration";
             // 
@@ -484,7 +492,7 @@
             this.t_BasisCount.Controls.Add(this.dgv_BC_settings);
             this.t_BasisCount.Location = new System.Drawing.Point(4, 31);
             this.t_BasisCount.Name = "t_BasisCount";
-            this.t_BasisCount.Size = new System.Drawing.Size(1435, 466);
+            this.t_BasisCount.Size = new System.Drawing.Size(1481, 465);
             this.t_BasisCount.TabIndex = 2;
             this.t_BasisCount.Text = "Basis Count";
             this.t_BasisCount.Enter += new System.EventHandler(this.BC_Enter);
@@ -687,10 +695,10 @@
             this.t_FinresHistory.Controls.Add(this.pan_FinresHist);
             this.t_FinresHistory.Controls.Add(this.dgvFRH);
             this.t_FinresHistory.Location = new System.Drawing.Point(4, 31);
-            this.t_FinresHistory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.t_FinresHistory.Margin = new System.Windows.Forms.Padding(2);
             this.t_FinresHistory.Name = "t_FinresHistory";
-            this.t_FinresHistory.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.t_FinresHistory.Size = new System.Drawing.Size(1435, 466);
+            this.t_FinresHistory.Padding = new System.Windows.Forms.Padding(2);
+            this.t_FinresHistory.Size = new System.Drawing.Size(1481, 465);
             this.t_FinresHistory.TabIndex = 3;
             this.t_FinresHistory.Text = "Finres History and Moves";
             // 
@@ -825,7 +833,7 @@
             // 
             this.bFRH_Show.BackColor = System.Drawing.Color.WhiteSmoke;
             this.bFRH_Show.Location = new System.Drawing.Point(346, 3);
-            this.bFRH_Show.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bFRH_Show.Margin = new System.Windows.Forms.Padding(2);
             this.bFRH_Show.Name = "bFRH_Show";
             this.bFRH_Show.Size = new System.Drawing.Size(189, 24);
             this.bFRH_Show.TabIndex = 8;
@@ -837,7 +845,7 @@
             // 
             this.cbFRH_TP.FormattingEnabled = true;
             this.cbFRH_TP.Location = new System.Drawing.Point(78, 4);
-            this.cbFRH_TP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbFRH_TP.Margin = new System.Windows.Forms.Padding(2);
             this.cbFRH_TP.Name = "cbFRH_TP";
             this.cbFRH_TP.Size = new System.Drawing.Size(264, 21);
             this.cbFRH_TP.TabIndex = 5;
@@ -873,10 +881,10 @@
             this.t_Finres.Controls.Add(this.lFR_Date);
             this.t_Finres.Controls.Add(this.dtpFR_date);
             this.t_Finres.Location = new System.Drawing.Point(4, 31);
-            this.t_Finres.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.t_Finres.Margin = new System.Windows.Forms.Padding(2);
             this.t_Finres.Name = "t_Finres";
-            this.t_Finres.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.t_Finres.Size = new System.Drawing.Size(1435, 466);
+            this.t_Finres.Padding = new System.Windows.Forms.Padding(2);
+            this.t_Finres.Size = new System.Drawing.Size(1481, 465);
             this.t_Finres.TabIndex = 1;
             this.t_Finres.Text = "Finres";
             // 
@@ -984,7 +992,7 @@
             // 
             this.cbFR_TP.FormattingEnabled = true;
             this.cbFR_TP.Location = new System.Drawing.Point(77, 18);
-            this.cbFR_TP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbFR_TP.Margin = new System.Windows.Forms.Padding(2);
             this.cbFR_TP.Name = "cbFR_TP";
             this.cbFR_TP.Size = new System.Drawing.Size(190, 21);
             this.cbFR_TP.TabIndex = 3;
@@ -993,7 +1001,7 @@
             // 
             this.bFR_Count.BackColor = System.Drawing.Color.White;
             this.bFR_Count.Location = new System.Drawing.Point(77, 85);
-            this.bFR_Count.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bFR_Count.Margin = new System.Windows.Forms.Padding(2);
             this.bFR_Count.Name = "bFR_Count";
             this.bFR_Count.Size = new System.Drawing.Size(189, 26);
             this.bFR_Count.TabIndex = 2;
@@ -1016,7 +1024,7 @@
             // 
             this.dtpFR_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dtpFR_date.Location = new System.Drawing.Point(77, 51);
-            this.dtpFR_date.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFR_date.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFR_date.Name = "dtpFR_date";
             this.dtpFR_date.Size = new System.Drawing.Size(190, 21);
             this.dtpFR_date.TabIndex = 0;
@@ -1034,9 +1042,9 @@
             this.t_CurrPos.Controls.Add(this.dgvTPBalances);
             this.t_CurrPos.Controls.Add(this.b_CurrPos);
             this.t_CurrPos.Location = new System.Drawing.Point(4, 31);
-            this.t_CurrPos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.t_CurrPos.Margin = new System.Windows.Forms.Padding(2);
             this.t_CurrPos.Name = "t_CurrPos";
-            this.t_CurrPos.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.t_CurrPos.Padding = new System.Windows.Forms.Padding(2);
             this.t_CurrPos.Size = new System.Drawing.Size(1481, 465);
             this.t_CurrPos.TabIndex = 0;
             this.t_CurrPos.Text = "Current Positions";
@@ -1044,22 +1052,99 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.b_add_balance);
+            this.panel1.Controls.Add(this.tb_val);
+            this.panel1.Controls.Add(this.l_val);
+            this.panel1.Controls.Add(this.tb_price);
+            this.panel1.Controls.Add(this.l_price);
+            this.panel1.Controls.Add(this.tb_qty);
+            this.panel1.Controls.Add(this.l_qty);
+            this.panel1.Controls.Add(this.cb_buysell);
             this.panel1.Controls.Add(this.l_chb_secid);
             this.panel1.Controls.Add(this.l_chb_secid_txt);
             this.panel1.Controls.Add(this.l_chb_tpid);
             this.panel1.Controls.Add(this.l_chb_tpid_txt);
             this.panel1.Controls.Add(this.l_change_balance);
-            this.panel1.Location = new System.Drawing.Point(490, 426);
+            this.panel1.Location = new System.Drawing.Point(490, 427);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(722, 34);
             this.panel1.TabIndex = 9;
-            this.panel1.Visible = false;
+            // 
+            // b_add_balance
+            // 
+            this.b_add_balance.Location = new System.Drawing.Point(655, 5);
+            this.b_add_balance.Name = "b_add_balance";
+            this.b_add_balance.Size = new System.Drawing.Size(57, 23);
+            this.b_add_balance.TabIndex = 12;
+            this.b_add_balance.Text = "Add";
+            this.b_add_balance.UseVisualStyleBackColor = true;
+            this.b_add_balance.Click += new System.EventHandler(this.b_AddBalance_Click);
+            // 
+            // tb_val
+            // 
+            this.tb_val.Location = new System.Drawing.Point(575, 7);
+            this.tb_val.Name = "tb_val";
+            this.tb_val.Size = new System.Drawing.Size(72, 20);
+            this.tb_val.TabIndex = 11;
+            // 
+            // l_val
+            // 
+            this.l_val.AutoSize = true;
+            this.l_val.Location = new System.Drawing.Point(542, 10);
+            this.l_val.Name = "l_val";
+            this.l_val.Size = new System.Drawing.Size(34, 13);
+            this.l_val.TabIndex = 10;
+            this.l_val.Text = "Value";
+            // 
+            // tb_price
+            // 
+            this.tb_price.Location = new System.Drawing.Point(473, 8);
+            this.tb_price.Name = "tb_price";
+            this.tb_price.Size = new System.Drawing.Size(62, 20);
+            this.tb_price.TabIndex = 9;
+            // 
+            // l_price
+            // 
+            this.l_price.AutoSize = true;
+            this.l_price.Location = new System.Drawing.Point(440, 10);
+            this.l_price.Name = "l_price";
+            this.l_price.Size = new System.Drawing.Size(31, 13);
+            this.l_price.TabIndex = 8;
+            this.l_price.Text = "Price";
+            // 
+            // tb_qty
+            // 
+            this.tb_qty.Location = new System.Drawing.Point(371, 8);
+            this.tb_qty.Name = "tb_qty";
+            this.tb_qty.Size = new System.Drawing.Size(63, 20);
+            this.tb_qty.TabIndex = 7;
+            // 
+            // l_qty
+            // 
+            this.l_qty.AutoSize = true;
+            this.l_qty.Location = new System.Drawing.Point(346, 10);
+            this.l_qty.Name = "l_qty";
+            this.l_qty.Size = new System.Drawing.Size(23, 13);
+            this.l_qty.TabIndex = 6;
+            this.l_qty.Text = "Qty";
+            // 
+            // cb_buysell
+            // 
+            this.cb_buysell.FormattingEnabled = true;
+            this.cb_buysell.Items.AddRange(new object[] {
+            "B",
+            "S"});
+            this.cb_buysell.Location = new System.Drawing.Point(284, 7);
+            this.cb_buysell.Name = "cb_buysell";
+            this.cb_buysell.Size = new System.Drawing.Size(47, 21);
+            this.cb_buysell.TabIndex = 5;
+            this.cb_buysell.Text = "B";
             // 
             // l_chb_secid
             // 
             this.l_chb_secid.AutoSize = true;
             this.l_chb_secid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.l_chb_secid.Location = new System.Drawing.Point(287, 11);
+            this.l_chb_secid.Location = new System.Drawing.Point(242, 11);
             this.l_chb_secid.Name = "l_chb_secid";
             this.l_chb_secid.Size = new System.Drawing.Size(14, 13);
             this.l_chb_secid.TabIndex = 4;
@@ -1068,7 +1153,7 @@
             // l_chb_secid_txt
             // 
             this.l_chb_secid_txt.AutoSize = true;
-            this.l_chb_secid_txt.Location = new System.Drawing.Point(248, 11);
+            this.l_chb_secid_txt.Location = new System.Drawing.Point(203, 11);
             this.l_chb_secid_txt.Name = "l_chb_secid_txt";
             this.l_chb_secid_txt.Size = new System.Drawing.Size(41, 13);
             this.l_chb_secid_txt.TabIndex = 3;
@@ -1078,7 +1163,7 @@
             // 
             this.l_chb_tpid.AutoSize = true;
             this.l_chb_tpid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.l_chb_tpid.Location = new System.Drawing.Point(161, 11);
+            this.l_chb_tpid.Location = new System.Drawing.Point(140, 11);
             this.l_chb_tpid.Name = "l_chb_tpid";
             this.l_chb_tpid.Size = new System.Drawing.Size(14, 13);
             this.l_chb_tpid.TabIndex = 2;
@@ -1087,7 +1172,7 @@
             // l_chb_tpid_txt
             // 
             this.l_chb_tpid_txt.AutoSize = true;
-            this.l_chb_tpid_txt.Location = new System.Drawing.Point(130, 11);
+            this.l_chb_tpid_txt.Location = new System.Drawing.Point(109, 11);
             this.l_chb_tpid_txt.Name = "l_chb_tpid_txt";
             this.l_chb_tpid_txt.Size = new System.Drawing.Size(35, 13);
             this.l_chb_tpid_txt.TabIndex = 1;
@@ -1096,10 +1181,11 @@
             // l_change_balance
             // 
             this.l_change_balance.AutoSize = true;
-            this.l_change_balance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_change_balance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_change_balance.ForeColor = System.Drawing.Color.Maroon;
             this.l_change_balance.Location = new System.Drawing.Point(3, 9);
             this.l_change_balance.Name = "l_change_balance";
-            this.l_change_balance.Size = new System.Drawing.Size(121, 16);
+            this.l_change_balance.Size = new System.Drawing.Size(111, 15);
             this.l_change_balance.TabIndex = 0;
             this.l_change_balance.Text = "Change balance";
             // 
@@ -1183,7 +1269,7 @@
             this.dgvDelays.AllowUserToDeleteRows = false;
             this.dgvDelays.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDelays.Location = new System.Drawing.Point(6, 366);
-            this.dgvDelays.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvDelays.Margin = new System.Windows.Forms.Padding(2);
             this.dgvDelays.Name = "dgvDelays";
             this.dgvDelays.RowHeadersWidth = 5;
             this.dgvDelays.RowTemplate.Height = 24;
@@ -1194,7 +1280,7 @@
             // 
             this.b_FullBall.BackColor = System.Drawing.Color.White;
             this.b_FullBall.Location = new System.Drawing.Point(1100, 6);
-            this.b_FullBall.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_FullBall.Margin = new System.Windows.Forms.Padding(2);
             this.b_FullBall.Name = "b_FullBall";
             this.b_FullBall.Size = new System.Drawing.Size(112, 28);
             this.b_FullBall.TabIndex = 5;
@@ -1208,7 +1294,7 @@
             this.dgvFullBalance.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvFullBalance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFullBalance.Location = new System.Drawing.Point(490, 38);
-            this.dgvFullBalance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvFullBalance.Margin = new System.Windows.Forms.Padding(2);
             this.dgvFullBalance.Name = "dgvFullBalance";
             this.dgvFullBalance.RowHeadersWidth = 4;
             this.dgvFullBalance.RowTemplate.Height = 24;
@@ -1233,7 +1319,7 @@
             this.dgvTPBalances.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvTPBalances.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTPBalances.Location = new System.Drawing.Point(6, 38);
-            this.dgvTPBalances.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvTPBalances.Margin = new System.Windows.Forms.Padding(2);
             this.dgvTPBalances.Name = "dgvTPBalances";
             this.dgvTPBalances.RowHeadersWidth = 4;
             this.dgvTPBalances.RowTemplate.Height = 24;
@@ -1245,7 +1331,7 @@
             // 
             this.b_CurrPos.BackColor = System.Drawing.Color.White;
             this.b_CurrPos.Location = new System.Drawing.Point(6, 5);
-            this.b_CurrPos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.b_CurrPos.Margin = new System.Windows.Forms.Padding(2);
             this.b_CurrPos.Name = "b_CurrPos";
             this.b_CurrPos.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.b_CurrPos.Size = new System.Drawing.Size(112, 28);
@@ -1266,7 +1352,7 @@
             this.tabControl_Main.Enabled = false;
             this.tabControl_Main.ItemSize = new System.Drawing.Size(150, 27);
             this.tabControl_Main.Location = new System.Drawing.Point(0, 262);
-            this.tabControl_Main.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl_Main.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl_Main.Name = "tabControl_Main";
             this.tabControl_Main.SelectedIndex = 0;
             this.tabControl_Main.Size = new System.Drawing.Size(1489, 500);
@@ -1512,7 +1598,6 @@
             this.b_tps_deltp.TabIndex = 17;
             this.b_tps_deltp.Text = "DEL";
             this.b_tps_deltp.UseVisualStyleBackColor = false;
-            this.b_tps_deltp.Visible = false;
             this.b_tps_deltp.Click += new System.EventHandler(this.tps_deltp_click);
             // 
             // b_tps_delete
@@ -1824,7 +1909,7 @@
             this.Controls.Add(this.tabControl_Main);
             this.Controls.Add(this.pan_top);
             this.Controls.Add(this.tbLog);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "monitor3lx";
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).EndInit();
@@ -2028,6 +2113,14 @@
         private System.Windows.Forms.Label l_chb_tpid;
         private System.Windows.Forms.Label l_chb_tpid_txt;
         private System.Windows.Forms.Label l_change_balance;
+        private System.Windows.Forms.Button b_add_balance;
+        private System.Windows.Forms.TextBox tb_val;
+        private System.Windows.Forms.Label l_val;
+        private System.Windows.Forms.TextBox tb_price;
+        private System.Windows.Forms.Label l_price;
+        private System.Windows.Forms.TextBox tb_qty;
+        private System.Windows.Forms.Label l_qty;
+        private System.Windows.Forms.ComboBox cb_buysell;
     }
 }
 
