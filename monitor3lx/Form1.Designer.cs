@@ -615,7 +615,7 @@
             this.dgv_BC_Params.AllowUserToAddRows = false;
             this.dgv_BC_Params.AllowUserToDeleteRows = false;
             this.dgv_BC_Params.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_BC_Params.Cursor = System.Windows.Forms.Cursors.No;
+            this.dgv_BC_Params.Cursor = System.Windows.Forms.Cursors.Default;
             this.dgv_BC_Params.GridColor = System.Drawing.SystemColors.ControlLight;
             this.dgv_BC_Params.Location = new System.Drawing.Point(6, 337);
             this.dgv_BC_Params.Name = "dgv_BC_Params";
