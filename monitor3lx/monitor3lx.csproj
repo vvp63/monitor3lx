@@ -126,6 +126,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="img\delete_small.png" />
+    <None Include="img\qi_up.png" />
+    <None Include="img\qi_down.png" />
+    <None Include="img\qd_up.png" />
+    <None Include="img\qd_down.png" />
+    <None Include="img\li_up.png" />
+    <None Include="img\li_down.png" />
+    <None Include="img\ld_up.png" />
+    <None Include="img\ld_down.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
