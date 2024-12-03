@@ -323,8 +323,14 @@ namespace monitor3lx
             if (gCurrTPIdx >= 0)
             {
                 float vVCdir = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[9].Value.ToString(), out vVCdir);
-                vVCdir += gBArrowMove;
+                float vVSq = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[11].Value.ToString(), out vVSq);
+                float vLArrowMove = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[25].Value.ToString(), out vLArrowMove);
+                float vSQdiv = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[26].Value.ToString(), out vSQdiv);
+                float vSQArrowMove = 0; if (vSQdiv != 0) vSQArrowMove = vLArrowMove / vSQdiv;
+                vVCdir += vLArrowMove;
+                vVSq += vSQArrowMove;          
                 if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[9].Value = Math.Round(vVCdir, 5).ToString();
+                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[11].Value = Math.Round(vVSq, 8).ToString();
             }
         }
 
@@ -333,8 +339,14 @@ namespace monitor3lx
             if (gCurrTPIdx >= 0)
             {
                 float vVCdir = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[9].Value.ToString(), out vVCdir);
-                vVCdir -= gBArrowMove;
+                float vVSq = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[11].Value.ToString(), out vVSq);
+                float vLArrowMove = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[25].Value.ToString(), out vLArrowMove);
+                float vSQdiv = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[26].Value.ToString(), out vSQdiv);
+                float vSQArrowMove = 0; if (vSQdiv != 0) vSQArrowMove = vLArrowMove / vSQdiv;
+                vVCdir -= vLArrowMove;
+                vVSq -= vSQArrowMove;
                 if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[9].Value = Math.Round(vVCdir, 5).ToString();
+                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[11].Value = Math.Round(vVSq, 8).ToString();
             }
         }
 
@@ -343,8 +355,14 @@ namespace monitor3lx
             if (gCurrTPIdx >= 0)
             {
                 float vVCdir = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[10].Value.ToString(), out vVCdir);
-                vVCdir += gBArrowMove;
+                float vVSq = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vVSq);
+                float vLArrowMove = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[25].Value.ToString(), out vLArrowMove);
+                float vSQdiv = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[26].Value.ToString(), out vSQdiv);
+                float vSQArrowMove = 0; if (vSQdiv != 0) vSQArrowMove = vLArrowMove / vSQdiv;
+                vVCdir += vLArrowMove;
+                vVSq += vSQArrowMove;
                 if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[10].Value = Math.Round(vVCdir, 5).ToString();
+                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[12].Value = Math.Round(vVSq, 8).ToString();
             }
         }
 
@@ -353,8 +371,14 @@ namespace monitor3lx
             if (gCurrTPIdx >= 0)
             {
                 float vVCdir = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[10].Value.ToString(), out vVCdir);
-                vVCdir -= gBArrowMove;
+                float vVSq = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vVSq);
+                float vLArrowMove = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[25].Value.ToString(), out vLArrowMove);
+                float vSQdiv = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[26].Value.ToString(), out vSQdiv);
+                float vSQArrowMove = 0; if (vSQdiv != 0) vSQArrowMove = vLArrowMove / vSQdiv;
+                vVCdir -= vLArrowMove;
+                vVSq -= vSQArrowMove;
                 if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[10].Value = Math.Round(vVCdir, 5).ToString();
+                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[12].Value = Math.Round(vVSq, 8).ToString();
             }
         }
 
@@ -365,36 +389,6 @@ namespace monitor3lx
                 float vVSq = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[11].Value.ToString(), out vVSq);
                 vVSq += gBSqArrowMove;
                 if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[11].Value = Math.Round(vVSq, 8).ToString();
-            }
-        }
-
-        private void b_qd_down_click(object sender, EventArgs e)
-        {
-            if (gCurrTPIdx >= 0)
-            {
-                float vVSq = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[11].Value.ToString(), out vVSq);
-                vVSq -= gBSqArrowMove;
-                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[11].Value = Math.Round(vVSq, 8).ToString();
-            }
-        }
-
-        private void b_qi_up_click(object sender, EventArgs e)
-        {
-            if (gCurrTPIdx >= 0)
-            {
-                float vVSq = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vVSq);
-                vVSq += gBSqArrowMove;
-                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[12].Value = Math.Round(vVSq, 8).ToString();
-            }
-        }
-
-        private void b_qi_down_click(object sender, EventArgs e)
-        {
-            if (gCurrTPIdx >= 0)
-            {
-                float vVSq = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vVSq);
-                vVSq -= gBSqArrowMove;
-                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[12].Value = Math.Round(vVSq, 8).ToString();
             }
         }
 

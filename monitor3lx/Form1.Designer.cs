@@ -35,10 +35,6 @@
             this.bUpdateTP = new System.Windows.Forms.Button();
             this.b_Apply = new System.Windows.Forms.Button();
             this.pan_top = new System.Windows.Forms.Panel();
-            this.b_qi_down = new System.Windows.Forms.Button();
-            this.b_qi_up = new System.Windows.Forms.Button();
-            this.b_qd_down = new System.Windows.Forms.Button();
-            this.b_qd_up = new System.Windows.Forms.Button();
             this.b_li_down = new System.Windows.Forms.Button();
             this.b_li_up = new System.Windows.Forms.Button();
             this.b_ld_down = new System.Windows.Forms.Button();
@@ -290,10 +286,6 @@
             // pan_top
             // 
             this.pan_top.BackColor = System.Drawing.Color.Silver;
-            this.pan_top.Controls.Add(this.b_qi_down);
-            this.pan_top.Controls.Add(this.b_qi_up);
-            this.pan_top.Controls.Add(this.b_qd_down);
-            this.pan_top.Controls.Add(this.b_qd_up);
             this.pan_top.Controls.Add(this.b_li_down);
             this.pan_top.Controls.Add(this.b_li_up);
             this.pan_top.Controls.Add(this.b_ld_down);
@@ -310,50 +302,10 @@
             this.pan_top.Size = new System.Drawing.Size(1484, 315);
             this.pan_top.TabIndex = 6;
             // 
-            // b_qi_down
-            // 
-            this.b_qi_down.Image = global::monitor3lx.Properties.Resources.qi_down;
-            this.b_qi_down.Location = new System.Drawing.Point(740, 280);
-            this.b_qi_down.Name = "b_qi_down";
-            this.b_qi_down.Size = new System.Drawing.Size(30, 30);
-            this.b_qi_down.TabIndex = 21;
-            this.b_qi_down.UseVisualStyleBackColor = true;
-            this.b_qi_down.Click += new System.EventHandler(this.b_qi_down_click);
-            // 
-            // b_qi_up
-            // 
-            this.b_qi_up.Image = global::monitor3lx.Properties.Resources.qi_up;
-            this.b_qi_up.Location = new System.Drawing.Point(710, 280);
-            this.b_qi_up.Name = "b_qi_up";
-            this.b_qi_up.Size = new System.Drawing.Size(30, 30);
-            this.b_qi_up.TabIndex = 20;
-            this.b_qi_up.UseVisualStyleBackColor = true;
-            this.b_qi_up.Click += new System.EventHandler(this.b_qi_up_click);
-            // 
-            // b_qd_down
-            // 
-            this.b_qd_down.Image = global::monitor3lx.Properties.Resources.qd_down;
-            this.b_qd_down.Location = new System.Drawing.Point(660, 280);
-            this.b_qd_down.Name = "b_qd_down";
-            this.b_qd_down.Size = new System.Drawing.Size(30, 30);
-            this.b_qd_down.TabIndex = 19;
-            this.b_qd_down.UseVisualStyleBackColor = true;
-            this.b_qd_down.Click += new System.EventHandler(this.b_qd_down_click);
-            // 
-            // b_qd_up
-            // 
-            this.b_qd_up.Image = global::monitor3lx.Properties.Resources.qd_up;
-            this.b_qd_up.Location = new System.Drawing.Point(630, 280);
-            this.b_qd_up.Name = "b_qd_up";
-            this.b_qd_up.Size = new System.Drawing.Size(30, 30);
-            this.b_qd_up.TabIndex = 18;
-            this.b_qd_up.UseVisualStyleBackColor = true;
-            this.b_qd_up.Click += new System.EventHandler(this.b_qd_up_click);
-            // 
             // b_li_down
             // 
             this.b_li_down.Image = global::monitor3lx.Properties.Resources.li_down;
-            this.b_li_down.Location = new System.Drawing.Point(560, 280);
+            this.b_li_down.Location = new System.Drawing.Point(630, 280);
             this.b_li_down.Name = "b_li_down";
             this.b_li_down.Size = new System.Drawing.Size(30, 30);
             this.b_li_down.TabIndex = 17;
@@ -363,7 +315,7 @@
             // b_li_up
             // 
             this.b_li_up.Image = global::monitor3lx.Properties.Resources.li_up;
-            this.b_li_up.Location = new System.Drawing.Point(530, 280);
+            this.b_li_up.Location = new System.Drawing.Point(600, 280);
             this.b_li_up.Name = "b_li_up";
             this.b_li_up.Size = new System.Drawing.Size(30, 30);
             this.b_li_up.TabIndex = 16;
@@ -2162,10 +2114,6 @@
         private System.Windows.Forms.Label l_qty;
         private System.Windows.Forms.ComboBox cb_buysell;
         private System.Windows.Forms.Button b_ld_up;
-        private System.Windows.Forms.Button b_qi_down;
-        private System.Windows.Forms.Button b_qi_up;
-        private System.Windows.Forms.Button b_qd_down;
-        private System.Windows.Forms.Button b_qd_up;
         private System.Windows.Forms.Button b_li_down;
         private System.Windows.Forms.Button b_li_up;
         private System.Windows.Forms.Button b_ld_down;
