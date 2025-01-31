@@ -329,8 +329,8 @@ namespace monitor3lx
                 float vSQArrowMove = 0; if (vSQdiv != 0) vSQArrowMove = vLArrowMove / vSQdiv;
                 vVCdir += vLArrowMove;
                 vVSq += vSQArrowMove;          
-                if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[9].Value = Math.Round(vVCdir, 5).ToString();
-                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[11].Value = Math.Round(vVSq, 8).ToString();
+                if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[9].Value = Math.Round(vVCdir, 8).ToString();
+                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[11].Value = Math.Round(vVSq, 12).ToString();
             }
         }
 
@@ -345,8 +345,8 @@ namespace monitor3lx
                 float vSQArrowMove = 0; if (vSQdiv != 0) vSQArrowMove = vLArrowMove / vSQdiv;
                 vVCdir -= vLArrowMove;
                 vVSq -= vSQArrowMove;
-                if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[9].Value = Math.Round(vVCdir, 5).ToString();
-                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[11].Value = Math.Round(vVSq, 8).ToString();
+                if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[9].Value = Math.Round(vVCdir, 8).ToString();
+                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[11].Value = Math.Round(vVSq, 12).ToString();
             }
         }
 
@@ -361,8 +361,8 @@ namespace monitor3lx
                 float vSQArrowMove = 0; if (vSQdiv != 0) vSQArrowMove = vLArrowMove / vSQdiv;
                 vVCdir += vLArrowMove;
                 vVSq += vSQArrowMove;
-                if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[10].Value = Math.Round(vVCdir, 5).ToString();
-                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[12].Value = Math.Round(vVSq, 8).ToString();
+                if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[10].Value = Math.Round(vVCdir, 8).ToString();
+                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[12].Value = Math.Round(vVSq, 12).ToString();
             }
         }
 
@@ -377,8 +377,8 @@ namespace monitor3lx
                 float vSQArrowMove = 0; if (vSQdiv != 0) vSQArrowMove = vLArrowMove / vSQdiv;
                 vVCdir -= vLArrowMove;
                 vVSq -= vSQArrowMove;
-                if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[10].Value = Math.Round(vVCdir, 5).ToString();
-                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[12].Value = Math.Round(vVSq, 8).ToString();
+                if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[10].Value = Math.Round(vVCdir, 8).ToString();
+                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[12].Value = Math.Round(vVSq, 12).ToString();
             }
         }
 
