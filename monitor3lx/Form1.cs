@@ -159,7 +159,9 @@ namespace monitor3lx
                 aCB.DataSource = DT;
                 aCB.ValueMember = aVal;
                 aCB.DisplayMember = aData;
-                aCB.SelectedIndex = 0;
+                if (aCB.Items.Count > 0) {
+                    aCB.SelectedIndex = 0;
+                }
             }
             else TextLog("No connection");
         }
@@ -167,8 +169,8 @@ namespace monitor3lx
         private void getTPtable()
         {
             //FillDGVByQuery(dgvTP, "SELECT * FROM public.tp WHERE isactive = B'1' ORDER BY tpid");
-            string vquery = "SELECT tpid, name, isactive, directstatus, inversestatus, bdirect, binverse, volmax, voleliminated, qty_limit, dev0d, dev0i, devstep," + 
-                                " vmin, vmax, plmax, maxvolbefore, pstomove, voltomove, hedgemode, cashshift, vunhedged, kunhedged, mmaxvol, morderdelay" + 
+            string vquery = "SELECT tpid, name, isactive, directstatus, inversestatus, bdirect, binverse, volmax, voleliminated, vmin, vmax, qty_limit, dev0d, dev0i, devstep," + 
+                                " plmax, maxvolbefore, pstomove, voltomove, hedgemode, cashshift, vunhedged, kunhedged, mmaxvol, morderdelay" + 
                                 " FROM public.tp WHERE isactive = B'1' ORDER BY tpid";
             FillDGVByQuery(dgvTP, vquery);
         }
@@ -323,10 +325,10 @@ namespace monitor3lx
         {
             if (gCurrTPIdx >= 0)
             {
-                float vdev0 = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[10].Value.ToString(), out vdev0);
-                float vds = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vds);
+                float vdev0 = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vdev0);
+                float vds = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[14].Value.ToString(), out vds);
                 vdev0 += vds;
-                if (vdev0 >= 0) dgvTP.Rows[gCurrTPIdx].Cells[10].Value = Math.Round(vdev0, 2).ToString();
+                if (vdev0 >= 0) dgvTP.Rows[gCurrTPIdx].Cells[12].Value = Math.Round(vdev0, 2).ToString();
             }
         }
 
@@ -334,10 +336,10 @@ namespace monitor3lx
         {
             if (gCurrTPIdx >= 0)
             {
-                float vdev0 = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[10].Value.ToString(), out vdev0);
-                float vds = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vds);
+                float vdev0 = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vdev0);
+                float vds = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[14].Value.ToString(), out vds);
                 vdev0 -= vds;
-                if (vdev0 >= 0) dgvTP.Rows[gCurrTPIdx].Cells[10].Value = Math.Round(vdev0, 2).ToString();
+                if (vdev0 >= 0) dgvTP.Rows[gCurrTPIdx].Cells[12].Value = Math.Round(vdev0, 2).ToString();
             }
         }
 
@@ -345,10 +347,10 @@ namespace monitor3lx
         {
             if (gCurrTPIdx >= 0)
             {
-                float vdev0 = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[11].Value.ToString(), out vdev0);
-                float vds = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vds);
+                float vdev0 = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[13].Value.ToString(), out vdev0);
+                float vds = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[14].Value.ToString(), out vds);
                 vdev0 += vds;
-                if (vdev0 >= 0) dgvTP.Rows[gCurrTPIdx].Cells[11].Value = Math.Round(vdev0, 2).ToString();
+                if (vdev0 >= 0) dgvTP.Rows[gCurrTPIdx].Cells[13].Value = Math.Round(vdev0, 2).ToString();
             }
         }
 
@@ -356,10 +358,10 @@ namespace monitor3lx
         {
             if (gCurrTPIdx >= 0)
             {
-                float vdev0 = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[11].Value.ToString(), out vdev0);
-                float vds = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vds);
+                float vdev0 = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[13].Value.ToString(), out vdev0);
+                float vds = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[14].Value.ToString(), out vds);
                 vdev0 -= vds;
-                if (vdev0 >= 0) dgvTP.Rows[gCurrTPIdx].Cells[11].Value = Math.Round(vdev0, 2).ToString();
+                if (vdev0 >= 0) dgvTP.Rows[gCurrTPIdx].Cells[13].Value = Math.Round(vdev0, 2).ToString();
             }
         }
 
@@ -815,14 +817,18 @@ namespace monitor3lx
 
         private void tps_tpsec_enter(object sender, DataGridViewCellEventArgs e)
         {
-            cb_tps_code.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[0].Value.ToString();
-            cb_tps_acc.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[2].Value.ToString();
-            cb_tps_sectype.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[3].Value.ToString();
-            cb_tps_pdfor.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[6].Value.ToString();
+            if (e.RowIndex > 1)
+            {
+                cb_tps_code.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[0].Value.ToString();
+                cb_tps_acc.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[2].Value.ToString();
+                cb_tps_sectype.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[3].Value.ToString();
+                cb_tps_pdfor.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[6].Value.ToString();
 
-            tb_tps_hedgekf.Text = dgv_tps_tpsec.Rows[e.RowIndex].Cells[4].Value.ToString();
-            tb_tps_pdkf.Text = dgv_tps_tpsec.Rows[e.RowIndex].Cells[5].Value.ToString();
-            tb_tps_p2pkf.Text = dgv_tps_tpsec.Rows[e.RowIndex].Cells[8].Value.ToString();
+                tb_tps_hedgekf.Text = dgv_tps_tpsec.Rows[e.RowIndex].Cells[4].Value.ToString();
+                tb_tps_pdkf.Text = dgv_tps_tpsec.Rows[e.RowIndex].Cells[5].Value.ToString();
+                tb_tps_p2pkf.Text = dgv_tps_tpsec.Rows[e.RowIndex].Cells[8].Value.ToString();
+            }
+
         }
 
         private void tps_activate_pd(object sender, EventArgs e)
