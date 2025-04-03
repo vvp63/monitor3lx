@@ -57,20 +57,13 @@
             this.tb_BC_intervalnew = new System.Windows.Forms.TextBox();
             this.cb_CB_newautoreload = new System.Windows.Forms.CheckBox();
             this.b_BC_newcountset = new System.Windows.Forms.Button();
-            this.l_BC_oldcounter = new System.Windows.Forms.Label();
             this.b_BC_newcount = new System.Windows.Forms.Button();
             this.l_BC_new = new System.Windows.Forms.Label();
             this.dgv_BC_new = new System.Windows.Forms.DataGridView();
-            this.l_ar_sec = new System.Windows.Forms.Label();
             this.b_loadParams = new System.Windows.Forms.Button();
             this.dgv_LParams = new System.Windows.Forms.DataGridView();
             this.dgv_BC_Params = new System.Windows.Forms.DataGridView();
             this.l_BC_Params = new System.Windows.Forms.Label();
-            this.cb_BC_Autoreload = new System.Windows.Forms.CheckBox();
-            this.tb_BC_Interval = new System.Windows.Forms.TextBox();
-            this.b_BC_Set = new System.Windows.Forms.Button();
-            this.b_BC_Load = new System.Windows.Forms.Button();
-            this.dgv_BC_settings = new System.Windows.Forms.DataGridView();
             this.t_FinresHistory = new System.Windows.Forms.TabPage();
             this.dgv_AssetMove = new System.Windows.Forms.DataGridView();
             this.pan_AssetMoves = new System.Windows.Forms.Panel();
@@ -194,7 +187,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_new)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_LParams)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_Params)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).BeginInit();
             this.t_FinresHistory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AssetMove)).BeginInit();
             this.pan_AssetMoves.SuspendLayout();
@@ -385,7 +377,6 @@
             // timer_BC
             // 
             this.timer_BC.Interval = 60000;
-            this.timer_BC.Tick += new System.EventHandler(this.BC_Timer_Work);
             // 
             // timer_keepconn
             // 
@@ -472,20 +463,13 @@
             this.t_BasisCount.Controls.Add(this.tb_BC_intervalnew);
             this.t_BasisCount.Controls.Add(this.cb_CB_newautoreload);
             this.t_BasisCount.Controls.Add(this.b_BC_newcountset);
-            this.t_BasisCount.Controls.Add(this.l_BC_oldcounter);
             this.t_BasisCount.Controls.Add(this.b_BC_newcount);
             this.t_BasisCount.Controls.Add(this.l_BC_new);
             this.t_BasisCount.Controls.Add(this.dgv_BC_new);
-            this.t_BasisCount.Controls.Add(this.l_ar_sec);
             this.t_BasisCount.Controls.Add(this.b_loadParams);
             this.t_BasisCount.Controls.Add(this.dgv_LParams);
             this.t_BasisCount.Controls.Add(this.dgv_BC_Params);
             this.t_BasisCount.Controls.Add(this.l_BC_Params);
-            this.t_BasisCount.Controls.Add(this.cb_BC_Autoreload);
-            this.t_BasisCount.Controls.Add(this.tb_BC_Interval);
-            this.t_BasisCount.Controls.Add(this.b_BC_Set);
-            this.t_BasisCount.Controls.Add(this.b_BC_Load);
-            this.t_BasisCount.Controls.Add(this.dgv_BC_settings);
             this.t_BasisCount.Location = new System.Drawing.Point(4, 31);
             this.t_BasisCount.Name = "t_BasisCount";
             this.t_BasisCount.Size = new System.Drawing.Size(1476, 462);
@@ -496,7 +480,7 @@
             // l_ar_secnew
             // 
             this.l_ar_secnew.AutoSize = true;
-            this.l_ar_secnew.Location = new System.Drawing.Point(69, 267);
+            this.l_ar_secnew.Location = new System.Drawing.Point(69, 119);
             this.l_ar_secnew.Name = "l_ar_secnew";
             this.l_ar_secnew.Size = new System.Drawing.Size(24, 13);
             this.l_ar_secnew.TabIndex = 17;
@@ -504,7 +488,7 @@
             // 
             // tb_BC_intervalnew
             // 
-            this.tb_BC_intervalnew.Location = new System.Drawing.Point(9, 264);
+            this.tb_BC_intervalnew.Location = new System.Drawing.Point(9, 116);
             this.tb_BC_intervalnew.Name = "tb_BC_intervalnew";
             this.tb_BC_intervalnew.Size = new System.Drawing.Size(54, 20);
             this.tb_BC_intervalnew.TabIndex = 16;
@@ -513,7 +497,7 @@
             // cb_CB_newautoreload
             // 
             this.cb_CB_newautoreload.AutoSize = true;
-            this.cb_CB_newautoreload.Location = new System.Drawing.Point(9, 241);
+            this.cb_CB_newautoreload.Location = new System.Drawing.Point(9, 93);
             this.cb_CB_newautoreload.Name = "cb_CB_newautoreload";
             this.cb_CB_newautoreload.Size = new System.Drawing.Size(106, 17);
             this.cb_CB_newautoreload.TabIndex = 15;
@@ -524,7 +508,7 @@
             // b_BC_newcountset
             // 
             this.b_BC_newcountset.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.b_BC_newcountset.Location = new System.Drawing.Point(9, 212);
+            this.b_BC_newcountset.Location = new System.Drawing.Point(9, 64);
             this.b_BC_newcountset.Name = "b_BC_newcountset";
             this.b_BC_newcountset.Size = new System.Drawing.Size(108, 23);
             this.b_BC_newcountset.TabIndex = 14;
@@ -532,20 +516,10 @@
             this.b_BC_newcountset.UseVisualStyleBackColor = false;
             this.b_BC_newcountset.Click += new System.EventHandler(this.b_countsetnew_click);
             // 
-            // l_BC_oldcounter
-            // 
-            this.l_BC_oldcounter.AutoSize = true;
-            this.l_BC_oldcounter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.l_BC_oldcounter.Location = new System.Drawing.Point(11, 8);
-            this.l_BC_oldcounter.Name = "l_BC_oldcounter";
-            this.l_BC_oldcounter.Size = new System.Drawing.Size(99, 18);
-            this.l_BC_oldcounter.TabIndex = 13;
-            this.l_BC_oldcounter.Text = "Old Counter";
-            // 
             // b_BC_newcount
             // 
             this.b_BC_newcount.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.b_BC_newcount.Location = new System.Drawing.Point(9, 183);
+            this.b_BC_newcount.Location = new System.Drawing.Point(9, 35);
             this.b_BC_newcount.Name = "b_BC_newcount";
             this.b_BC_newcount.Size = new System.Drawing.Size(108, 23);
             this.b_BC_newcount.TabIndex = 12;
@@ -557,7 +531,7 @@
             // 
             this.l_BC_new.AutoSize = true;
             this.l_BC_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.l_BC_new.Location = new System.Drawing.Point(9, 162);
+            this.l_BC_new.Location = new System.Drawing.Point(9, 14);
             this.l_BC_new.Name = "l_BC_new";
             this.l_BC_new.Size = new System.Drawing.Size(106, 18);
             this.l_BC_new.TabIndex = 11;
@@ -569,20 +543,11 @@
             this.dgv_BC_new.AllowUserToAddRows = false;
             this.dgv_BC_new.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgv_BC_new.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_BC_new.Location = new System.Drawing.Point(125, 161);
+            this.dgv_BC_new.Location = new System.Drawing.Point(125, 13);
             this.dgv_BC_new.Name = "dgv_BC_new";
             this.dgv_BC_new.RowHeadersWidth = 5;
             this.dgv_BC_new.Size = new System.Drawing.Size(1343, 145);
             this.dgv_BC_new.TabIndex = 10;
-            // 
-            // l_ar_sec
-            // 
-            this.l_ar_sec.AutoSize = true;
-            this.l_ar_sec.Location = new System.Drawing.Point(73, 109);
-            this.l_ar_sec.Name = "l_ar_sec";
-            this.l_ar_sec.Size = new System.Drawing.Size(24, 13);
-            this.l_ar_sec.TabIndex = 9;
-            this.l_ar_sec.Text = "sec";
             // 
             // b_loadParams
             // 
@@ -629,59 +594,6 @@
             this.l_BC_Params.Size = new System.Drawing.Size(174, 16);
             this.l_BC_Params.TabIndex = 5;
             this.l_BC_Params.Text = "Basis Count Parameters";
-            // 
-            // cb_BC_Autoreload
-            // 
-            this.cb_BC_Autoreload.AutoSize = true;
-            this.cb_BC_Autoreload.Location = new System.Drawing.Point(12, 87);
-            this.cb_BC_Autoreload.Name = "cb_BC_Autoreload";
-            this.cb_BC_Autoreload.Size = new System.Drawing.Size(106, 17);
-            this.cb_BC_Autoreload.TabIndex = 4;
-            this.cb_BC_Autoreload.Text = "Autoreload every";
-            this.cb_BC_Autoreload.UseVisualStyleBackColor = true;
-            this.cb_BC_Autoreload.CheckStateChanged += new System.EventHandler(this.BC_Autoreload_check);
-            // 
-            // tb_BC_Interval
-            // 
-            this.tb_BC_Interval.Location = new System.Drawing.Point(13, 106);
-            this.tb_BC_Interval.Name = "tb_BC_Interval";
-            this.tb_BC_Interval.Size = new System.Drawing.Size(54, 20);
-            this.tb_BC_Interval.TabIndex = 3;
-            this.tb_BC_Interval.Text = "60";
-            // 
-            // b_BC_Set
-            // 
-            this.b_BC_Set.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.b_BC_Set.Location = new System.Drawing.Point(9, 59);
-            this.b_BC_Set.Name = "b_BC_Set";
-            this.b_BC_Set.Size = new System.Drawing.Size(108, 23);
-            this.b_BC_Set.TabIndex = 2;
-            this.b_BC_Set.Text = "Count and Set";
-            this.b_BC_Set.UseVisualStyleBackColor = false;
-            this.b_BC_Set.Click += new System.EventHandler(this.BC_Set_Click);
-            // 
-            // b_BC_Load
-            // 
-            this.b_BC_Load.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.b_BC_Load.Location = new System.Drawing.Point(9, 31);
-            this.b_BC_Load.Name = "b_BC_Load";
-            this.b_BC_Load.Size = new System.Drawing.Size(108, 23);
-            this.b_BC_Load.TabIndex = 1;
-            this.b_BC_Load.Text = "Count";
-            this.b_BC_Load.UseVisualStyleBackColor = false;
-            this.b_BC_Load.Click += new System.EventHandler(this.BC_Count_Click);
-            // 
-            // dgv_BC_settings
-            // 
-            this.dgv_BC_settings.AllowDrop = true;
-            this.dgv_BC_settings.AllowUserToAddRows = false;
-            this.dgv_BC_settings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgv_BC_settings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_BC_settings.Location = new System.Drawing.Point(125, 8);
-            this.dgv_BC_settings.Name = "dgv_BC_settings";
-            this.dgv_BC_settings.RowHeadersWidth = 5;
-            this.dgv_BC_settings.Size = new System.Drawing.Size(1343, 145);
-            this.dgv_BC_settings.TabIndex = 0;
             // 
             // t_FinresHistory
             // 
@@ -1922,7 +1834,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_new)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_LParams)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_Params)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_BC_settings)).EndInit();
             this.t_FinresHistory.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_AssetMove)).EndInit();
             this.pan_AssetMoves.ResumeLayout(false);
@@ -1986,11 +1897,6 @@
         private System.Windows.Forms.DataGridView dgv_LParams;
         private System.Windows.Forms.DataGridView dgv_BC_Params;
         private System.Windows.Forms.Label l_BC_Params;
-        private System.Windows.Forms.CheckBox cb_BC_Autoreload;
-        private System.Windows.Forms.TextBox tb_BC_Interval;
-        private System.Windows.Forms.Button b_BC_Set;
-        private System.Windows.Forms.Button b_BC_Load;
-        private System.Windows.Forms.DataGridView dgv_BC_settings;
         private System.Windows.Forms.TabPage t_FinresHistory;
         private System.Windows.Forms.DataGridView dgv_AssetMove;
         private System.Windows.Forms.Panel pan_AssetMoves;
@@ -2080,12 +1986,10 @@
         private System.Windows.Forms.Button b_mess_stophedge;
         private System.Windows.Forms.Button b_mess_starthedge;
         private System.Windows.Forms.Button b_mess_stop;
-        private System.Windows.Forms.Label l_ar_sec;
         private System.Windows.Forms.Button b_BC_newcount;
         private System.Windows.Forms.Label l_BC_new;
         private System.Windows.Forms.DataGridView dgv_BC_new;
         private System.Windows.Forms.Button b_BC_newcountset;
-        private System.Windows.Forms.Label l_BC_oldcounter;
         private System.Windows.Forms.Label l_ar_secnew;
         private System.Windows.Forms.TextBox tb_BC_intervalnew;
         private System.Windows.Forms.CheckBox cb_CB_newautoreload;

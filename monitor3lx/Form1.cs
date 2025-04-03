@@ -99,9 +99,6 @@ namespace monitor3lx
                     dgvTP.Enabled = false;
                     dgv_BC_Params.Enabled = false;
                     b_Apply.Enabled = false;
-                    b_BC_Set.Enabled = false;
-                    cb_BC_Autoreload.Enabled = false;
-                    tb_BC_Interval.Enabled = false;
                     b_BC_newcountset.Enabled = false;
                     cb_CB_newautoreload.Enabled = false;
                     tb_BC_intervalnew.Enabled = false;
@@ -169,7 +166,11 @@ namespace monitor3lx
 
         private void getTPtable()
         {
-            FillDGVByQuery(dgvTP, "SELECT * FROM public.tp WHERE isactive = B'1' ORDER BY tpid");
+            //FillDGVByQuery(dgvTP, "SELECT * FROM public.tp WHERE isactive = B'1' ORDER BY tpid");
+            string vquery = "SELECT tpid, name, isactive, directstatus, inversestatus, bdirect, binverse, volmax, voleliminated, qty_limit, dev0d, dev0i, devstep," + 
+                                " vmin, vmax, plmax, maxvolbefore, pstomove, voltomove, hedgemode, cashshift, vunhedged, kunhedged, mmaxvol, morderdelay" + 
+                                " FROM public.tp WHERE isactive = B'1' ORDER BY tpid";
+            FillDGVByQuery(dgvTP, vquery);
         }
 
         private void getTPComboBox()
@@ -322,15 +323,10 @@ namespace monitor3lx
         {
             if (gCurrTPIdx >= 0)
             {
-                float vVCdir = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[9].Value.ToString(), out vVCdir);
-                float vVSq = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[11].Value.ToString(), out vVSq);
-                float vLArrowMove = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[25].Value.ToString(), out vLArrowMove);
-                float vSQdiv = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[26].Value.ToString(), out vSQdiv);
-                float vSQArrowMove = 0; if (vSQdiv != 0) vSQArrowMove = vLArrowMove / vSQdiv;
-                vVCdir += vLArrowMove;
-                vVSq += vSQArrowMove;          
-                if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[9].Value = Math.Round(vVCdir, 8).ToString();
-                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[11].Value = Math.Round(vVSq, 12).ToString();
+                float vdev0 = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[10].Value.ToString(), out vdev0);
+                float vds = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vds);
+                vdev0 += vds;
+                if (vdev0 >= 0) dgvTP.Rows[gCurrTPIdx].Cells[10].Value = Math.Round(vdev0, 2).ToString();
             }
         }
 
@@ -338,15 +334,10 @@ namespace monitor3lx
         {
             if (gCurrTPIdx >= 0)
             {
-                float vVCdir = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[9].Value.ToString(), out vVCdir);
-                float vVSq = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[11].Value.ToString(), out vVSq);
-                float vLArrowMove = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[25].Value.ToString(), out vLArrowMove);
-                float vSQdiv = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[26].Value.ToString(), out vSQdiv);
-                float vSQArrowMove = 0; if (vSQdiv != 0) vSQArrowMove = vLArrowMove / vSQdiv;
-                vVCdir -= vLArrowMove;
-                vVSq -= vSQArrowMove;
-                if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[9].Value = Math.Round(vVCdir, 8).ToString();
-                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[11].Value = Math.Round(vVSq, 12).ToString();
+                float vdev0 = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[10].Value.ToString(), out vdev0);
+                float vds = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vds);
+                vdev0 -= vds;
+                if (vdev0 >= 0) dgvTP.Rows[gCurrTPIdx].Cells[10].Value = Math.Round(vdev0, 2).ToString();
             }
         }
 
@@ -354,15 +345,10 @@ namespace monitor3lx
         {
             if (gCurrTPIdx >= 0)
             {
-                float vVCdir = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[10].Value.ToString(), out vVCdir);
-                float vVSq = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vVSq);
-                float vLArrowMove = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[25].Value.ToString(), out vLArrowMove);
-                float vSQdiv = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[26].Value.ToString(), out vSQdiv);
-                float vSQArrowMove = 0; if (vSQdiv != 0) vSQArrowMove = vLArrowMove / vSQdiv;
-                vVCdir += vLArrowMove;
-                vVSq += vSQArrowMove;
-                if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[10].Value = Math.Round(vVCdir, 8).ToString();
-                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[12].Value = Math.Round(vVSq, 12).ToString();
+                float vdev0 = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[11].Value.ToString(), out vdev0);
+                float vds = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vds);
+                vdev0 += vds;
+                if (vdev0 >= 0) dgvTP.Rows[gCurrTPIdx].Cells[11].Value = Math.Round(vdev0, 2).ToString();
             }
         }
 
@@ -370,15 +356,10 @@ namespace monitor3lx
         {
             if (gCurrTPIdx >= 0)
             {
-                float vVCdir = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[10].Value.ToString(), out vVCdir);
-                float vVSq = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vVSq);
-                float vLArrowMove = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[25].Value.ToString(), out vLArrowMove);
-                float vSQdiv = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[26].Value.ToString(), out vSQdiv);
-                float vSQArrowMove = 0; if (vSQdiv != 0) vSQArrowMove = vLArrowMove / vSQdiv;
-                vVCdir -= vLArrowMove;
-                vVSq -= vSQArrowMove;
-                if (vVCdir >= 0) dgvTP.Rows[gCurrTPIdx].Cells[10].Value = Math.Round(vVCdir, 8).ToString();
-                if (vVSq >= 0) dgvTP.Rows[gCurrTPIdx].Cells[12].Value = Math.Round(vVSq, 12).ToString();
+                float vdev0 = -1; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[11].Value.ToString(), out vdev0);
+                float vds = 0; float.TryParse(dgvTP.Rows[gCurrTPIdx].Cells[12].Value.ToString(), out vds);
+                vdev0 -= vds;
+                if (vdev0 >= 0) dgvTP.Rows[gCurrTPIdx].Cells[11].Value = Math.Round(vdev0, 2).ToString();
             }
         }
 
@@ -483,68 +464,6 @@ namespace monitor3lx
 
 
         //      --------------------------  Basis Count (BC)    ------------------------------------------  //
-
-
-        private void BC_Count_Click(object sender, EventArgs e)
-        {
-            BC_Count();
-        }
-
-        private void BC_Set_Click(object sender, EventArgs e)
-        {
-            BC_Count();
-            BC_Set();
-            Apply_proc();
-        }
-
-        private void BC_Count()
-        {
-            FillDGVByQuery(dgv_BC_settings, "SELECT * FROM \"public\".\"TP_Basis_Count_Full\"");
-        }
-
-        private void BC_Set()
-        {
-            for (int j = 0; j < dgv_BC_settings.Rows.Count; j++)
-            {
-                string vTpid    =   dgv_BC_settings.Rows[j].Cells[0].Value.ToString();
-                string vBdir = dgv_BC_settings.Rows[j].Cells[14].Value.ToString();
-                string vBinv = dgv_BC_settings.Rows[j].Cells[15].Value.ToString();
-                string vQuoteStr = dgv_BC_settings.Rows[j].Cells[2].Value.ToString();
-                float vQuote = 0;
-                float.TryParse(vQuoteStr, out vQuote);
-                TextLog("{0}   dir={1} inv={2}  quote = {3}", vTpid, vBdir, vBinv, vQuote);
-                if (vQuote > 0)
-                {
-                    for (int i = 0; i < dgvTP.Rows.Count; i++)
-                    {
-                        if (dgvTP.Rows[i].Cells[0].Value.ToString() == vTpid)
-                        {
-                            dgvTP.Rows[i].Cells[5].Value = vBdir;
-                            dgvTP.Rows[i].Cells[6].Value = vBinv;
-                        }
-                        SaveTPLine(i);
-                    }
-                }
-                else dgv_BC_settings.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
-            }
-        }
-
-        private void BC_Autoreload_check(object sender, EventArgs e)
-        {
-            //
-            tb_BC_Interval.Enabled = !cb_BC_Autoreload.Checked;
-            int vInterval = 60;
-            int.TryParse(tb_BC_Interval.Text, out vInterval);
-            timer_BC.Interval = vInterval * 1000;
-            timer_BC.Enabled = cb_BC_Autoreload.Checked;
-        }
-
-        private void BC_Timer_Work(object sender, EventArgs e)
-        {
-            BC_Count();
-            BC_Set();
-            Apply_proc();
-        }
 
         // 
 
