@@ -64,3 +64,4 @@ D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\Microsoft.Extensions
 D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\Npgsql.xml
 D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\Renci.SshNet.xml
 D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\obj\Debug\monitor3lx.RT.resources

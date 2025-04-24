@@ -142,6 +142,7 @@ namespace monitor3lx
                 aDGV.Columns[1].MinimumWidth = 100;
             }
             else TextLog("No connection");
+
         }
 
 
