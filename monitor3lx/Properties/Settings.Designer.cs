@@ -166,17 +166,5 @@ namespace monitor3lx.Properties {
                 this["VolCommand"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string TpFields {
-            get {
-                return ((string)(this["TpFields"]));
-            }
-            set {
-                this["TpFields"] = value;
-            }
-        }
     }
 }

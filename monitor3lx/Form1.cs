@@ -174,7 +174,36 @@ namespace monitor3lx
                                 " plmax, maxvolbefore, pstomove, voltomove, hedgemode, cashshift, vunhedged, kunhedged, mmaxvol, morderdelay" + 
                                 " FROM public.tp WHERE isactive = B'1' ORDER BY tpid";
             FillDGVByQuery(dgvTP, vquery);
+            filterTPtable();
         }
+
+        private void filterTPtable()
+        {
+            dgvTP.CurrentCell = null;
+            for (int j = 0; j < dgvTP.RowCount; j++)
+            {
+                string vVal = dgvTP.Rows[j].Cells[0].Value.ToString();
+                TextLog(vVal[0].ToString());
+                if (vVal[0] == '2')
+                {
+                    if (cb_f2.Checked) dgvTP.Rows[j].Visible = true; else dgvTP.Rows[j].Visible = false;
+                }
+                if (vVal[0] == '5')
+                {
+                    if (cb_f5.Checked) dgvTP.Rows[j].Visible = true; else dgvTP.Rows[j].Visible = false;
+                }
+                if (vVal[0] == '7')
+                {
+                    if (cb_f7.Checked) dgvTP.Rows[j].Visible = true; else dgvTP.Rows[j].Visible = false;
+                }
+            }
+        }
+
+        private void flt_checked(object sender, EventArgs e)
+        {
+            filterTPtable();
+        }
+
 
         private void getTPComboBox()
         {
@@ -1125,10 +1154,6 @@ namespace monitor3lx
             }
 
         }
-
-
-
-
 
 
     }

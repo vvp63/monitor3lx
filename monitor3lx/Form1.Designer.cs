@@ -177,6 +177,11 @@
             this.cb_tps_active = new System.Windows.Forms.CheckBox();
             this.dgv_tps_list = new System.Windows.Forms.DataGridView();
             this.timer_BC_new = new System.Windows.Forms.Timer(this.components);
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.l_Flt = new System.Windows.Forms.Label();
+            this.cb_f2 = new System.Windows.Forms.CheckBox();
+            this.cb_f5 = new System.Windows.Forms.CheckBox();
+            this.cb_f7 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.pan_top.SuspendLayout();
             this.pan_Connect.SuspendLayout();
@@ -209,6 +214,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_tpsec)).BeginInit();
             this.p_tps_tp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_list)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbLog
@@ -278,6 +284,7 @@
             // pan_top
             // 
             this.pan_top.BackColor = System.Drawing.Color.Silver;
+            this.pan_top.Controls.Add(this.panel2);
             this.pan_top.Controls.Add(this.b_li_down);
             this.pan_top.Controls.Add(this.b_li_up);
             this.pan_top.Controls.Add(this.b_ld_down);
@@ -1809,6 +1816,70 @@
             this.timer_BC_new.Interval = 60000;
             this.timer_BC_new.Tick += new System.EventHandler(this.BC_Timer_New_Work);
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.Controls.Add(this.cb_f7);
+            this.panel2.Controls.Add(this.cb_f5);
+            this.panel2.Controls.Add(this.cb_f2);
+            this.panel2.Controls.Add(this.l_Flt);
+            this.panel2.Location = new System.Drawing.Point(457, 4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(227, 35);
+            this.panel2.TabIndex = 18;
+            // 
+            // l_Flt
+            // 
+            this.l_Flt.AutoSize = true;
+            this.l_Flt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_Flt.Location = new System.Drawing.Point(4, 10);
+            this.l_Flt.Name = "l_Flt";
+            this.l_Flt.Size = new System.Drawing.Size(67, 16);
+            this.l_Flt.TabIndex = 0;
+            this.l_Flt.Text = "Filter TP";
+            // 
+            // cb_f2
+            // 
+            this.cb_f2.AutoSize = true;
+            this.cb_f2.Checked = true;
+            this.cb_f2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_f2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cb_f2.Location = new System.Drawing.Point(80, 9);
+            this.cb_f2.Name = "cb_f2";
+            this.cb_f2.Size = new System.Drawing.Size(35, 20);
+            this.cb_f2.TabIndex = 1;
+            this.cb_f2.Text = "2";
+            this.cb_f2.UseVisualStyleBackColor = true;
+            this.cb_f2.CheckedChanged += new System.EventHandler(this.flt_checked);
+            // 
+            // cb_f5
+            // 
+            this.cb_f5.AutoSize = true;
+            this.cb_f5.Checked = true;
+            this.cb_f5.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_f5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cb_f5.Location = new System.Drawing.Point(130, 9);
+            this.cb_f5.Name = "cb_f5";
+            this.cb_f5.Size = new System.Drawing.Size(35, 20);
+            this.cb_f5.TabIndex = 2;
+            this.cb_f5.Text = "5";
+            this.cb_f5.UseVisualStyleBackColor = true;
+            this.cb_f5.CheckedChanged += new System.EventHandler(this.flt_checked);
+            // 
+            // cb_f7
+            // 
+            this.cb_f7.AutoSize = true;
+            this.cb_f7.Checked = true;
+            this.cb_f7.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_f7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cb_f7.Location = new System.Drawing.Point(180, 9);
+            this.cb_f7.Name = "cb_f7";
+            this.cb_f7.Size = new System.Drawing.Size(35, 20);
+            this.cb_f7.TabIndex = 3;
+            this.cb_f7.Text = "7";
+            this.cb_f7.UseVisualStyleBackColor = true;
+            this.cb_f7.CheckedChanged += new System.EventHandler(this.flt_checked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1866,6 +1937,8 @@
             this.p_tps_tp.ResumeLayout(false);
             this.p_tps_tp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_list)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2021,6 +2094,11 @@
         private System.Windows.Forms.Button b_li_down;
         private System.Windows.Forms.Button b_li_up;
         private System.Windows.Forms.Button b_ld_down;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.CheckBox cb_f7;
+        private System.Windows.Forms.CheckBox cb_f5;
+        private System.Windows.Forms.CheckBox cb_f2;
+        private System.Windows.Forms.Label l_Flt;
     }
 }
 
