@@ -197,6 +197,26 @@ namespace monitor3lx
                     if (cb_f7.Checked) dgvTP.Rows[j].Visible = true; else dgvTP.Rows[j].Visible = false;
                 }
             }
+
+            dgvTPBalances.CurrentCell = null;
+            for (int j = 0; j < dgvTPBalances.RowCount; j++)
+            {
+                string vVal = dgvTPBalances.Rows[j].Cells[0].Value.ToString();
+                TextLog(vVal[0].ToString());
+                if (vVal[0] == '2')
+                {
+                    if (cb_f2.Checked) dgvTPBalances.Rows[j].Visible = true; else dgvTPBalances.Rows[j].Visible = false;
+                }
+                if (vVal[0] == '5')
+                {
+                    if (cb_f5.Checked) dgvTPBalances.Rows[j].Visible = true; else dgvTPBalances.Rows[j].Visible = false;
+                }
+                if (vVal[0] == '7')
+                {
+                    if (cb_f7.Checked) dgvTPBalances.Rows[j].Visible = true; else dgvTPBalances.Rows[j].Visible = false;
+                }
+            }
+
         }
 
         private void flt_checked(object sender, EventArgs e)
@@ -268,6 +288,7 @@ namespace monitor3lx
             FillDGVByQuery(dgvTPBalances, "SELECT * FROM public.\"TP_Balances_2\"");
             FillDGVByQuery(dgvDelays, "SELECT * FROM public.\"Delays_ByStock\"");
             l_chb_tpid.Text = "0";
+            filterTPtable();
         }
 
         private void b_CurrPos_Click(object sender, EventArgs e)
