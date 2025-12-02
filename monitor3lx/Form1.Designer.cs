@@ -35,6 +35,11 @@
             this.bUpdateTP = new System.Windows.Forms.Button();
             this.b_Apply = new System.Windows.Forms.Button();
             this.pan_top = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.cb_f7 = new System.Windows.Forms.CheckBox();
+            this.cb_f5 = new System.Windows.Forms.CheckBox();
+            this.cb_f2 = new System.Windows.Forms.CheckBox();
+            this.l_Flt = new System.Windows.Forms.Label();
             this.b_li_down = new System.Windows.Forms.Button();
             this.b_li_up = new System.Windows.Forms.Button();
             this.b_ld_down = new System.Windows.Forms.Button();
@@ -95,6 +100,7 @@
             this.lFR_Date = new System.Windows.Forms.Label();
             this.dtpFR_date = new System.Windows.Forms.DateTimePicker();
             this.t_CurrPos = new System.Windows.Forms.TabPage();
+            this.b_AllVisBalance = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.b_add_balance = new System.Windows.Forms.Button();
             this.tb_val = new System.Windows.Forms.TextBox();
@@ -117,7 +123,6 @@
             this.l_message = new System.Windows.Forms.Label();
             this.l_OrdersDelays = new System.Windows.Forms.Label();
             this.dgvDelays = new System.Windows.Forms.DataGridView();
-            this.b_FullBall = new System.Windows.Forms.Button();
             this.dgvFullBalance = new System.Windows.Forms.DataGridView();
             this.l_TP_Balance = new System.Windows.Forms.Label();
             this.dgvTPBalances = new System.Windows.Forms.DataGridView();
@@ -177,13 +182,9 @@
             this.cb_tps_active = new System.Windows.Forms.CheckBox();
             this.dgv_tps_list = new System.Windows.Forms.DataGridView();
             this.timer_BC_new = new System.Windows.Forms.Timer(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.l_Flt = new System.Windows.Forms.Label();
-            this.cb_f2 = new System.Windows.Forms.CheckBox();
-            this.cb_f5 = new System.Windows.Forms.CheckBox();
-            this.cb_f7 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.pan_top.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.pan_Connect.SuspendLayout();
             this.t_Expiration.SuspendLayout();
             this.pan_ExpRed.SuspendLayout();
@@ -214,7 +215,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_tpsec)).BeginInit();
             this.p_tps_tp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_list)).BeginInit();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbLog
@@ -300,6 +300,70 @@
             this.pan_top.Name = "pan_top";
             this.pan_top.Size = new System.Drawing.Size(1484, 315);
             this.pan_top.TabIndex = 6;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.Controls.Add(this.cb_f7);
+            this.panel2.Controls.Add(this.cb_f5);
+            this.panel2.Controls.Add(this.cb_f2);
+            this.panel2.Controls.Add(this.l_Flt);
+            this.panel2.Location = new System.Drawing.Point(457, 4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(227, 35);
+            this.panel2.TabIndex = 18;
+            // 
+            // cb_f7
+            // 
+            this.cb_f7.AutoSize = true;
+            this.cb_f7.Checked = true;
+            this.cb_f7.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_f7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cb_f7.Location = new System.Drawing.Point(180, 9);
+            this.cb_f7.Name = "cb_f7";
+            this.cb_f7.Size = new System.Drawing.Size(35, 20);
+            this.cb_f7.TabIndex = 3;
+            this.cb_f7.Text = "7";
+            this.cb_f7.UseVisualStyleBackColor = true;
+            this.cb_f7.CheckedChanged += new System.EventHandler(this.flt_checked);
+            // 
+            // cb_f5
+            // 
+            this.cb_f5.AutoSize = true;
+            this.cb_f5.Checked = true;
+            this.cb_f5.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_f5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cb_f5.Location = new System.Drawing.Point(130, 9);
+            this.cb_f5.Name = "cb_f5";
+            this.cb_f5.Size = new System.Drawing.Size(35, 20);
+            this.cb_f5.TabIndex = 2;
+            this.cb_f5.Text = "5";
+            this.cb_f5.UseVisualStyleBackColor = true;
+            this.cb_f5.CheckedChanged += new System.EventHandler(this.flt_checked);
+            // 
+            // cb_f2
+            // 
+            this.cb_f2.AutoSize = true;
+            this.cb_f2.Checked = true;
+            this.cb_f2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_f2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cb_f2.Location = new System.Drawing.Point(80, 9);
+            this.cb_f2.Name = "cb_f2";
+            this.cb_f2.Size = new System.Drawing.Size(35, 20);
+            this.cb_f2.TabIndex = 1;
+            this.cb_f2.Text = "2";
+            this.cb_f2.UseVisualStyleBackColor = true;
+            this.cb_f2.CheckedChanged += new System.EventHandler(this.flt_checked);
+            // 
+            // l_Flt
+            // 
+            this.l_Flt.AutoSize = true;
+            this.l_Flt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_Flt.Location = new System.Drawing.Point(4, 10);
+            this.l_Flt.Name = "l_Flt";
+            this.l_Flt.Size = new System.Drawing.Size(67, 16);
+            this.l_Flt.TabIndex = 0;
+            this.l_Flt.Text = "Filter TP";
             // 
             // b_li_down
             // 
@@ -947,11 +1011,11 @@
             // t_CurrPos
             // 
             this.t_CurrPos.BackColor = System.Drawing.Color.Gainsboro;
+            this.t_CurrPos.Controls.Add(this.b_AllVisBalance);
             this.t_CurrPos.Controls.Add(this.panel1);
             this.t_CurrPos.Controls.Add(this.p_Commands);
             this.t_CurrPos.Controls.Add(this.l_OrdersDelays);
             this.t_CurrPos.Controls.Add(this.dgvDelays);
-            this.t_CurrPos.Controls.Add(this.b_FullBall);
             this.t_CurrPos.Controls.Add(this.dgvFullBalance);
             this.t_CurrPos.Controls.Add(this.l_TP_Balance);
             this.t_CurrPos.Controls.Add(this.dgvTPBalances);
@@ -963,6 +1027,18 @@
             this.t_CurrPos.Size = new System.Drawing.Size(1476, 462);
             this.t_CurrPos.TabIndex = 0;
             this.t_CurrPos.Text = "Current Positions";
+            // 
+            // b_AllVisBalance
+            // 
+            this.b_AllVisBalance.BackColor = System.Drawing.Color.White;
+            this.b_AllVisBalance.Location = new System.Drawing.Point(1076, 6);
+            this.b_AllVisBalance.Margin = new System.Windows.Forms.Padding(2);
+            this.b_AllVisBalance.Name = "b_AllVisBalance";
+            this.b_AllVisBalance.Size = new System.Drawing.Size(136, 28);
+            this.b_AllVisBalance.TabIndex = 10;
+            this.b_AllVisBalance.Text = "Visible Balance Summ";
+            this.b_AllVisBalance.UseVisualStyleBackColor = false;
+            this.b_AllVisBalance.Click += new System.EventHandler(this.ClickAllVisible);
             // 
             // panel1
             // 
@@ -1190,18 +1266,6 @@
             this.dgvDelays.RowTemplate.Height = 24;
             this.dgvDelays.Size = new System.Drawing.Size(470, 95);
             this.dgvDelays.TabIndex = 6;
-            // 
-            // b_FullBall
-            // 
-            this.b_FullBall.BackColor = System.Drawing.Color.White;
-            this.b_FullBall.Location = new System.Drawing.Point(1100, 6);
-            this.b_FullBall.Margin = new System.Windows.Forms.Padding(2);
-            this.b_FullBall.Name = "b_FullBall";
-            this.b_FullBall.Size = new System.Drawing.Size(112, 28);
-            this.b_FullBall.TabIndex = 5;
-            this.b_FullBall.Text = "Full Balance";
-            this.b_FullBall.UseVisualStyleBackColor = false;
-            this.b_FullBall.Click += new System.EventHandler(this.ClickFullBalance);
             // 
             // dgvFullBalance
             // 
@@ -1816,70 +1880,6 @@
             this.timer_BC_new.Interval = 60000;
             this.timer_BC_new.Tick += new System.EventHandler(this.BC_Timer_New_Work);
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel2.Controls.Add(this.cb_f7);
-            this.panel2.Controls.Add(this.cb_f5);
-            this.panel2.Controls.Add(this.cb_f2);
-            this.panel2.Controls.Add(this.l_Flt);
-            this.panel2.Location = new System.Drawing.Point(457, 4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(227, 35);
-            this.panel2.TabIndex = 18;
-            // 
-            // l_Flt
-            // 
-            this.l_Flt.AutoSize = true;
-            this.l_Flt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.l_Flt.Location = new System.Drawing.Point(4, 10);
-            this.l_Flt.Name = "l_Flt";
-            this.l_Flt.Size = new System.Drawing.Size(67, 16);
-            this.l_Flt.TabIndex = 0;
-            this.l_Flt.Text = "Filter TP";
-            // 
-            // cb_f2
-            // 
-            this.cb_f2.AutoSize = true;
-            this.cb_f2.Checked = true;
-            this.cb_f2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cb_f2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cb_f2.Location = new System.Drawing.Point(80, 9);
-            this.cb_f2.Name = "cb_f2";
-            this.cb_f2.Size = new System.Drawing.Size(35, 20);
-            this.cb_f2.TabIndex = 1;
-            this.cb_f2.Text = "2";
-            this.cb_f2.UseVisualStyleBackColor = true;
-            this.cb_f2.CheckedChanged += new System.EventHandler(this.flt_checked);
-            // 
-            // cb_f5
-            // 
-            this.cb_f5.AutoSize = true;
-            this.cb_f5.Checked = true;
-            this.cb_f5.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cb_f5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cb_f5.Location = new System.Drawing.Point(130, 9);
-            this.cb_f5.Name = "cb_f5";
-            this.cb_f5.Size = new System.Drawing.Size(35, 20);
-            this.cb_f5.TabIndex = 2;
-            this.cb_f5.Text = "5";
-            this.cb_f5.UseVisualStyleBackColor = true;
-            this.cb_f5.CheckedChanged += new System.EventHandler(this.flt_checked);
-            // 
-            // cb_f7
-            // 
-            this.cb_f7.AutoSize = true;
-            this.cb_f7.Checked = true;
-            this.cb_f7.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cb_f7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cb_f7.Location = new System.Drawing.Point(180, 9);
-            this.cb_f7.Name = "cb_f7";
-            this.cb_f7.Size = new System.Drawing.Size(35, 20);
-            this.cb_f7.TabIndex = 3;
-            this.cb_f7.Text = "7";
-            this.cb_f7.UseVisualStyleBackColor = true;
-            this.cb_f7.CheckedChanged += new System.EventHandler(this.flt_checked);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1894,6 +1894,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).EndInit();
             this.pan_top.ResumeLayout(false);
             this.pan_top.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.pan_Connect.ResumeLayout(false);
             this.pan_Connect.PerformLayout();
             this.t_Expiration.ResumeLayout(false);
@@ -1937,8 +1939,6 @@
             this.p_tps_tp.ResumeLayout(false);
             this.p_tps_tp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tps_list)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2003,7 +2003,6 @@
         private System.Windows.Forms.TabPage t_CurrPos;
         private System.Windows.Forms.Label l_OrdersDelays;
         private System.Windows.Forms.DataGridView dgvDelays;
-        private System.Windows.Forms.Button b_FullBall;
         private System.Windows.Forms.DataGridView dgvFullBalance;
         private System.Windows.Forms.Label l_TP_Balance;
         private System.Windows.Forms.DataGridView dgvTPBalances;
@@ -2099,6 +2098,7 @@
         private System.Windows.Forms.CheckBox cb_f5;
         private System.Windows.Forms.CheckBox cb_f2;
         private System.Windows.Forms.Label l_Flt;
+        private System.Windows.Forms.Button b_AllVisBalance;
     }
 }
 

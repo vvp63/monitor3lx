@@ -87,7 +87,8 @@ namespace monitor3lx
                 tabControl_Main.Enabled = true;
                 getTPtable();
                 getBalancesTable();
-                FillFullBalance();
+                //FillFullBalance();
+                FillAllVisibleBalance();
                 getTPComboBox();
                 getAMtable();
                 timer_keepconn.Enabled = true;
@@ -323,7 +324,7 @@ namespace monitor3lx
             l_chb_secid.Text = dgvFullBalance.Rows[e.RowIndex].Cells[0].Value.ToString();
         }
 
-
+/*
         private void ClickFullBalance(object sender, EventArgs e)
         {
             FillFullBalance();
@@ -339,6 +340,34 @@ namespace monitor3lx
                     "FROM public.\"Full_Balances_2\" GROUP BY sec_id, code ORDER BY code"
              );
             ColorFullBalance(2, 3);
+        }
+    */
+
+
+        private void ClickAllVisible(object sender, EventArgs e)
+        {
+            FillAllVisibleBalance();
+        }
+
+        private void FillAllVisibleBalance()
+        {
+            gCurrTP_Balance = 0;
+            l_TP_Balance.Text = "All Visible Balance";
+            l_chb_tpid.Text = "0";
+            l_chb_secid.Text = "0";
+
+            string vTPList = "";
+            for (int j = 0; j < dgvTPBalances.RowCount; j++)
+                if (dgvTPBalances.Rows[j].Visible)
+                {
+                    if (vTPList.Length > 0) vTPList += ", ";
+                    vTPList += dgvTP.Rows[j].Cells[0].Value.ToString();
+                }
+
+            FillDGVByQuery(dgvFullBalance, "SELECT sec_id, code, SUM(qty) AS qty, SUM(qtyneed) AS qtyneed, SUM(\"Value\")::DECIMAL(16) AS \"Value\" " +
+                    "FROM public.\"Full_Balances_2\" WHERE tp_id IN (" + vTPList + ") GROUP BY sec_id, code ORDER BY code");
+            ColorFullBalance(2, 3);
+
         }
 
         private void WrongData(object sender, DataGridViewDataErrorEventArgs e)
@@ -633,6 +662,14 @@ namespace monitor3lx
             string vQuery = "";
             switch (cbFRH_TP.SelectedValue.ToString())
             {
+                case "9999995":
+                    vQuery = "SELECT * FROM \"public\".\"Daily_Finres_5\" ORDER BY \"date\" DESC";
+                    break;
+
+                case "9999997":
+                    vQuery = "SELECT * FROM \"public\".\"Daily_Finres_7\" ORDER BY \"date\" DESC";
+                    break;
+
                 case "9999999":
                     vQuery = "SELECT * FROM \"public\".\"AssetMoves_Full\" ORDER BY \"date\" DESC";
                     break;

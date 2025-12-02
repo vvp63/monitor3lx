@@ -61,6 +61,13 @@ D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\System.Threading.Tas
 D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
 D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\Microsoft.Extensions.Logging.xml
 D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
-D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\Npgsql.xml
 D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\Renci.SshNet.xml
 D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\System.Buffers.dll
+D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\System.Memory.dll
+D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\System.ValueTuple.dll
+D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\System.Buffers.xml
+D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\System.Memory.xml
+D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\System.ValueTuple.xml

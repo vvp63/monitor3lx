@@ -25,7 +25,7 @@ namespace monitor3lx.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("195.138.210.152")]
+        [global::System.Configuration.DefaultSettingValueAttribute("85.118.179.86")]
         public string SSHHost {
             get {
                 return ((string)(this["SSHHost"]));
@@ -73,7 +73,7 @@ namespace monitor3lx.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MTS3pg")]
+        [global::System.Configuration.DefaultSettingValueAttribute("mts3pg")]
         public string PGDatabese {
             get {
                 return ((string)(this["PGDatabese"]));
