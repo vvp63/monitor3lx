@@ -71,3 +71,4 @@ D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\System.Buffers.xml
 D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\System.Memory.xml
 D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\System.ValueTuple.xml
+D:\Poliektov\tmp\sld\vv_dev\monitor3lx\monitor3lx\bin\Debug\Npgsql.xml
