@@ -361,7 +361,7 @@ namespace monitor3lx
                 if (dgvTPBalances.Rows[j].Visible)
                 {
                     if (vTPList.Length > 0) vTPList += ", ";
-                    vTPList += dgvTP.Rows[j].Cells[0].Value.ToString();
+                    vTPList += dgvTPBalances.Rows[j].Cells[0].Value.ToString();
                 }
 
             FillDGVByQuery(dgvFullBalance, "SELECT sec_id, code, SUM(qty) AS qty, SUM(qtyneed) AS qtyneed, SUM(\"Value\")::DECIMAL(16) AS \"Value\" " +
