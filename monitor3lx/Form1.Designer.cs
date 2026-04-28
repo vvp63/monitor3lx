@@ -182,6 +182,8 @@
             this.cb_tps_active = new System.Windows.Forms.CheckBox();
             this.dgv_tps_list = new System.Windows.Forms.DataGridView();
             this.timer_BC_new = new System.Windows.Forms.Timer(this.components);
+            this.l_AddComment = new System.Windows.Forms.Label();
+            this.tbFR_Comment = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTP)).BeginInit();
             this.pan_top.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -846,6 +848,8 @@
             // t_Finres
             // 
             this.t_Finres.BackColor = System.Drawing.Color.Gainsboro;
+            this.t_Finres.Controls.Add(this.tbFR_Comment);
+            this.t_Finres.Controls.Add(this.l_AddComment);
             this.t_Finres.Controls.Add(this.bFR_AddSave);
             this.t_Finres.Controls.Add(this.lFR_AddFull);
             this.t_Finres.Controls.Add(this.lFR_WithAdd);
@@ -870,9 +874,9 @@
             // bFR_AddSave
             // 
             this.bFR_AddSave.BackColor = System.Drawing.Color.White;
-            this.bFR_AddSave.Location = new System.Drawing.Point(10, 278);
+            this.bFR_AddSave.Location = new System.Drawing.Point(77, 173);
             this.bFR_AddSave.Name = "bFR_AddSave";
-            this.bFR_AddSave.Size = new System.Drawing.Size(183, 28);
+            this.bFR_AddSave.Size = new System.Drawing.Size(189, 28);
             this.bFR_AddSave.TabIndex = 12;
             this.bFR_AddSave.Text = "Save Addition";
             this.bFR_AddSave.UseVisualStyleBackColor = false;
@@ -883,7 +887,7 @@
             this.lFR_AddFull.AutoSize = true;
             this.lFR_AddFull.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lFR_AddFull.ForeColor = System.Drawing.Color.Navy;
-            this.lFR_AddFull.Location = new System.Drawing.Point(113, 253);
+            this.lFR_AddFull.Location = new System.Drawing.Point(115, 258);
             this.lFR_AddFull.Name = "lFR_AddFull";
             this.lFR_AddFull.Size = new System.Drawing.Size(17, 18);
             this.lFR_AddFull.TabIndex = 11;
@@ -893,7 +897,7 @@
             // 
             this.lFR_WithAdd.AutoSize = true;
             this.lFR_WithAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lFR_WithAdd.Location = new System.Drawing.Point(8, 253);
+            this.lFR_WithAdd.Location = new System.Drawing.Point(10, 258);
             this.lFR_WithAdd.Name = "lFR_WithAdd";
             this.lFR_WithAdd.Size = new System.Drawing.Size(107, 18);
             this.lFR_WithAdd.TabIndex = 10;
@@ -902,20 +906,20 @@
             // lFR_Addition
             // 
             this.lFR_Addition.AutoSize = true;
-            this.lFR_Addition.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lFR_Addition.ForeColor = System.Drawing.Color.Indigo;
-            this.lFR_Addition.Location = new System.Drawing.Point(6, 203);
+            this.lFR_Addition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFR_Addition.ForeColor = System.Drawing.Color.Black;
+            this.lFR_Addition.Location = new System.Drawing.Point(7, 118);
             this.lFR_Addition.Name = "lFR_Addition";
-            this.lFR_Addition.Size = new System.Drawing.Size(75, 20);
+            this.lFR_Addition.Size = new System.Drawing.Size(57, 16);
             this.lFR_Addition.TabIndex = 9;
             this.lFR_Addition.Text = "Addition";
             // 
             // tbFR_Addition
             // 
             this.tbFR_Addition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbFR_Addition.Location = new System.Drawing.Point(8, 226);
+            this.tbFR_Addition.Location = new System.Drawing.Point(76, 118);
             this.tbFR_Addition.Name = "tbFR_Addition";
-            this.tbFR_Addition.Size = new System.Drawing.Size(185, 22);
+            this.tbFR_Addition.Size = new System.Drawing.Size(190, 22);
             this.tbFR_Addition.TabIndex = 8;
             this.tbFR_Addition.Text = "0";
             // 
@@ -923,7 +927,7 @@
             // 
             this.lFR_Result.AutoSize = true;
             this.lFR_Result.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lFR_Result.Location = new System.Drawing.Point(7, 126);
+            this.lFR_Result.Location = new System.Drawing.Point(10, 224);
             this.lFR_Result.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lFR_Result.Name = "lFR_Result";
             this.lFR_Result.Size = new System.Drawing.Size(63, 18);
@@ -935,7 +939,7 @@
             this.lFR_FullResult.AutoSize = true;
             this.lFR_FullResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lFR_FullResult.ForeColor = System.Drawing.Color.Navy;
-            this.lFR_FullResult.Location = new System.Drawing.Point(67, 126);
+            this.lFR_FullResult.Location = new System.Drawing.Point(70, 224);
             this.lFR_FullResult.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lFR_FullResult.Name = "lFR_FullResult";
             this.lFR_FullResult.Size = new System.Drawing.Size(17, 18);
@@ -959,30 +963,30 @@
             // lFR_TP
             // 
             this.lFR_TP.AutoSize = true;
-            this.lFR_TP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFR_TP.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lFR_TP.Location = new System.Drawing.Point(6, 21);
             this.lFR_TP.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lFR_TP.Name = "lFR_TP";
-            this.lFR_TP.Size = new System.Drawing.Size(70, 17);
+            this.lFR_TP.Size = new System.Drawing.Size(29, 18);
             this.lFR_TP.TabIndex = 4;
-            this.lFR_TP.Text = "Tradepair";
+            this.lFR_TP.Text = "TP";
             // 
             // cbFR_TP
             // 
             this.cbFR_TP.FormattingEnabled = true;
-            this.cbFR_TP.Location = new System.Drawing.Point(77, 18);
+            this.cbFR_TP.Location = new System.Drawing.Point(59, 18);
             this.cbFR_TP.Margin = new System.Windows.Forms.Padding(2);
             this.cbFR_TP.Name = "cbFR_TP";
-            this.cbFR_TP.Size = new System.Drawing.Size(190, 21);
+            this.cbFR_TP.Size = new System.Drawing.Size(208, 21);
             this.cbFR_TP.TabIndex = 3;
             // 
             // bFR_Count
             // 
             this.bFR_Count.BackColor = System.Drawing.Color.White;
-            this.bFR_Count.Location = new System.Drawing.Point(77, 85);
+            this.bFR_Count.Location = new System.Drawing.Point(59, 71);
             this.bFR_Count.Margin = new System.Windows.Forms.Padding(2);
             this.bFR_Count.Name = "bFR_Count";
-            this.bFR_Count.Size = new System.Drawing.Size(189, 26);
+            this.bFR_Count.Size = new System.Drawing.Size(208, 26);
             this.bFR_Count.TabIndex = 2;
             this.bFR_Count.Text = "Count";
             this.bFR_Count.UseVisualStyleBackColor = false;
@@ -991,21 +995,21 @@
             // lFR_Date
             // 
             this.lFR_Date.AutoSize = true;
-            this.lFR_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lFR_Date.Location = new System.Drawing.Point(7, 54);
+            this.lFR_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFR_Date.Location = new System.Drawing.Point(7, 48);
             this.lFR_Date.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lFR_Date.Name = "lFR_Date";
-            this.lFR_Date.Size = new System.Drawing.Size(38, 17);
+            this.lFR_Date.Size = new System.Drawing.Size(43, 18);
             this.lFR_Date.TabIndex = 1;
             this.lFR_Date.Text = "Date";
             // 
             // dtpFR_date
             // 
             this.dtpFR_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dtpFR_date.Location = new System.Drawing.Point(77, 51);
+            this.dtpFR_date.Location = new System.Drawing.Point(59, 45);
             this.dtpFR_date.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFR_date.Name = "dtpFR_date";
-            this.dtpFR_date.Size = new System.Drawing.Size(190, 21);
+            this.dtpFR_date.Size = new System.Drawing.Size(208, 21);
             this.dtpFR_date.TabIndex = 0;
             // 
             // t_CurrPos
@@ -1880,6 +1884,24 @@
             this.timer_BC_new.Interval = 60000;
             this.timer_BC_new.Tick += new System.EventHandler(this.BC_Timer_New_Work);
             // 
+            // l_AddComment
+            // 
+            this.l_AddComment.AutoSize = true;
+            this.l_AddComment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_AddComment.Location = new System.Drawing.Point(6, 148);
+            this.l_AddComment.Name = "l_AddComment";
+            this.l_AddComment.Size = new System.Drawing.Size(65, 16);
+            this.l_AddComment.TabIndex = 13;
+            this.l_AddComment.Text = "Comment";
+            // 
+            // tbFR_Comment
+            // 
+            this.tbFR_Comment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbFR_Comment.Location = new System.Drawing.Point(77, 145);
+            this.tbFR_Comment.Name = "tbFR_Comment";
+            this.tbFR_Comment.Size = new System.Drawing.Size(189, 22);
+            this.tbFR_Comment.TabIndex = 14;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2099,6 +2121,8 @@
         private System.Windows.Forms.CheckBox cb_f2;
         private System.Windows.Forms.Label l_Flt;
         private System.Windows.Forms.Button b_AllVisBalance;
+        private System.Windows.Forms.TextBox tbFR_Comment;
+        private System.Windows.Forms.Label l_AddComment;
     }
 }
 

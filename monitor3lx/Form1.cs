@@ -514,13 +514,14 @@ namespace monitor3lx
             tbFR_Addition.Text = "0";
             if (gConn.State == ConnectionState.Open)
             {
-                string vQuery = String.Format("SELECT addition FROM \"public\".\"Finres_Additions\" WHERE tpid={0} AND date='{1}'", cbFR_TP.SelectedValue, dtpFR_date.Value.ToString("yyyyMMdd"));
+                string vQuery = String.Format("SELECT addition, comment FROM \"public\".\"Finres_Additions\" WHERE tpid={0} AND date='{1}'", cbFR_TP.SelectedValue, dtpFR_date.Value.ToString("yyyyMMdd"));
                 //TextLog(vQuery);
                 NpgsqlCommand vComm = new NpgsqlCommand(vQuery, gConn);
                 NpgsqlDataReader vReader = vComm.ExecuteReader();
                 while (vReader.Read())
                 {
                     tbFR_Addition.Text = vReader[0].ToString();
+                    tbFR_Comment.Text = vReader[1].ToString();
                 }
                 vReader.Close();
             }
@@ -532,8 +533,8 @@ namespace monitor3lx
             float vAdd = 0;
             float.TryParse(tbFR_Addition.Text, out vAdd);
 
-            string vAddQuery = string.Format("SELECT * FROM \"public\".\"AddUpdateAddition\"('{0}-{1}-{2}', {3}, {4})",
-                                                dtpFR_date.Value.Year, dtpFR_date.Value.Month, dtpFR_date.Value.Day, cbFR_TP.SelectedValue, vAdd);
+            string vAddQuery = string.Format("SELECT * FROM \"public\".\"AddUpdateAddition\"('{0}-{1}-{2}', {3}, {4}, '{5}')",
+                                                dtpFR_date.Value.Year, dtpFR_date.Value.Month, dtpFR_date.Value.Day, cbFR_TP.SelectedValue, vAdd, tbFR_Comment.Text);
             //TextLog(vAddQuery);
             if (gConn.State == ConnectionState.Open)
             {
