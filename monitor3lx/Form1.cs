@@ -505,6 +505,7 @@ namespace monitor3lx
             float vAdd = 0;
             float.TryParse(tbFR_Addition.Text, out vAdd);
             lFR_AddFull.Text = String.Format("{0:C}", (vFr + vAdd));
+            ShowAdditions();
         }
 
 
@@ -512,6 +513,7 @@ namespace monitor3lx
         {
             //
             tbFR_Addition.Text = "0";
+            tbFR_Comment.Text = "";
             if (gConn.State == ConnectionState.Open)
             {
                 string vQuery = String.Format("SELECT addition, comment FROM \"public\".\"Finres_Additions\" WHERE tpid={0} AND date='{1}'", cbFR_TP.SelectedValue, dtpFR_date.Value.ToString("yyyyMMdd"));
@@ -544,6 +546,26 @@ namespace monitor3lx
             bFR_CountClick(sender, e);
 
         }
+
+
+        private void ShowAdditions()
+        {
+            FillDGVByQuery(dgv_Additions, string.Format("select \"date\"::date, tpid, addition, comment from \"public\".\"Finres_Additions\" where tpid = {0} order by \"date\" desc", cbFR_TP.SelectedValue));
+            //          "select \"date\"::date, tpid, addition, comment from \"public\".\"Finres_Additions\" order by \"date\" desc"
+        }
+
+        private void EnterAddition(object sender, DataGridViewCellEventArgs e)
+        {
+            //
+            DateTime vDT = dtpFR_date.Value;
+            DateTime.TryParse(dgv_Additions.Rows[e.RowIndex].Cells[0].Value.ToString(), out vDT);
+            dtpFR_date.Value = vDT;
+            cbFR_TP.SelectedValue   =   dgv_Additions.Rows[e.RowIndex].Cells[1].Value.ToString();
+            tbFR_Addition.Text  = dgv_Additions.Rows[e.RowIndex].Cells[2].Value.ToString();
+            tbFR_Comment.Text = dgv_Additions.Rows[e.RowIndex].Cells[3].Value.ToString();
+
+        }
+
 
 
         //      --------------------------  Basis Count (BC)    ------------------------------------------  //
@@ -906,7 +928,8 @@ namespace monitor3lx
 
         private void tps_tpsec_enter(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > 1)
+            TextLog(e.RowIndex.ToString());
+            if (e.RowIndex >= 0)
             {
                 cb_tps_code.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[0].Value.ToString();
                 cb_tps_acc.SelectedValue = dgv_tps_tpsec.Rows[e.RowIndex].Cells[2].Value.ToString();
@@ -1213,6 +1236,8 @@ namespace monitor3lx
             }
 
         }
+
+
 
 
     }
