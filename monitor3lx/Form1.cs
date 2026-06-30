@@ -197,6 +197,10 @@ namespace monitor3lx
                 {
                     if (cb_f7.Checked) dgvTP.Rows[j].Visible = true; else dgvTP.Rows[j].Visible = false;
                 }
+                if (vVal[0] == '8')
+                {
+                    if (cb_f8.Checked) dgvTP.Rows[j].Visible = true; else dgvTP.Rows[j].Visible = false;
+                }
             }
 
             dgvTPBalances.CurrentCell = null;
@@ -215,6 +219,10 @@ namespace monitor3lx
                 if (vVal[0] == '7')
                 {
                     if (cb_f7.Checked) dgvTPBalances.Rows[j].Visible = true; else dgvTPBalances.Rows[j].Visible = false;
+                }
+                if (vVal[0] == '8')
+                {
+                    if (cb_f8.Checked) dgvTPBalances.Rows[j].Visible = true; else dgvTPBalances.Rows[j].Visible = false;
                 }
             }
 
